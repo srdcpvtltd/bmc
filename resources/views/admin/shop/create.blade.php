@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Phone</label>
-                            <input name="text" type="text" class="form-control" required>
+                            <input name="phone" type="text" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Email</label>
