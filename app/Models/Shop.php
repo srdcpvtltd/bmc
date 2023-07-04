@@ -10,7 +10,7 @@ class Shop extends Model
     use HasFactory;
     
     protected $fillable = ['owner_name','phone','email','shop_number','shop_number','shop_rent','lat_long',
-        'rent_frequency', 'zone_id', 'establishment_id','location_id','area_id','establishment_category_id'                      
+        'rent_frequency', 'zone_id', 'establishment_id','location_id','area_id','establishment_category_id','ward_id'                 
     ];
 
 }

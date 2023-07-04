@@ -64,7 +64,7 @@
                             <select  name="zone_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select zone-</option>
                                 @foreach(App\Models\Zone::all() as $zone)
-                                <option @if($zone->id == $zone->zone_id) selected @endif value="{{$zone->id}}">{{$zone->name}}</option>
+                                <option @if($zone->id == $shop->zone_id) selected @endif value="{{$zone->id}}">{{$zone->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -73,7 +73,7 @@
                             <select  name="ward_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Ward</option>
                                 @foreach(App\Models\Ward::all() as $ward)
-                                <option @if($ward->id == $ward->ward_id) selected @endif value="{{$ward->id}}">{{$ward->name}}</option>
+                                <option @if($ward->id == $shop->ward_id) selected @endif value="{{$ward->id}}">{{$ward->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -82,7 +82,7 @@
                             <select  name="area_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Area</option>
                                 @foreach(App\Models\Area::all() as $area)
-                                <option @if($area->id == $area->area_id) selected @endif  value="{{$area->id}}">{{$area->name}}</option>
+                                <option @if($area->id == $shop->area_id) selected @endif  value="{{$area->id}}">{{$area->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -91,7 +91,7 @@
                             <select  name="location_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Location</option>
                                 @foreach(App\Models\Location::all() as $location)
-                                <option @if($location->id == $location->location_id) selected @endif value="{{$location->id}}">{{$location->name}}</option>
+                                <option @if($location->id == $shop->location_id) selected @endif value="{{$location->id}}">{{$location->name}}</option>
                                 @endforeach
                             </select>
                         </div>
