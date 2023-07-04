@@ -21,11 +21,11 @@ Manage Area
             </div>
 
             <div class="card-body">
-                <form action="{{route('admin.zone.store')}}" method="post" enctype="multipart/form-data" >
+                <form action="{{route('admin.area.store')}}" method="post" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Zone Name</label>
+                            <label>Area Name</label>
                             <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
                         </div>
                     </div>
