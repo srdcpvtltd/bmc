@@ -109,7 +109,7 @@
                             <select  name="establishment_category_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Establishment Category</option>
                                 @foreach(App\Models\EstablishmentCategory::all() as $establishment_category)
-                                <option @if($zone->id == $zone_id->establishment_category_id) selected @endif value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
+                                <option @if($establishment_category->id == $shop->establishment_category_id) selected @endif value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
