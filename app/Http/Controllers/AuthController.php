@@ -32,10 +32,10 @@ class AuthController extends Controller
             {
                 toastr()->success('You Login Successfully');
                 return redirect()->intended(route('admin.dashboard.index'));
-            }else if($user->role->name == 'User')
+            }else if($user->role->name == 'Collection Staff')
             {
                 toastr()->success('You Login Successfully');
-                return redirect()->intended(route('user.dashboard.index'));
+                return redirect()->intended(route('collection_staff.dashboard.index'));
             }
             else{
                 Auth::logout();

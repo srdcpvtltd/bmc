@@ -40,6 +40,7 @@ class WardController extends Controller
         try{
             $this->validate($request,[
                 'name' => 'required',
+                'zone_id' => 'required',
             ]);
             Ward::create($request->all());
             toastr()->success('Ward Added Successfully');

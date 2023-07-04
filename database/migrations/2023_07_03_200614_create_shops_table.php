@@ -20,8 +20,12 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('shop_number')->nullable();
             $table->string('shop_rent')->nullable();
+            $table->string('shop_size')->nullable();
+            $table->string('shop_type')->nullable();
             $table->string('lat_long')->nullable();
             $table->string('rent_frequency')->nullable();
+            $table->string('id_proof')->nullable();
+            $table->string('id_proof_number')->nullable();
             $table->unsignedBigInteger('zone_id')->nullable();
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
             $table->unsignedBigInteger('ward_id')->nullable();
@@ -30,8 +34,8 @@ return new class extends Migration
             $table->foreign('establishment_id')->references('id')->on('establishments')->onDelete('cascade');
             $table->unsignedBigInteger('location_id')->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
-            $table->unsignedBigInteger('area_id')->nullable();
-            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+            $table->unsignedBigInteger('structure_id')->nullable();
+            $table->foreign('structure_id')->references('id')->on('structures')->onDelete('cascade');
             $table->unsignedBigInteger('establishment_category_id')->nullable();
             $table->foreign('establishment_category_id')->references('id')->on('establishment_categories')->onDelete('cascade');
             $table->timestamps();

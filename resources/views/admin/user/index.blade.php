@@ -26,6 +26,7 @@
                         <th>Profile Image</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Verified</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -43,6 +44,7 @@
                         </td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{@$user->role->name}}</td>
                         <td>
                             @if($user->is_verified)
                                 <span class="badge badge-success">Verified</span>

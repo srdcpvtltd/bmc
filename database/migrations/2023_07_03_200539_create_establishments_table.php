@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('establishments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('total_shops')->default(0);
+            $table->unsignedBigInteger('establishment_category_id')->nullable();
+            $table->foreign('establishment_category_id')->references('id')->on('establishment_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

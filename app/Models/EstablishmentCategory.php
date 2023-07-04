@@ -10,4 +10,9 @@ class EstablishmentCategory extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    
+    public function establishments()
+    {
+        return $this->hasMany(Shop::class,'establishment_id');
+    }
 }

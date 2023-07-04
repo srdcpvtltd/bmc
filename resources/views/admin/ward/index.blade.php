@@ -28,6 +28,15 @@ Manage Ward
                             <label>Ward Name</label>
                             <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
                         </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Zone</label>
+                            <select  name="zone_id"  class="form-control select-search" data-fouc required>
+                                <option >Select zone-</option>
+                                @foreach(App\Models\Zone::all() as $zone)
+                                <option value="{{$zone->id}}">{{$zone->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>
@@ -48,6 +57,7 @@ Manage Ward
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Zone</th>
                 <th>Action</th>
                 <th>Action</th>
             </tr>
@@ -57,9 +67,10 @@ Manage Ward
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$ward->name}}</td>
+                <td>{{$ward->zone->name}}</td>
                 <td>
                     <button data-toggle="modal" data-target="#edit_modal" name="{{$ward->name}}" 
-                        id="{{$ward->id}}" class="edit-btn btn btn-primary">Edit</button>
+                        zone_id="{{$ward->zone_id}}" id="{{$ward->id}}" class="edit-btn btn btn-primary">Edit</button>
                 </td>
                 <td>
                     <form action="{{route('admin.ward.destroy',$ward->id)}}" method="POST">
@@ -89,6 +100,15 @@ Manage Ward
                         <label for="name">Ward Name</label>
                         <input class="form-control" type="text" id="name" name="name" placeholder="Enter name" required>
                     </div>
+                    <div class="form-group">
+                        <label>Choose Zone</label>
+                        <select  name="zone_id" id="zone_id"  class="form-control" required>
+                            <option >Select zone-</option>
+                            @foreach(App\Models\Zone::all() as $zone)
+                            <option value="{{$zone->id}}">{{$zone->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
@@ -104,8 +124,10 @@ Manage Ward
 <script>
     $(document).ready(function(){
         $('.edit-btn').click(function(){
+            let zone_id = $(this).attr('zone_id');
             let name = $(this).attr('name');
             let id = $(this).attr('id');
+            $('#zone_id').val(zone_id);
             $('#name').val(name);
             $('#id').val(id);
             $('#updateForm').attr('action','{{route('admin.ward.update','')}}' +'/'+id);

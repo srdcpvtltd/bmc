@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Establishment;
-use App\Models\Shop;
-use App\Models\Ward;
+use App\Models\Structure;
 use Exception;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class StructureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('admin.shop.index');
+        return view('admin.structure.index');
     }
 
     /**
@@ -28,7 +26,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('admin.shop.create');
+        //
     }
 
     /**
@@ -41,10 +39,10 @@ class ShopController extends Controller
     {
         try{
             $this->validate($request,[
-                'owner_name' => 'required',
+                'name' => 'required',
             ]);
-            Shop::create($request->all());
-            toastr()->success('Shop Added Successfully');
+            Structure::create($request->all());
+            toastr()->success('Structure Added Successfully');
             return redirect()->back();
         }catch (Exception $e)
         {
@@ -56,10 +54,10 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Structure  $structure
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show(Structure $structure)
     {
         //
     }
@@ -67,56 +65,40 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Structure  $structure
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Structure $structure)
     {
-        $shop = Shop::find($id);
-        return view('admin.shop.edit',compact('shop'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Structure  $structure
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-        $shop = Shop::find($id);
-        $shop->update($request->all());
-        toastr()->success('Shop Updated successfully');
+        $structure = Structure::find($id);
+        $structure->update($request->all());
+        toastr()->success('Structure Updated successfully');
         return redirect()->back(); 
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Structure  $structure
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $shop = Shop::find($id);
-        $shop->delete();
-        toastr()->success('Shop Deleted successfully');
+        $structure = Structure::find($id);
+        $structure->delete();
+        toastr()->success('Structure Deleted successfully');
         return redirect()->back();
-    }
-    public function getWards(Request $request)
-    {
-        $wards = Ward::where('zone_id',$request->id)->get();
-        return response()->json([
-            'wards' => $wards
-        ]);
-    }
-    public function getEstablishments(Request $request)
-    {
-        $establishments = Establishment::where('establishment_category_id',$request->id)->get();
-        return response()->json([
-            'establishments' => $establishments
-        ]);
     }
 }

@@ -84,7 +84,7 @@
 										<li class="nav-item">
 											<a href="{{route('admin.user.index')}}" class="nav-link" data-toggle="tab">
 												<i class="icon-switch2"></i>
-												Go Back To User Project Page
+												Go Back To User  Page
 											</a>
 										</li>
 									</ul>
@@ -142,6 +142,32 @@
 												<div class="col-md-6">
 													<label>Upload profile image</label>
 				                                    <input type="file" class="form-input-styled" name="image" data-fouc>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-4">
+													<label>Phone</label>
+													<input type="text" value="{{@$user->phone}}" name="phone"  class="form-control" required>
+												</div>
+												<div class="col-md-4">
+													<label>Role</label>
+													<select name="role_id" class="form-control select-search" id="role_id" required>
+														<option>Select</option>
+														@foreach(App\Models\Role::where('name','!=',['Super Admin'])->get() as $role)
+														<option @if($user->role_id == $role->id) selected @endif value="{{$role->id}}">{{$role->name}}</option>
+														@endforeach
+													</select>
+												</div>
+												<div class="col-md-4">
+													<label>Zone</label>
+													<select name="zone_id" class="form-control select-search" id="zone_id" required>
+														<option>Select</option>
+														@foreach(App\Models\Zone::all() as $zone)
+														<option @if($user->zone_id == $zone->id) selected @endif value="{{$zone->id}}">{{$zone->name}}</option>
+														@endforeach
+													</select>
 												</div>
 											</div>
 										</div>

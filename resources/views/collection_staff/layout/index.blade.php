@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>{{Auth::user()->name}} Admin Panel | Shop System</title>
+	<title>{{Auth::user()->name}} Collection Staff Panel | Shop System</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -60,7 +60,7 @@
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
 			<a href="{{url('/')}}" class="text-light">
-				<h3 class="m-0"><b>Admin Panel Menu</b></h3>
+				<h3 class="m-0"><b>Collection Staff Panel Menu</b></h3>
 			</a>
 		</div>
 
@@ -156,60 +156,15 @@
 							<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Admin Panel</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<a href="{{route('admin.dashboard.index')}}" class="nav-link {{Request::is('admin/dashboard')?'active':''}}">
+							<a href="{{route('collection_staff.dashboard.index')}}" class="nav-link {{Request::is('collection_staff/dashboard')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('admin/user*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Users</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/user*') ?'display:block':''}}">
-								<li class="nav-item"><a href="{{route('admin.user.create')}}" class="nav-link {{Request::is('admin/user/create')?'active':''}}">Create User</a></li>
-								{{-- <li class="nav-item"><a href="{{route('admin.user.project_manager')}}" class="nav-link {{Request::is('admin/user/project_manager')?'active':''}}">Project Manager</a></li> --}}
-								<li class="nav-item"><a href="{{route('admin.user.index')}}" class="nav-link {{Request::is('admin/user')?'active':''}}">All Users</a></li>
-							</ul>
-						</li>
 						<li class="nav-item">
-							<a href="{{route('admin.zone.index')}}" class="nav-link {{Request::is('admin/zone')?'active':''}}">
+							<a href="{{route('collection_staff.payment.index')}}" class="nav-link {{Request::is('collection_staff/payment')?'active':''}}">
 								<i class="icon-home4"></i>
-								<span>Zone</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.ward.index')}}" class="nav-link {{Request::is('admin/ward')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Ward</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.location.index')}}" class="nav-link {{Request::is('admin/location')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Location</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.structure.index')}}" class="nav-link {{Request::is('admin/structure')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Structure</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Establishment Category</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Establishment</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.shop.index')}}" class="nav-link {{Request::is('admin/shop')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Shop</span>
+								<span>Payment</span>
 							</a>
 						</li>
 					</ul>

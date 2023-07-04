@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 
 @section('title')
-Manage Area
+Manage Structure
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Manage Area
         <!-- Basic layout-->
         <div class="card">
             <div class="card-header header-elements-inline">
-                <h5 class="card-title">Add New Area</h5>
+                <h5 class="card-title">Add New Structure</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -21,11 +21,11 @@ Manage Area
             </div>
 
             <div class="card-body">
-                <form action="{{route('admin.area.store')}}" method="post" enctype="multipart/form-data" >
+                <form action="{{route('admin.structure.store')}}" method="post" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Area Name</label>
+                            <label>Structure Name</label>
                             <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
                         </div>
                     </div>
@@ -53,16 +53,16 @@ Manage Area
             </tr>
         </thead>
         <tbody>
-            @foreach (App\Models\Area::all()  as $key => $area)
+            @foreach (App\Models\Structure::all()  as $key => $structure)
             <tr>
                 <td>{{$key+1}}</td>
-                <td>{{$area->name}}</td>
+                <td>{{$structure->name}}</td>
                 <td>
-                    <button data-toggle="modal" data-target="#edit_modal" name="{{$area->name}}" 
-                        id="{{$area->id}}" class="edit-btn btn btn-primary">Edit</button>
+                    <button data-toggle="modal" data-target="#edit_modal" name="{{$structure->name}}" 
+                        id="{{$structure->id}}" class="edit-btn btn btn-primary">Edit</button>
                 </td>
                 <td>
-                    <form action="{{route('admin.area.destroy',$area->id)}}" method="POST">
+                    <form action="{{route('admin.structure.destroy',$structure->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                     <button class="btn btn-danger">Delete</button>
@@ -81,12 +81,12 @@ Manage Area
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Update Area</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">Update Structure</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Area Name</label>
+                        <label for="name">Structure Name</label>
                         <input class="form-control" type="text" id="name" name="name" placeholder="Enter name" required>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ Manage Area
             let id = $(this).attr('id');
             $('#name').val(name);
             $('#id').val(id);
-            $('#updateForm').attr('action','{{route('admin.area.update','')}}' +'/'+id);
+            $('#updateForm').attr('action','{{route('admin.structure.update','')}}' +'/'+id);
         });
     });
 </script>

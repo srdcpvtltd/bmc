@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wards', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('zone_id')->nullable();
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
@@ -29,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wards');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('zone_id');
+        });
     }
 };

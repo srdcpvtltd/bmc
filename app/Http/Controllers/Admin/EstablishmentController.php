@@ -40,6 +40,7 @@ class EstablishmentController extends Controller
         try{
             $this->validate($request,[
                 'name' => 'required',
+                'establishment_category_id' => 'required',
             ]);
             Establishment::create($request->all());
             toastr()->success('Establishment Added Successfully');

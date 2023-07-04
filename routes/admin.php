@@ -1,11 +1,11 @@
 <?php 
 /****************** ADMIN MIDDLEWARE PAGES ROUTES START****************/
 
-use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\EstablishmentCategoryController;
 use App\Http\Controllers\Admin\EstablishmentController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\StructureController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WardController;
 use App\Http\Controllers\Admin\ZoneController;
@@ -25,9 +25,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     /*******************ZONE ROUTE START*************/       
     Route::resource('zone',ZoneController::class);
     /*******************ZONE ROUTE END*************/             
-    /*******************AREA ROUTE START*************/       
-    Route::resource('area',AreaController::class);
-    /*******************AREA ROUTE END*************/               
+    /*******************STRUCUTURE ROUTE START*************/       
+    Route::resource('structure',StructureController::class);
+    /*******************STRUCUTURE ROUTE END*************/               
     /*******************LOCATION ROUTE START*************/       
     Route::resource('location',LocationController::class);
     /*******************LOCATION ROUTE END*************/             
@@ -40,7 +40,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     /*******************Establishment ROUTE START*************/       
     Route::resource('establishment',EstablishmentController::class);
     /*******************Establishment ROUTE END*************/  
-    /*******************Shop ROUTE START*************/       
+    /*******************Shop ROUTE START*************/      
+    Route::post('shop/get_wards',[ShopController::class,'getWards'])->name('shop.get_wards'); 
+    Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments'); 
     Route::resource('shop',ShopController::class);
     /*******************Shop ROUTE END*************/        
 });

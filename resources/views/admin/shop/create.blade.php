@@ -41,6 +41,14 @@
                             <input name="shop_number" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
+                            <label>Shop Size</label>
+                            <input name="shop_size" type="text" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Shop Type</label>
+                            <input name="shop_type" type="text" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label>Shop Rent</label>
                             <input name="shop_rent" type="text" class="form-control"  required>
                         </div>
@@ -55,12 +63,26 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
+                            <label>ID Proof</label>
+                            <select  name="id_proof"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select ID Proof</option>
+                                <option value="PAN">PAN</option>
+                                <option value="Aadhar Card">Aadhar Card</option>
+                                <option value="Voter ID">Voter ID</option>
+                                <option value="Driving License">Driving License</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>ID Proof Number</label>
+                            <input name="id_proof_number" type="text" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label>Location</label>
                             <input name="lat_long" id="lat_long" readonly type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Choose Zone</label>
-                            <select  name="zone_id"  class="form-control select-search" data-fouc required>
+                            <select  name="zone_id" id="zone_id" class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select zone-</option>
                                 @foreach(App\Models\Zone::all() as $zone)
                                 <option value="{{$zone->id}}">{{$zone->name}}</option>
@@ -69,19 +91,16 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Choose Ward</label>
-                            <select  name="ward_id"  class="form-control select-search" data-fouc required>
+                            <select  name="ward_id" id="ward_id" class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Ward</option>
-                                @foreach(App\Models\Ward::all() as $ward)
-                                <option value="{{$ward->id}}">{{$ward->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Choose Area</label>
-                            <select  name="area_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Area</option>
-                                @foreach(App\Models\Area::all() as $area)
-                                <option value="{{$area->id}}">{{$area->name}}</option>
+                            <label>Choose Structure</label>
+                            <select  name="structure_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Structure</option>
+                                @foreach(App\Models\Structure::all() as $structure)
+                                <option value="{{$structure->id}}">{{$structure->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -95,21 +114,18 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Choose Establishment</label>
-                            <select  name="establishment_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Establishment</option>
-                                @foreach(App\Models\Establishment::all() as $establishment)
-                                <option value="{{$establishment->id}}">{{$establishment->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
                             <label>Choose Establishment Category</label>
-                            <select  name="establishment_category_id"  class="form-control select-search" data-fouc required>
+                            <select  name="establishment_category_id" id="establishment_category_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Establishment Category</option>
                                 @foreach(App\Models\EstablishmentCategory::all() as $establishment_category)
                                 <option value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Establishment</label>
+                            <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment</option>
                             </select>
                         </div>
                     </div>
@@ -136,6 +152,48 @@
         function showPosition(position) {
             $('#lat_long').val(position.coords.latitude+','+position.coords.longitude);
         }
+        $('#zone_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_wards')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    wards = result.wards;
+                    $('#ward_id').empty();
+                    $('#ward_id').append('<option disabled>Select Ward</option>');
+                    for (i=0;i<wards.length;i++){
+                        $('#ward_id').append('<option value="'+wards[i].id+'">'+wards[i].name+'</option>');
+                    }
+                }
+            });
+        });
+        $('#establishment_category_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_establishments')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    establishments = result.establishments;
+                    $('#establishment_id').empty();
+                    $('#establishment_id').append('<option disabled>Select Establishment</option>');
+                    for (i=0;i<establishments.length;i++){
+                        $('#establishment_id').append('<option value="'+establishments[i].id+'">'+establishments[i].name+'</option>');
+                    }
+                }
+            });
+        });
     });
 </script>
 @endsection

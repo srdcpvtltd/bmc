@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('role_id');
             $table->string('image')->nullable();
+            $table->string('phone')->nullable();
             $table->string('is_verified')->default(0);
             $table->string('is_active')->default(0);
             $table->rememberToken();

@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 
 @section('title')
-    Add Project Users
+    Add Users
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header header-elements-inline">
-                <h5 class="card-title">Add New Project Users</h5>
+                <h5 class="card-title">Add New Users</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -24,7 +24,7 @@
                 <form action="{{route('admin.user.store')}}" method="post" enctype="multipart/form-data" >
                 @csrf
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label>Name</label>
                             <div class="form-group form-group-feedback form-group-feedback-left">
                                 <input type="text" id="name" class="form-control" value="{{old('name')}}" placeholder="username" name="name" required>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label>Email Address</label>
                             <div class="form-group form-group-feedback form-group-feedback-left">
                                 <input type="text" id="email" class="form-control"  value="{{old('email')}}" placeholder="Enter your email" name="email" required>
@@ -42,7 +42,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label>Contact No.</label>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <input type="text"  class="form-control"  value="{{old('phone')}}" placeholder="Enter your phone" name="phone" required>
+                                <div class="form-control-feedback">
+                                    <i class="icon-phone text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <label>Profile Image</label>
                             <div class="form-group form-group-feedback form-group-feedback-left">
                                 <input class="form-control" type="file" name="image" placeholder="Enter password" required>
@@ -54,7 +63,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label>Password</label>
                             <div class="form-group form-group-feedback form-group-feedback-left">
                                 <input id="pwd" minlength="4" class="form-control" value="{{old('password')}}" onkeyup="validatePassword(this.value);" type="password" name="password" placeholder="Enter password" required>
@@ -64,7 +73,7 @@
                                 <span id="msg"></span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label>Confirm Password</label>
                             <div class="form-group form-group-feedback form-group-feedback-left">
                                 <input id="confirmpwd" minlength="4" class="form-control" value="{{old('confirm_password')}}" onkeyup="confirmPassword(this.value);" type="password" name="confirm_password" placeholder="Enter confirm password" required>
@@ -74,13 +83,24 @@
                                 <span id="confirmmsg"></span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label>Role</label>
                             <div class="form-group form-group-feedback form-group-feedback-left">
                                 <select name="role_id" class="form-control select-search" id="role_id" required>
                                     <option>Select</option>
                                     @foreach(App\Models\Role::where('name','!=',['Super Admin'])->get() as $role)
                                     <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Zone</label>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <select name="zone_id" class="form-control select-search" id="zone_id" required>
+                                    <option>Select</option>
+                                    @foreach(App\Models\Zone::all() as $zone)
+                                    <option value="{{$zone->id}}">{{$zone->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

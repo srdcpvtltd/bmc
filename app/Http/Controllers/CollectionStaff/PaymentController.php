@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\CollectionStaff;
 
 use App\Http\Controllers\Controller;
-use App\Models\Area;
+use App\Models\Payment;
 use Exception;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        return view('admin.area.index');
+        return view('collection_staff.payment.index');
     }
 
     /**
@@ -40,9 +40,13 @@ class AreaController extends Controller
         try{
             $this->validate($request,[
                 'name' => 'required',
+                'amount' => 'required',
+                'location' => 'required',
+                'establishment_id' => 'required',
+                'user_id' => 'required',
             ]);
-            Area::create($request->all());
-            toastr()->success('Area Added Successfully');
+            Payment::create($request->all());
+            toastr()->success('Payment Added Successfully');
             return redirect()->back();
         }catch (Exception $e)
         {
@@ -54,10 +58,10 @@ class AreaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show(Area $area)
+    public function show(Payment $payment)
     {
         //
     }
@@ -65,10 +69,10 @@ class AreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Area $area)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -77,28 +81,28 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-        $area = Area::find($id);
-        $area->update($request->all());
-        toastr()->success('Area Updated successfully');
+        $payment = Payment::find($id);
+        $payment->update($request->all());
+        toastr()->success('Payment Updated successfully');
         return redirect()->back(); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $area = Area::find($id);
-        $area->delete();
-        toastr()->success('Area Deleted successfully');
+        $payment = Payment::find($id);
+        $payment->delete();
+        toastr()->success('Payment Deleted successfully');
         return redirect()->back();
     }
 }

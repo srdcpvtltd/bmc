@@ -28,7 +28,8 @@ class User extends Authenticatable
         'image',
         'is_verified',
         'is_active',
-        'phone'
+        'phone',
+        'zone_id'
     ];
 
     /**

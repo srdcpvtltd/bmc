@@ -9,5 +9,10 @@ class Ward extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['name'];
+    protected $fillable = ['name','zone_id'];
+
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class,'zone_id');
+    }
 }

@@ -20,6 +20,8 @@ class UserSeeder extends Seeder
             [ 'id' => 1 ,'name' => 'Admin', 'created_at' => Carbon::now()],
             [ 'id' => 2 ,'name' => 'User', 'created_at' => Carbon::now()],
             [ 'id' => 3 ,'name' => 'Shop Owner', 'created_at' => Carbon::now()],
+            [ 'id' => 4 ,'name' => 'ZDC', 'created_at' => Carbon::now()],
+            [ 'id' => 5 ,'name' => 'Collection Staff', 'created_at' => Carbon::now()],
         ]);
         DB::table('users')->insert([
             [ 
@@ -29,15 +31,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('1234'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ],
-            [ 
-                'name' => 'User',
-                'email' => 'user@mail.com',
-                'role_id' => '2',
-                'password' => Hash::make('1234'),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
+            ]
         ]);
     }
 }

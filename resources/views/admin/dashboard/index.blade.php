@@ -71,15 +71,15 @@
         </a>
     </div>
     <div class="col-sm-4 col-xl-4">
-        <a href="{{route('admin.area.index')}}">
+        <a href="{{route('admin.structure.index')}}">
             <div class="card card-body bg-teal-400 has-bg-image">
                 <div class="media">
                     <div class="mr-3 align-self-center">
                         <i class="icon-question4 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right"> 
-                        <h3 class="mb-0">{{App\Models\Area::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Total Area</span>
+                        <h3 class="mb-0">{{App\Models\Structure::count()}}</h3>
+                        <span class="text-uppercase font-size-xs">Total Structure</span>
                     </div>
 
                 </div>
