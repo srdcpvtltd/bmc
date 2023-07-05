@@ -1,6 +1,7 @@
 <?php 
 /****************** ADMIN MIDDLEWARE PAGES ROUTES START****************/
 
+use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\EstablishmentCategoryController;
 use App\Http\Controllers\Admin\EstablishmentController;
 use App\Http\Controllers\Admin\LocationController;
@@ -44,7 +45,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::post('shop/get_wards',[ShopController::class,'getWards'])->name('shop.get_wards'); 
     Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments'); 
     Route::resource('shop',ShopController::class);
-    /*******************Shop ROUTE END*************/        
+    /*******************Shop ROUTE END*************/  
+    Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');       
+    Route::get('collection/show_daily/{id}',[CollectionController::class,'showDailyCollection'])->name('collection.show_daily');       
 });
 /****************** ADMIN MIDDLEWARE PAGES ROUTES END****************/
 ?>

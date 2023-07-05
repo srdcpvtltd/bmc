@@ -166,7 +166,6 @@
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/user*') ?'display:block':''}}">
 								<li class="nav-item"><a href="{{route('admin.user.create')}}" class="nav-link {{Request::is('admin/user/create')?'active':''}}">Create User</a></li>
-								{{-- <li class="nav-item"><a href="{{route('admin.user.project_manager')}}" class="nav-link {{Request::is('admin/user/project_manager')?'active':''}}">Project Manager</a></li> --}}
 								<li class="nav-item"><a href="{{route('admin.user.index')}}" class="nav-link {{Request::is('admin/user')?'active':''}}">All Users</a></li>
 							</ul>
 						</li>
@@ -211,6 +210,14 @@
 								<i class="icon-home4"></i>
 								<span>Shop</span>
 							</a>
+						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/collection*') ?'display:block':''}}">
+								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
+								<li class="nav-item"><a href="#" class="nav-link {{Request::is('admin/user')?'active':''}}">Monthly Collection</a></li>
+							</ul>
 						</li>
 					</ul>
 				</div>
