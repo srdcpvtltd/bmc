@@ -15,4 +15,8 @@ class Establishment extends Model
     {
         return $this->belongsTo(EstablishmentCategory::class,'establishment_category_id');
     }
+    public function shops()
+    {
+        return $this->hasMany(Shop::class);
+    }
 }

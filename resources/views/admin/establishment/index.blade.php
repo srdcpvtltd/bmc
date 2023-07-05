@@ -75,7 +75,7 @@ Manage Establishment
                 <td>{{$establishment->name}}</td>
                 <td>{{$establishment->establishment_category->name}}</td>
                 <td>{{$establishment->total_shops}}</td>
-                <td>{{$establishment->total_shops - $establishment->establishments->count()}}</td>
+                <td>{{$establishment->total_shops - $establishment->shops->count()}}</td>
                 <td>
                     <button data-toggle="modal" data-target="#edit_modal" name="{{$establishment->name}}" 
                         total_shops="{{$establishment->total_shops}}" establishment_category_id="{{$establishment->establishment_category_id}}" id="{{$establishment->id}}" class="edit-btn btn btn-primary">Edit</button>
