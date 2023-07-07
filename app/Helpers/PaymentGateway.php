@@ -17,7 +17,7 @@ class PaymentGateway
             'name' => $request->name,
             'usage' => $request->usage,
             'fixed_amount' => $request->fixed_amount?1:0,
-            'payment_amount' => $request->payment_amount,
+            'payment_amount' => $request->payment_amount * 100,
             'customer_id' => $request->customer_id,
             'description' => $request->description,
             // 'close_by' => '1681615838',
