@@ -91,7 +91,7 @@ Generate QR Code For {{$shop->name}}
                 <td>{{$qr_code->status}}</td>
                 <td>{{$qr_code->payment_amount}}</td>
                 <td>
-                    @if($qr_code->usage == 'multiple_usage')
+                    @if($qr_code->usage == 'multiple_use')
                     Multiple usage
                     @else 
                     Single Usage
