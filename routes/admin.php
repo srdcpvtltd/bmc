@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\EstablishmentCategoryController;
 use App\Http\Controllers\Admin\EstablishmentController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\QrCodeController;
+use App\Http\Controllers\Admin\QrCodePaymentController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\StructureController;
 use App\Http\Controllers\Admin\UserController;
@@ -49,6 +50,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments'); 
     Route::resource('shop',ShopController::class);
     Route::resource('qr_code',QrCodeController::class);
+    Route::resource('qr_code_payment',QrCodePaymentController::class);
     /*******************Shop ROUTE END*************/  
     Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');       
     Route::get('collection/show_daily/{id}',[CollectionController::class,'showDailyCollection'])->name('collection.show_daily');       

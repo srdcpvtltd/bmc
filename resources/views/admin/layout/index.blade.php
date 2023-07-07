@@ -210,6 +210,11 @@
 								<i class="icon-home4"></i>
 								<span>Shop</span>
 							</a>
+						</li><li class="nav-item">
+							<a href="{{route('admin.qr_code_payment.index')}}" class="nav-link {{Request::is('admin/qr_code_payment')?'active':''}}">
+								<i class="icon-home4"></i>
+								<span>Qr Payments</span>
+							</a>
 						</li>
 						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>

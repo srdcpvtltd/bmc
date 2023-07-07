@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CronjobController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::view('register','auth.register');
 Route::post('register',[AuthController::class,'register'])->name('register');
 /*******************REGISTER ROUTE END*************/     
 
+/*******************CRONJOB ROUTES ROUTE START*************/       
+Route::get('get-payments',[CronjobController::class,'getPayments'])->name('logout');
+/*******************LOGOUT ROUTE END*************/    
 /*******************LOGOUT ROUTE START*************/       
 Route::get('logout',[AuthController::class,'logout'])->name('logout');
 /*******************LOGOUT ROUTE END*************/     

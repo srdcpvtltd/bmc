@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\QrCode;
+use App\Models\QrCodePayment;
 use Razorpay\Api\Api;
 
 class PaymentGateway
@@ -64,6 +65,32 @@ class PaymentGateway
             $shop->update([
                 'customer_id' => $customer->id
             ]);
+        }
+    } 
+    public static function storePayments()
+    {
+        $key_id = 'rzp_live_NUDgAouS6X8GKk';
+        $secret = 'zrylqxgKWdLWO9X2zSDvR1ZU';
+        $api = new Api($key_id, $secret);
+        $qrCodes = QrCode::all();
+        $options = [];
+        foreach($qrCodes as $qrCode)
+        {
+            $payments = $api->qrCode->fetch($qrCode->qr_id)->fetchAllPayments($options)->items;
+            foreach($payments as $payment)
+            {
+                $alreadyExist = QrCodePayment::where('payment_id',$payment->id)->first();
+                if(!$alreadyExist)
+                {
+                    QrCodePayment::create([
+                        'amount' => $payment->amount,
+                        'status' => $payment->status,
+                        'customer_id' => $payment->customer_id,
+                        'payment_id' => $payment->id,
+                        'qr_code_id' => $qrCode->qr_id
+                    ]);
+                }
+            }
         }
     } 
 }

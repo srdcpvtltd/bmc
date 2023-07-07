@@ -10,4 +10,9 @@ class QrCode extends Model
     use HasFactory;
 
     protected $guarded = [];    
+    
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class,'shop_id');
+    }
 }

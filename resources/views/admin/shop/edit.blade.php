@@ -109,13 +109,14 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Choose Location</label>
-                            <select  name="location_id"  class="form-control select-search" data-fouc required>
+                            <label>Location</label>
+                            <input type="text" value="{{$shop->location}}" name="location" class="form-control" required>
+                            {{-- <select  name="location_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Location</option>
                                 @foreach(App\Models\Location::all() as $location)
                                 <option @if($location->id == $shop->location_id) selected @endif value="{{$location->id}}">{{$location->name}}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
                         </div>
                         <div class="form-group col-md-6">
                             <label>Choose Establishment Category</label>
