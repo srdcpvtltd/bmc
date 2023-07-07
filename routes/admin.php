@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\EstablishmentCategoryController;
 use App\Http\Controllers\Admin\EstablishmentController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\StructureController;
 use App\Http\Controllers\Admin\UserController;
@@ -42,9 +43,12 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::resource('establishment',EstablishmentController::class);
     /*******************Establishment ROUTE END*************/  
     /*******************Shop ROUTE START*************/      
+    Route::get('shop/create_shop_profile/{id}',[ShopController::class,'createShopProfile'])->name('shop.create_shop_profile'); 
+    Route::get('shop/generate_qr_code/{id}',[ShopController::class,'generateQrCode'])->name('shop.generate_qr_code'); 
     Route::post('shop/get_wards',[ShopController::class,'getWards'])->name('shop.get_wards'); 
     Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments'); 
     Route::resource('shop',ShopController::class);
+    Route::resource('qr_code',QrCodeController::class);
     /*******************Shop ROUTE END*************/  
     Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');       
     Route::get('collection/show_daily/{id}',[CollectionController::class,'showDailyCollection'])->name('collection.show_daily');       

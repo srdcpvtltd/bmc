@@ -26,6 +26,8 @@ Manage Shop
                     <th>Owner Name</th>
                     <th>Phone</th>
                     <th>Lat Long</th>
+                    <th>Register Shop</th>
+                    <th>Generate QR Code</th>
                     <th>Action</th>
                     <th>Action</th>
                 </tr>
@@ -37,6 +39,18 @@ Manage Shop
                     <td>{{$shop->owner_name}}</td>
                     <td>{{$shop->phone}}</td>
                     <td>{{$shop->lat_long}}</td>
+                    <td>
+                        @if($shop->customer_id)
+                        {{$shop->customer_id}} <span class="badge badge-success badge-sm">Already Connected</span>
+                        @else 
+                        <a type="button"  href="{{route('admin.shop.create_shop_profile',$shop->id)}}" class="btn btn-primary btn-sm">Create Shop Profile</button>
+                        @endif
+                    </td>
+                    <td>
+                        @if($shop->customer_id)
+                            <a type="button"  href="{{route('admin.shop.show',$shop->id)}}" class="btn btn-primary btn-sm">Generate QR Code</button>
+                        @endif
+                    </td>
                     <td>
                         <a type="button"  href="{{route('admin.shop.edit',$shop->id)}}" class="edit-btn btn btn-primary">Edit</button>
                     </td>

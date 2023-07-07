@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\PaymentGateway;
 use App\Http\Controllers\Controller;
 use App\Models\Establishment;
 use App\Models\Shop;
@@ -59,9 +60,10 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show($id)
     {
-        //
+        $shop = Shop::find($id);
+        return view('admin.shop.show',compact('shop'));
     }
 
     /**
@@ -104,6 +106,19 @@ class ShopController extends Controller
         $shop->delete();
         toastr()->success('Shop Deleted successfully');
         return redirect()->back();
+    }
+    public function createShopProfile($id)
+    {
+        try{
+            $shop = Shop::find($id);
+            PaymentGateway::createCustomer($shop);
+            toastr()->success('Shop Create on RazorPay Successfully');
+            return redirect()->back();
+        }catch (Exception $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
     public function getWards(Request $request)
     {
