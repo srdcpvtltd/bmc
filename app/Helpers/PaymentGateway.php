@@ -87,7 +87,7 @@ class PaymentGateway
                         'status' => $payment->status,
                         'customer_id' => $payment->customer_id,
                         'payment_id' => $payment->id,
-                        'qr_code_id' => $qrCode->qr_id
+                        'qr_code_id' => $qrCode->id
                     ]);
                 }
             }
