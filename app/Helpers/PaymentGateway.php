@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\QrCode;
 use App\Models\QrCodePayment;
+use Carbon\Carbon;
 use Razorpay\Api\Api;
 
 class PaymentGateway
@@ -87,6 +88,16 @@ class PaymentGateway
                         'status' => $payment->status,
                         'customer_id' => $payment->customer_id,
                         'payment_id' => $payment->id,
+                        'payment_created_at' => Carbon::parse($payment->created_at),
+                        'qr_code_id' => $qrCode->id
+                    ]);
+                }else{
+                    $alreadyExist->update([
+                        'amount' => $payment->amount,
+                        'status' => $payment->status,
+                        'customer_id' => $payment->customer_id,
+                        'payment_id' => $payment->id,
+                        'payment_created_at' => Carbon::parse($payment->created_at),
                         'qr_code_id' => $qrCode->id
                     ]);
                 }

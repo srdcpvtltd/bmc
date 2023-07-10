@@ -2,6 +2,7 @@
 /****************** ADMIN MIDDLEWARE PAGES ROUTES START****************/
 
 use App\Http\Controllers\Admin\CollectionController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EstablishmentCategoryController;
 use App\Http\Controllers\Admin\EstablishmentController;
 use App\Http\Controllers\Admin\LocationController;
@@ -14,8 +15,8 @@ use App\Http\Controllers\Admin\WardController;
 use App\Http\Controllers\Admin\ZoneController;
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','admin'], function () { 
-    /*******************DASHBOARD ROUTE START*************/       
-    Route::view('dashboard','admin.dashboard.index')->name('dashboard.index');
+    /*******************DASHBOARD ROUTE START*************/   
+    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard.index');    
     /*******************DASHBOARD ROUTE END*************/       
     /*******************USER ROUTE START*************/       
     Route::view('user/project_manager','admin.user.project_manager')->name('user.project_manager');
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::resource('qr_code_payment',QrCodePaymentController::class);
     /*******************Shop ROUTE END*************/  
     Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');       
+    Route::get('collection/monthly',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');       
     Route::get('collection/show_daily/{id}',[CollectionController::class,'showDailyCollection'])->name('collection.show_daily');       
 });
 /****************** ADMIN MIDDLEWARE PAGES ROUTES END****************/

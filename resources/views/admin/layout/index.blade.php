@@ -221,7 +221,7 @@
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/collection*') ?'display:block':''}}">
 								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
-								<li class="nav-item"><a href="#" class="nav-link {{Request::is('admin/user')?'active':''}}">Monthly Collection</a></li>
+								<li class="nav-item"><a href="{{route('admin.collection.monthly')}}" class="nav-link {{Request::is('admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
 							</ul>
 						</li>
 					</ul>

@@ -1,24 +1,46 @@
 @extends('admin.layout.index')
 
 @section('title')
-Manage Qr Payments
+    Monthly Collection
 @endsection
 
 @section('content')
-
 
 <div class="card">
     <div class="card-header header-elements-inline">
         <h5 class="card-title">Qr Payments</h5>
         <div class="header-elements">
             <div class="list-icons">
-                <a href="{{url('get-payments')}}" class="btn btn-primary text-right">Get New Payments</a>
                 <a class="list-icons-item" data-action="collapse"></a>
                 <a class="list-icons-item" data-action="remove"></a>
             </div>
         </div>
     </div>
     <div class="card-body">
+        <form method="GET">
+            <div class="row">
+                <input type="hidden" name="active_tab" value="income_statement">
+                <div class="form-group col-2">
+                    <label>
+                        Start Date
+                        <input type="text" name="start_date" class="daterange-single form-control pull-right dates" style="height: 35px; "
+                            value="{{ date('m/d/Y', strtotime(@$start_date))}}">
+                    </label>   
+                </div>
+                <div class="form-group col-2">
+                    <label>
+                        End Date
+        
+                        <input type="text" name="end_date" class="daterange-single form-control pull-right dates" style="height: 35px; "
+                            value="{{ date('m/d/Y', strtotime(@$end_date))}}">
+                    </label>   
+                </div>
+                <div class="form-group col-2">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
         <table class="table datatable-save-state">
             <thead>
                 <tr>
@@ -48,8 +70,6 @@ Manage Qr Payments
         </table>
     </div>
 </div>
-
 @endsection
-
 @section('scripts')
 @endsection
