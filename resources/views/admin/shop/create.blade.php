@@ -25,6 +25,10 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
+                            <label>Shop Name</label>
+                            <input name="shop_name" type="text" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label>Shop Owner Name</label>
                             <input name="owner_name" type="text" class="form-control"  required>
                         </div>
@@ -37,20 +41,41 @@
                             <input name="email" type="email" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
+                            <label>Choose Establishment Category</label>
+                            <select  name="establishment_category_id" id="establishment_category_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment Category</option>
+                                @foreach(App\Models\EstablishmentCategory::all() as $establishment_category)
+                                <option value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Establishment</label>
+                            <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Establishment Shop Number</label>
+                            <select  name="establishment_shop_id" id="establishment_shop_id"  class="form-control select-search" data-fouc required>
+                                <option selected>Select Establishment Shop Number</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label>Shop Number</label>
-                            <input name="shop_number" type="text" class="form-control"  required>
+                            <input name="shop_number" id="shop_number" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Size</label>
-                            <input name="shop_size" type="text" class="form-control"  required>
+                            <input name="shop_size" id="shop_size" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Type</label>
-                            <input name="shop_type" type="text" class="form-control"  required>
+                            <input name="shop_type" id="shop_type" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Rent</label>
-                            <input name="shop_rent" type="text" class="form-control"  required>
+                            <input name="shop_rent" id="shop_rent" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Rent Frequency</label>
@@ -77,7 +102,7 @@
                             <input name="id_proof_number" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Location</label>
+                            <label>Lat/Long.</label>
                             <input name="lat_long" id="lat_long" readonly type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
@@ -105,7 +130,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Location</label>
+                            <label>Address</label>
                             <input type="text" name="location" class="form-control" required>
                             {{-- <select  name="location_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Location</option>
@@ -113,21 +138,6 @@
                                 <option value="{{$location->id}}">{{$location->name}}</option>
                                 @endforeach
                             </select> --}}
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Choose Establishment Category</label>
-                            <select  name="establishment_category_id" id="establishment_category_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Establishment Category</option>
-                                @foreach(App\Models\EstablishmentCategory::all() as $establishment_category)
-                                <option value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Choose Establishment</label>
-                            <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Establishment</option>
-                            </select>
                         </div>
                     </div>
                     <div class="text-right">
@@ -192,6 +202,47 @@
                     for (i=0;i<establishments.length;i++){
                         $('#establishment_id').append('<option value="'+establishments[i].id+'">'+establishments[i].name+'</option>');
                     }
+                }
+            });
+        });
+        $('#establishment_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_establishment_shops')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    establishment_shops = result.establishment_shops;
+                    $('#establishment_shop_id').empty();
+                    $('#establishment_shop_id').append('<option>Select Shop Number</option>');
+                    for (i=0;i<establishment_shops.length;i++){
+                        $('#establishment_shop_id').append('<option value="'+establishment_shops[i].id+'">'+establishment_shops[i].shop_number+'</option>');
+                    }
+                }
+            });
+        });
+        $('#establishment_shop_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_establishment_shop')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    establishment_shop = result.establishment_shop;
+                    $('#shop_number').val(establishment_shop.shop_number);
+                    $('#shop_size').val(establishment_shop.shop_size);
+                    $('#shop_type').val(establishment_shop.shop_type);
+                    $('#shop_rent').val(establishment_shop.shop_rent);
                 }
             });
         });

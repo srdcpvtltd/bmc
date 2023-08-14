@@ -39,8 +39,10 @@ Manage Establishment
                         </div>
                         <div class="form-group col-md-6">
                             <label>Establishment Total Shops</label>
-                            <input name="total_shops" type="number" class="form-control" placeholder="Enter Total Shops" required>
+                            <input name="total_shops" id="total_shops" type="number" class="form-control" placeholder="Enter Total Shops" required>
                         </div>
+                    </div>
+                    <div id="shop_fields">
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>
@@ -130,6 +132,26 @@ Manage Establishment
         </form>
     </div>
 </div>
+<div  id="new_shop_field" style="display:none;">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Shop Number</label>
+            <input name="shop_number[]" type="text" class="form-control"  required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Shop Size</label>
+            <input name="shop_size[]" type="text" class="form-control"  required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Shop Type</label>
+            <input name="shop_type[]" type="text" class="form-control"  required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Shop Rent</label>
+            <input name="shop_rent[]" type="text" class="form-control"  required>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
@@ -145,6 +167,16 @@ Manage Establishment
             $('#name').val(name);
             $('#id').val(id);
             $('#updateForm').attr('action','{{route('admin.establishment.update','')}}' +'/'+id);
+        });
+        $('#total_shops').change(function(){
+            $('#shop_fields').html("");
+            let total_shops = $(this).val();
+            for(i = 1;i <= total_shops;i++)
+            {   
+                new_shop_field = $('#new_shop_field').html();
+                $('#shop_fields').append('<p>Shop '+i+'</p>');
+                $('#shop_fields').append(new_shop_field);
+            } 
         });
     });
 </script>

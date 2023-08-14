@@ -7,20 +7,7 @@
 @section('content')
 
 
-<div class="row">
-    <div class="col-md-12">
-            <div class="card card-body">
-                <div class="media mb-0">
-                    <div class="media-body">
-                        <h3 class="font-weight-semibold mb-0 text-center">
-                            Shop System
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            
-    </div>
-</div>
+
 <div class="row">
     
     <div class="col-sm-3 col-xl-3">
@@ -181,7 +168,7 @@
 
                     display: true,
 
-                    text: 'Zone Wise Payment Colection For Current Month'
+                    text: 'Zone Wise Payment Colection For Current Month (Unregistered Vendors)'
                 },
                 tooltips: {
                     enabled: true,
@@ -214,7 +201,7 @@
 
                 datasets: [{
 
-                    label: "Zone Wise Collection Of Current Day",
+                    label: "Zone Wise Collection Of Current Day ",
 
                     backgroundColor: ["#ABB2B9","#7FB3D5","#C39BD3", "#EC7063", "#3366cc","#33C4FF","#0C3343"],
 
@@ -230,7 +217,7 @@
 
                     display: true,
 
-                    text: 'Zone Wise Payment Colection For Current Date'
+                    text: 'Zone Wise Payment Colection For Current Date (Unregistered Vendors)'
                 },
                 tooltips: {
                     enabled: true,

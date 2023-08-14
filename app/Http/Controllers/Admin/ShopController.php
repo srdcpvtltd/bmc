@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\PaymentGateway;
 use App\Http\Controllers\Controller;
 use App\Models\Establishment;
+use App\Models\EstablishmentShop;
 use App\Models\Shop;
 use App\Models\Ward;
 use Exception;
@@ -45,6 +46,16 @@ class ShopController extends Controller
                 'owner_name' => 'required',
             ]);
             Shop::create($request->all());
+            if($request->establishment_shop_id)
+            {
+                $establishment_shop = EstablishmentShop::find($request->id);
+                if($establishment_shop)
+                {
+                    $establishment_shop->update([
+                        'status' => true
+                    ]);
+                }
+            }
             toastr()->success('Shop Added Successfully');
             return redirect()->back();
         }catch (Exception $e)
@@ -132,6 +143,20 @@ class ShopController extends Controller
         $establishments = Establishment::where('establishment_category_id',$request->id)->get();
         return response()->json([
             'establishments' => $establishments
+        ]);
+    }
+    public function getEstablishmentShops(Request $request)
+    {
+        $establishment_shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',0)->get();
+        return response()->json([
+            'establishment_shops' => $establishment_shops
+        ]);
+    }
+    public function getEstablishmentShop(Request $request)
+    {
+        $establishment_shop = EstablishmentShop::find($request->id);
+        return response()->json([
+            'establishment_shop' => $establishment_shop
         ]);
     }
 }

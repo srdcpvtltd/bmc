@@ -26,6 +26,10 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
+                            <label>Shop Name</label>
+                            <input name="shop_name" value="{{$shop->shop_name}}" type="text" class="form-control"  required>
+                        </div>
+                       <div class="form-group col-md-6">
                             <label>Shop Owner Name</label>
                             <input name="owner_name" value="{{$shop->owner_name}}" type="text" class="form-control"  required>
                         </div>
@@ -78,7 +82,7 @@
                             <input name="id_proof_number" value="{{$shop->id_proof_number}}" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Location</label>
+                            <label>Lat/Long.</label>
                             <input name="lat_long" value="{{$shop->lat_long}}" id="lat_long" readonly type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
@@ -109,7 +113,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Location</label>
+                            <label>Address</label>
                             <input type="text" value="{{$shop->location}}" name="location" class="form-control" required>
                             {{-- <select  name="location_id"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select Location</option>

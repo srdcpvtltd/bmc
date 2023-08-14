@@ -49,6 +49,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::get('shop/generate_qr_code/{id}',[ShopController::class,'generateQrCode'])->name('shop.generate_qr_code'); 
     Route::post('shop/get_wards',[ShopController::class,'getWards'])->name('shop.get_wards'); 
     Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments'); 
+    Route::post('shop/get_establishment_shops',[ShopController::class,'getEstablishmentShops'])->name('shop.get_establishment_shops'); 
+    Route::post('shop/get_establishment_shop',[ShopController::class,'getEstablishmentShop'])->name('shop.get_establishment_shop'); 
     Route::resource('shop',ShopController::class);
     Route::resource('qr_code',QrCodeController::class);
     Route::resource('qr_code_payment',QrCodePaymentController::class);

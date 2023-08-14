@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Establishment;
+use App\Models\EstablishmentShop;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,17 @@ class EstablishmentController extends Controller
                 'name' => 'required',
                 'establishment_category_id' => 'required',
             ]);
-            Establishment::create($request->all());
+            $establishment = Establishment::create($request->all());
+            foreach($request->shop_number as $key => $shop_number)
+            {
+                EstablishmentShop::create([
+                    'shop_number' => $shop_number,
+                    'shop_type' => $request->shop_type[$key],
+                    'shop_size' => $request->shop_size[$key],
+                    'shop_rent' => $request->shop_rent[$key],
+                    'establishment_id' => $establishment->id,
+                ]);
+            }
             toastr()->success('Establishment Added Successfully');
             return redirect()->back();
         }catch (Exception $e)

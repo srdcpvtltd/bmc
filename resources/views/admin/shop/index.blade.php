@@ -23,9 +23,9 @@ Manage Shop
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Shop Name</th>
                     <th>Owner Name</th>
                     <th>Phone</th>
-                    <th>Lat Long</th>
                     <th>Register Shop</th>
                     <th>Generate QR Code</th>
                     <th>Action</th>
@@ -36,9 +36,10 @@ Manage Shop
                 @foreach (App\Models\Shop::all()  as $key => $shop)
                 <tr>
                     <td>{{$key+1}}</td>
+                    <td>{{$shop->shop_name}}</td>
                     <td>{{$shop->owner_name}}</td>
                     <td>{{$shop->phone}}</td>
-                    <td>{{$shop->lat_long}}</td>
+                    
                     <td>
                         @if($shop->customer_id)
                         {{$shop->customer_id}} <span class="badge badge-success badge-sm">Already Connected</span>

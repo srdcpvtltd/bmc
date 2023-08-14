@@ -84,7 +84,7 @@ class PaymentGateway
                 if(!$alreadyExist)
                 {
                     QrCodePayment::create([
-                        'amount' => $payment->amount,
+                        'amount' => $payment->amount /100,
                         'status' => $payment->status,
                         'customer_id' => $payment->customer_id,
                         'payment_id' => $payment->id,
@@ -93,7 +93,7 @@ class PaymentGateway
                     ]);
                 }else{
                     $alreadyExist->update([
-                        'amount' => $payment->amount,
+                        'amount' => $payment->amount /100,
                         'status' => $payment->status,
                         'customer_id' => $payment->customer_id,
                         'payment_id' => $payment->id,

@@ -27,8 +27,8 @@ Generate QR Code For {{$shop->name}}
                     <input type="hidden" name="customer_id" value="{{$shop->customer_id}}" required>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Name</label>
-                            <input name="name" type="text" value="{{$shop->owner_name}}" class="form-control" placeholder="Enter Name" required>
+                            <label>Shop Name</label>
+                            <input name="name" type="text" value="{{$shop->shop_name}}" class="form-control" placeholder="Enter Name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Choose Usage</label>
@@ -46,7 +46,7 @@ Generate QR Code For {{$shop->name}}
                         </div>
                         <div class="form-group col-md-6">
                             <label>Payment Amount</label>
-                            <input type="text" name="payment_amount" class="form-control" required>
+                            <input type="text" name="payment_amount" value="{{$shop->shop_rent}}"class="form-control" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Description</label>

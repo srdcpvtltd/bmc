@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>LOGIN | SHOP SYSTEM </title>
+    <title>LOGIN | BMC MARKET DASHBOARD </title>
 
 	<!-- Global stylesheets -->
     <link rel="shortcut icon" type="image/png" href="{{asset('front/image/favicon.png')}}">
@@ -50,8 +50,8 @@
 					<div class="card mb-0">
 						<div class="card-body">
 							<div class="text-center mb-3">
-								<i class="icon-people icon-2x text-warning-400 border-warning-400 border-3 rounded-round p-3 mb-3 mt-1"></i>
-								<h5 class="mb-0">Shop System</h5>
+								<img src="https://bmcdashboard.in/uploaded_images/logo/bmc_logo.png" style="width:90%;height:80px;border-bottom-style: ridge;" />
+								<h5 class="mb-0">BMC Market Dashboard</h5>
 								<span class="d-block text-muted">Login to your account</span>
 							</div>
 
