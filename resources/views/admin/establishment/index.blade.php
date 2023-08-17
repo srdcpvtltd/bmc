@@ -79,9 +79,7 @@ Manage Establishment
                 <td>{{$establishment->total_shops}}</td>
                 <td>{{$establishment->total_shops - $establishment->shops->count()}}</td>
                 <td>
-                    <button data-toggle="modal" data-target="#edit_modal" name="{{$establishment->name}}" 
-                        total_shops="{{$establishment->total_shops}}" establishment_category_id="{{$establishment->establishment_category_id}}" id="{{$establishment->id}}" class="edit-btn btn btn-primary">Edit</button>
-                </td>
+                    <a href="{{route('admin.establishment.edit',$establishment->id)}}" class="btn btn-primary">Edit</a> </td>
                 <td>
                     <form action="{{route('admin.establishment.destroy',$establishment->id)}}" method="POST">
                         @method('DELETE')

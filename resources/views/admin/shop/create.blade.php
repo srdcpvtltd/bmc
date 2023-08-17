@@ -52,7 +52,7 @@
                         <div class="form-group col-md-6">
                             <label>Choose Establishment</label>
                             <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Establishment</option>
+                                <option selected >Select Establishment</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -198,7 +198,7 @@
                 success: function(result){
                     establishments = result.establishments;
                     $('#establishment_id').empty();
-                    $('#establishment_id').append('<option disabled>Select Establishment</option>');
+                    $('#establishment_id').append('<option>Select Establishment</option>');
                     for (i=0;i<establishments.length;i++){
                         $('#establishment_id').append('<option value="'+establishments[i].id+'">'+establishments[i].name+'</option>');
                     }

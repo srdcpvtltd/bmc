@@ -42,20 +42,50 @@
                             <input name="email" type="email" value="{{$shop->email}}"  class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
+                            <label>Choose Establishment Category</label>
+                            <select  name="establishment_category_id"  id="establishment_category_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment Category</option>
+                                @foreach(App\Models\EstablishmentCategory::all() as $establishment_category)
+                                <option @if($establishment_category->id == $shop->establishment_category_id) selected @endif value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Establishment</label>
+                            <select  name="establishment_id"  id="establishment_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment</option>
+                                @foreach(App\Models\Establishment::where('establishment_category_id',$shop->establishment_category_id)->get() as $establishment)
+                                <option @if($establishment->id == $shop->establishment_id) selected @endif value="{{$establishment->id}}">{{$establishment->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Establishment Shop Number</label>
+                            <select  name="establishment_shop_id" id="establishment_shop_id"  class="form-control select-search" data-fouc required>
+                                <option >Select Establishment Shop Number</option>
+                                @if($shop->establishment_shop_id)
+                                <option value="{{$shop->establishment_shop_id}}" selected >{{@$shop->establishment_shop->shop_number}}</option>
+                                @endif
+                                @foreach(App\Models\EstablishmentShop::where('establishment_id',$shop->establishment_id)->where('status',0)->get() as $establishment_shop)
+                                <option @if($establishment_shop->id == $shop->establishment_shop_id) selected @endif value="{{$establishment_shop->id}}">{{$establishment_shop->shop_number}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label>Shop Number</label>
-                            <input name="shop_number" type="text"  value="{{$shop->shop_number}}" class="form-control"  required>
+                            <input name="shop_number" id="shop_number" type="text"  value="{{$shop->shop_number}}" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Size</label>
-                            <input name="shop_size" type="text" value="{{$shop->shop_size}}" class="form-control"  required>
+                            <input name="shop_size" id="shop_size" type="text" value="{{$shop->shop_size}}" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Type</label>
-                            <input name="shop_type" type="text" value="{{$shop->shop_type}}" class="form-control"  required>
+                            <input name="shop_type" id="shop_type" type="text" value="{{$shop->shop_type}}" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Rent</label>
-                            <input name="shop_rent" type="text" value="{{$shop->shop_rent}}"  class="form-control"  required>
+                            <input name="shop_rent" id="shop_rent" type="text" value="{{$shop->shop_rent}}"  class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Rent Frequency</label>
@@ -122,24 +152,6 @@
                                 @endforeach
                             </select> --}}
                         </div>
-                        <div class="form-group col-md-6">
-                            <label>Choose Establishment Category</label>
-                            <select  name="establishment_category_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Establishment Category</option>
-                                @foreach(App\Models\EstablishmentCategory::all() as $establishment_category)
-                                <option @if($establishment_category->id == $shop->establishment_category_id) selected @endif value="{{$establishment_category->id}}">{{$establishment_category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Choose Establishment</label>
-                            <select  name="establishment_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Establishment</option>
-                                @foreach(App\Models\Establishment::where('establishment_category_id',$shop->establishment_category_id)->get() as $establishment)
-                                <option @if($establishment->id == $shop->establishment_id) selected @endif value="{{$establishment->id}}">{{$establishment->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Edit <i class="icon-paperplane ml-2"></i></button>
@@ -194,10 +206,51 @@
                 success: function(result){
                     establishments = result.establishments;
                     $('#establishment_id').empty();
-                    $('#establishment_id').append('<option disabled>Select Establishment</option>');
+                    $('#establishment_id').append('<option>Select Establishment</option>');
                     for (i=0;i<establishments.length;i++){
                         $('#establishment_id').append('<option value="'+establishments[i].id+'">'+establishments[i].name+'</option>');
                     }
+                }
+            });
+        });
+        $('#establishment_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_establishment_shops')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    establishment_shops = result.establishment_shops;
+                    $('#establishment_shop_id').empty();
+                    $('#establishment_shop_id').append('<option>Select Shop Number</option>');
+                    for (i=0;i<establishment_shops.length;i++){
+                        $('#establishment_shop_id').append('<option value="'+establishment_shops[i].id+'">'+establishment_shops[i].shop_number+'</option>');
+                    }
+                }
+            });
+        });
+        $('#establishment_shop_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_establishment_shop')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    establishment_shop = result.establishment_shop;
+                    $('#shop_number').val(establishment_shop.shop_number);
+                    $('#shop_size').val(establishment_shop.shop_size);
+                    $('#shop_type').val(establishment_shop.shop_type);
+                    $('#shop_rent').val(establishment_shop.shop_rent);
                 }
             });
         });

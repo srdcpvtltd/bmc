@@ -8,7 +8,7 @@ use App\Models\EstablishmentShop;
 use Exception;
 use Illuminate\Http\Request;
 
-class EstablishmentController extends Controller
+class EstablishmentShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class EstablishmentController extends Controller
      */
     public function index()
     {
-        return view('admin.establishment.index');
+        //
     }
 
     /**
@@ -38,23 +38,21 @@ class EstablishmentController extends Controller
      */
     public function store(Request $request)
     {
+        
         try{
             $this->validate($request,[
-                'name' => 'required',
-                'establishment_category_id' => 'required',
+                'shop_number' => 'required',
+                'establishment_id' => 'required',
+                'shop_type' => 'required',
+                'shop_size' => 'required',
+                'shop_rent' => 'required',
             ]);
-            $establishment = Establishment::create($request->all());
-            foreach($request->shop_number as $key => $shop_number)
-            {
-                EstablishmentShop::create([
-                    'shop_number' => $shop_number,
-                    'shop_type' => $request->shop_type[$key],
-                    'shop_size' => $request->shop_size[$key],
-                    'shop_rent' => $request->shop_rent[$key],
-                    'establishment_id' => $establishment->id,
-                ]);
-            }
-            toastr()->success('Establishment Added Successfully');
+            $establishment = Establishment::find($request->establishment_id);
+            EstablishmentShop::create($request->all());
+            $establishment->update([
+                'total_shops' => $establishment->total_shops + 1
+            ]);
+            toastr()->success('Establishment Shop Added Successfully');
             return redirect()->back();
         }catch (Exception $e)
         {
@@ -66,10 +64,10 @@ class EstablishmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Establishment  $establishment
+     * @param  \App\Models\EstablishmentShop  $establishmentShop
      * @return \Illuminate\Http\Response
      */
-    public function show(Establishment $establishment)
+    public function show(EstablishmentShop $establishmentShop)
     {
         //
     }
@@ -77,41 +75,43 @@ class EstablishmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Establishment  $establishment
+     * @param  \App\Models\EstablishmentShop  $establishmentShop
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit(EstablishmentShop $establishmentShop)
     {
-        $establishment = Establishment::find($id);
-        $establishment_shops = EstablishmentShop::where('establishment_id',$establishment->id)->get();
-        return view('admin.establishment.edit',compact('establishment','establishment_shops'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Establishment  $establishment
+     * @param  \App\Models\EstablishmentShop  $establishmentShop
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-        $establishment = Establishment::find($id);
-        $establishment->update($request->all());
-        toastr()->success('Establishment Updated successfully');
+        $establishmentShop = EstablishmentShop::find($id);
+        $establishmentShop->update($request->all());
+        toastr()->success('Establishment Shop Updated successfully');
         return redirect()->back(); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Establishment  $establishment
+     * @param  \App\Models\EstablishmentShop  $establishmentShop
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $establishment = Establishment::find($id);
-        $establishment->delete();
+        $establishmentShop = EstablishmentShop::find($id);
+        $establishment = Establishment::find($establishmentShop->establishment_id);
+        $establishment->update([
+            'total_shops' => $establishment->total_shops - 1
+        ]);
+        $establishmentShop->delete();
         toastr()->success('Establishment Deleted successfully');
         return redirect()->back();
     }

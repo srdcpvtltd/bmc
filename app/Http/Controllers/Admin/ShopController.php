@@ -45,10 +45,10 @@ class ShopController extends Controller
             $this->validate($request,[
                 'owner_name' => 'required',
             ]);
-            Shop::create($request->all());
+            $shop = Shop::create($request->all());
             if($request->establishment_shop_id)
             {
-                $establishment_shop = EstablishmentShop::find($request->id);
+                $establishment_shop = EstablishmentShop::find($request->establishment_shop_id);
                 if($establishment_shop)
                 {
                     $establishment_shop->update([
@@ -99,6 +99,23 @@ class ShopController extends Controller
     public function update(Request $request,$id)
     {
         $shop = Shop::find($id);
+        if($request->establishment_shop_id != $shop->establishment_shop_id)
+        {
+            $establishment_shop = EstablishmentShop::find($shop->establishment_shop_id);
+            if($establishment_shop)
+            {
+                $establishment_shop->update([
+                    'status' => false
+                ]);
+            }
+        }
+        $new_establishment_shop = EstablishmentShop::find($request->establishment_shop_id);
+        if($new_establishment_shop)
+        {
+            $new_establishment_shop->update([
+                'status' => true
+            ]);
+        }
         $shop->update($request->all());
         toastr()->success('Shop Updated successfully');
         return redirect()->back(); 
@@ -114,6 +131,13 @@ class ShopController extends Controller
     public function destroy($id)
     {
         $shop = Shop::find($id);
+        $establishment_shop = EstablishmentShop::find($shop->establishment_shop_id);
+        if($establishment_shop)
+        {
+            $establishment_shop->update([
+                'status' => false
+            ]);
+        }
         $shop->delete();
         toastr()->success('Shop Deleted successfully');
         return redirect()->back();

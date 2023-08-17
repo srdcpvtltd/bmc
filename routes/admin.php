@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EstablishmentCategoryController;
 use App\Http\Controllers\Admin\EstablishmentController;
+use App\Http\Controllers\Admin\EstablishmentShopController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\Admin\QrCodePaymentController;
@@ -44,6 +45,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     /*******************Establishment ROUTE START*************/       
     Route::resource('establishment',EstablishmentController::class);
     /*******************Establishment ROUTE END*************/  
+    /*******************Establishment Shop ROUTE START*************/       
+    Route::resource('establishment_shop',EstablishmentShopController::class);
+    /*******************Establishment Shop ROUTE END*************/  
     /*******************Shop ROUTE START*************/      
     Route::get('shop/create_shop_profile/{id}',[ShopController::class,'createShopProfile'])->name('shop.create_shop_profile'); 
     Route::get('shop/generate_qr_code/{id}',[ShopController::class,'generateQrCode'])->name('shop.generate_qr_code'); 
