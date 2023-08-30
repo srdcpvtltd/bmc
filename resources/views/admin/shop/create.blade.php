@@ -97,10 +97,10 @@
                                 <option value="Driving License">Driving License</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        {{-- <div class="form-group col-md-6">
                             <label>ID Proof Number</label>
                             <input name="id_proof_number" type="text" class="form-control"  required>
-                        </div>
+                        </div> --}}
                         <div class="form-group col-md-6">
                             <label>Lat/Long.</label>
                             <input name="lat_long" id="lat_long" readonly type="text" class="form-control"  required>
@@ -138,6 +138,22 @@
                                 <option value="{{$location->id}}">{{$location->name}}</option>
                                 @endforeach
                             </select> --}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Allotment Date</label>
+                            <input type="date" name="allotment_date" id="allotment_date" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Number of Years</label>
+                            <input type="text" name="number_of_years" id="number_of_years" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Valid Upto</label>
+                            <input type="date" name="valid_upto" id="valid_upto" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Allotment Number</label>
+                            <input type="text" name="allotment_number" id="allotment_number" class="form-control" required>
                         </div>
                     </div>
                     <div class="text-right">
@@ -184,6 +200,17 @@
                 }
             });
         });
+        // $('#number_of_years').change(function(){
+        //     years = this.value;
+        //     alert(years);
+        //     date = $('#allotment_date').val();
+        //     alert(date);
+        //     var inThreeYears = new Date(date);
+        //     inThreeYears.setFullYear (inThreeYears.getFullYear() + years )
+        //     var date =  inThreeYears.toLocaleDateString('en-US',{day:"2-digit",month:"2-digit",year:"numeric"})
+        //     alert(date);
+        //     $('#valid_upto').val(valid_upto);
+        // });
         $('#establishment_category_id').change(function(){
             id = this.value;
             $.ajax({

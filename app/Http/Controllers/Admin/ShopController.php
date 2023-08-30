@@ -183,4 +183,9 @@ class ShopController extends Controller
             'establishment_shop' => $establishment_shop
         ]);
     }
+    public function getShopDetail($id)
+    {
+        $shop = Shop::find($id);
+        return view('admin.shop.detail',compact('shop'));
+    }
 }

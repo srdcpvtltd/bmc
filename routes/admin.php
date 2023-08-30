@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EstablishmentShopController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\Admin\QrCodePaymentController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\StructureController;
 use App\Http\Controllers\Admin\UserController;
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     /*******************Shop ROUTE START*************/      
     Route::get('shop/create_shop_profile/{id}',[ShopController::class,'createShopProfile'])->name('shop.create_shop_profile'); 
     Route::get('shop/generate_qr_code/{id}',[ShopController::class,'generateQrCode'])->name('shop.generate_qr_code'); 
+    Route::get('shop/detail/{id}',[ShopController::class,'getShopDetail'])->name('shop.detail'); 
     Route::post('shop/get_wards',[ShopController::class,'getWards'])->name('shop.get_wards'); 
     Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments'); 
     Route::post('shop/get_establishment_shops',[ShopController::class,'getEstablishmentShops'])->name('shop.get_establishment_shops'); 
@@ -62,6 +64,10 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');       
     Route::get('collection/monthly',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');       
     Route::get('collection/show_daily/{id}',[CollectionController::class,'showDailyCollection'])->name('collection.show_daily');       
+    /*******************REPORT ROUTE START*************/  
+    Route::get('report/shops',[ReportController::class,'shopReports'])->name('report.shops');       
+    Route::get('report/establisments',[ReportController::class,'establismentReports'])->name('report.establisments');       
+    /*******************REPORT ROUTE END*************/  
 });
 /****************** ADMIN MIDDLEWARE PAGES ROUTES END****************/
 ?>

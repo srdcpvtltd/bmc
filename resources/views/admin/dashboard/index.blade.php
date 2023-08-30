@@ -10,7 +10,7 @@
 
 <div class="row">
     
-    <div class="col-sm-3 col-xl-3">
+    {{-- <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.zone.index')}}">
             <div class="card card-body bg-blue-400 has-bg-image">
                 <div class="media">
@@ -40,9 +40,9 @@
                 </div>
             </div>
         </a>
-    </div>
-    <div class="col-sm-3 col-xl-3">
-        <a href="{{route('admin.establishment.index')}}">
+    </div> --}}
+    <div class="col-sm-6 col-xl-6">
+        <a href="{{route('admin.report.establisments')}}">
             <div class="card card-body bg-success-400 has-bg-image">
                 <div class="media">
 
@@ -51,14 +51,14 @@
                     </div>
                     <div class="media-body text-right">
                     <h3 class="mb-0">{{App\Models\Establishment::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Total Establishments</span>
+                        <span class="text-uppercase font-size-xs">Establishments Report</span>
                     </div>
                 </div>
             </div>
         </a>
     </div>
-    <div class="col-sm-3 col-xl-3">
-        <a href="{{route('admin.shop.index')}}">
+    <div class="col-sm-6 col-xl-6">
+        <a href="{{route('admin.report.shops')}}">
             <div class="card card-body bg-teal-400 has-bg-image">
                 <div class="media">
                     <div class="mr-3 align-self-center">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="media-body text-right"> 
                         <h3 class="mb-0">{{App\Models\Shop::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Total Shops</span>
+                        <span class="text-uppercase font-size-xs">Shops Report</span>
                     </div>
 
                 </div>

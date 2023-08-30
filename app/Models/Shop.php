@@ -13,7 +13,8 @@ class Shop extends Model
         'shop_name','owner_name','phone','email','shop_number','shop_rent','lat_long',
         'rent_frequency', 'zone_id', 'establishment_id','location_id','structure_id',
         'establishment_category_id','ward_id','shop_size','shop_type','id_proof','id_proof_number',
-        'customer_id','location','establishment_shop_id'
+        'customer_id','location','establishment_shop_id','allotment_date','number_of_years',
+        'valid_upto','allotment_number'
     ];
     public function qrCodes()
     {
@@ -22,5 +23,25 @@ class Shop extends Model
     public function establishment_shop()
     {
         return $this->belongsTo(EstablishmentShop::class,'establishment_shop_id');
+    }
+    public function establishment_category()
+    {
+        return $this->belongsTo(EstablishmentCategory::class,'establishment_category_id');
+    }
+    public function establishment()
+    {
+        return $this->belongsTo(Establishment::class,'establishment_id');
+    }
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class,'zone_id');
+    }
+    public function ward()
+    {
+        return $this->belongsTo(Ward::class,'ward_id');
+    }
+    public function structure()
+    {
+        return $this->belongsTo(Structure::class,'structure_id');
     }
 }

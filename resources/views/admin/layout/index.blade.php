@@ -45,7 +45,12 @@
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/form_layouts.js')}}"></script>
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/dashboard.js')}}"></script>
 	<!-- /theme JS files -->
-	
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/pdfmake.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/demo_pages/datatables_extension_buttons_html5.js')}}"></script>
+
 	<!-- Theme JS files -->
 
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/job_list.js')}}"></script>
@@ -169,41 +174,23 @@
 								<li class="nav-item"><a href="{{route('admin.user.index')}}" class="nav-link {{Request::is('admin/user')?'active':''}}">All Users</a></li>
 							</ul>
 						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.zone.index')}}" class="nav-link {{Request::is('admin/zone')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Zone</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.ward.index')}}" class="nav-link {{Request::is('admin/ward')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Ward</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.structure.index')}}" class="nav-link {{Request::is('admin/structure')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Structure</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Establishment Category</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Establishment</span>
-							</a>
+						<li class="nav-item nav-item-submenu {{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Master Data</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('admin.zone.index')}}" class="nav-link {{Request::is('admin/zone')?'active':''}}">Zone</a></li>
+								<li class="nav-item"><a href="{{route('admin.ward.index')}}" class="nav-link {{Request::is('admin/ward')?'active':''}}">Ward</a></li>
+								<li class="nav-item"><a href="{{route('admin.structure.index')}}" class="nav-link {{Request::is('admin/structure')?'active':''}}">Structure</a></li>
+								<li class="nav-item"><a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">Establishment Category</a></li>
+								<li class="nav-item"><a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">Establishment</a></li>
+							</ul>
 						</li>
 						<li class="nav-item">
 							<a href="{{route('admin.shop.index')}}" class="nav-link {{Request::is('admin/shop')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Shop</span>
 							</a>
+						</li>
 						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
 
@@ -211,6 +198,14 @@
 							    <li class="nav-item"><a href="{{route('admin.qr_code_payment.index')}}" class="nav-link {{Request::is('admin/qr_code_payment')?'active':''}}">Payment Capture</a></li>
 								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
 								<li class="nav-item"><a href="{{route('admin.collection.monthly')}}" class="nav-link {{Request::is('admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('admin/report*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Reports</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/report*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('admin.report.establisments')}}" class="nav-link {{Request::is('admin/report/establisments')?'active':''}}">Establisment Report</a></li>
+								<li class="nav-item"><a href="{{route('admin.report.shops')}}" class="nav-link {{Request::is('admin/report/shops')?'active':''}}">Shop Report</a></li>
 							</ul>
 						</li>
 					</ul>

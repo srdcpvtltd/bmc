@@ -80,7 +80,7 @@ class EstablishmentController extends Controller
      * @param  \App\Models\Establishment  $establishment
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $establishment = Establishment::find($id);
         $establishment_shops = EstablishmentShop::where('establishment_id',$establishment->id)->get();

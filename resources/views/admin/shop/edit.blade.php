@@ -11,7 +11,7 @@
         <!-- Basic layout-->
         <div class="card">
             <div class="card-header header-elements-inline">
-                <h5 class="card-title">Add New Shop</h5>
+                <h5 class="card-title">Edit {{$shop->name}} Shop</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -101,16 +101,16 @@
                             <label>ID Proof</label>
                             <select  name="id_proof"  class="form-control select-search" data-fouc required>
                                 <option selected disabled>Select ID Proof</option>
-                                <option @if($shop->rent_frequency == 'PAN' ) selected @endif value="PAN">PAN</option>
-                                <option @if($shop->rent_frequency == 'Aadhar Card' ) selected @endif value="Aadhar Card">Aadhar Card</option>
-                                <option @if($shop->rent_frequency == 'Voter ID' ) selected @endif value="Voter ID">Voter ID</option>
-                                <option @if($shop->rent_frequency == 'Driving License' ) selected @endif value="Driving License">Driving License</option>
+                                <option @if($shop->id_proof == 'PAN' ) selected @endif value="PAN">PAN</option>
+                                <option @if($shop->id_proof == 'Aadhar Card' ) selected @endif value="Aadhar Card">Aadhar Card</option>
+                                <option @if($shop->id_proof == 'Voter ID' ) selected @endif value="Voter ID">Voter ID</option>
+                                <option @if($shop->id_proof == 'Driving License' ) selected @endif value="Driving License">Driving License</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        {{-- <div class="form-group col-md-6">
                             <label>ID Proof Number</label>
                             <input name="id_proof_number" value="{{$shop->id_proof_number}}" type="text" class="form-control"  required>
-                        </div>
+                        </div> --}}
                         <div class="form-group col-md-6">
                             <label>Lat/Long.</label>
                             <input name="lat_long" value="{{$shop->lat_long}}" id="lat_long" readonly type="text" class="form-control"  required>
@@ -151,6 +151,22 @@
                                 <option @if($location->id == $shop->location_id) selected @endif value="{{$location->id}}">{{$location->name}}</option>
                                 @endforeach
                             </select> --}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Allotment Date</label>
+                            <input type="date" name="allotment_date" value="{{$shop->allotment_date}}" id="allotment_date" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Number of Years</label>
+                            <input type="text" name="number_of_years"  value="{{$shop->number_of_years}}" id="number_of_years" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Valid Upto</label>
+                            <input type="date" name="valid_upto" value="{{$shop->valid_upto}}" id="valid_upto" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Allotment Number</label>
+                            <input type="text" name="allotment_number" value="{{$shop->allotment_number}}" id="allotment_number" class="form-control" required>
                         </div>
                     </div>
                     <div class="text-right">
