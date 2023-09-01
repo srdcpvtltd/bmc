@@ -61,10 +61,10 @@
                                 <option selected>Select Establishment Shop Number</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <input name="shop_number" id="shop_number" type="hidden" class="form-control"  >
+                        {{-- <div class="form-group col-md-6">
                             <label>Shop Number</label>
-                            <input name="shop_number" id="shop_number" type="text" class="form-control"  required>
-                        </div>
+                        </div> --}}
                         <div class="form-group col-md-6">
                             <label>Shop Size</label>
                             <input name="shop_size" id="shop_size" type="text" class="form-control"  required>

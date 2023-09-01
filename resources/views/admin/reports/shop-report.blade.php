@@ -19,6 +19,48 @@ View Shops
     </div>
     <div class="card-body">
 
+        <form method="GET" id="searchForm">
+            <div class="row">
+                <div class="form-group col-2">
+                    <label>Zone</label> 
+                    <select  name="zone_id" id="zone_id" class="form-control select-search" data-fouc required>
+                        <option selected disabled>Select zone-</option>
+                        @foreach(App\Models\Zone::all() as $zone)
+                        <option @if(request()->zone_id == $zone->id) selected @endif value="{{$zone->id}}">{{$zone->name}}</option>
+                        @endforeach
+                    </select>
+                      
+                </div>
+                <div class="form-group col-2">
+                    <label>Choose Ward</label>
+                    <select  name="ward_id" id="ward_id" class="form-control select-search" data-fouc required>
+                        <option selected disabled>Select Ward</option>
+                        @if(request()->ward_id)
+                        @foreach(App\Models\Ward::all() as $ward)
+                        <option @if(request()->ward_id == $ward->id) selected @endif value="{{$ward->id}}">{{$ward->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group col-3">                    
+                    <label>Choose Establishment</label>
+                    <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
+                        <option disabled selected >Select Establishment</option>
+                        @foreach(App\Models\Establishment::all() as $establishment)
+                        <option @if(request()->establishment_id == $establishment->id) selected @endif value="{{$establishment->id}}">{{$establishment->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-2">
+                    <label>Shop Name</label>
+                    <input type="text" name="shop_name" value="{{request()->shop_name}}" class="form-control">
+                </div>
+                <div class="form-group col-2">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
         
         <div class="row" style="margin-top:20px!important;">
             <div class="col-md-12">
@@ -62,4 +104,30 @@ View Shops
 @endsection
 
 @section('scripts')
+
+<script>
+    $(document).ready(function(){
+        $('#zone_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('admin.shop.get_wards')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    wards = result.wards;
+                    $('#ward_id').empty();
+                    $('#ward_id').append('<option disabled>Select Ward</option>');
+                    for (i=0;i<wards.length;i++){
+                        $('#ward_id').append('<option value="'+wards[i].id+'">'+wards[i].name+'</option>');
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection

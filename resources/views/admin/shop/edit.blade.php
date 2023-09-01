@@ -71,10 +71,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <input name="shop_number" id="shop_number" type="hidden" value="{{$shop->shop_number}}" class="form-control" >
+                        {{-- <div class="form-group col-md-6">
                             <label>Shop Number</label>
                             <input name="shop_number" id="shop_number" type="text"  value="{{$shop->shop_number}}" class="form-control"  required>
-                        </div>
+                        </div> --}}
                         <div class="form-group col-md-6">
                             <label>Shop Size</label>
                             <input name="shop_size" id="shop_size" type="text" value="{{$shop->shop_size}}" class="form-control"  required>
