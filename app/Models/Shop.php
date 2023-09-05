@@ -14,7 +14,7 @@ class Shop extends Model
         'rent_frequency', 'zone_id', 'establishment_id','location_id','structure_id',
         'establishment_category_id','ward_id','shop_size','shop_type','id_proof','id_proof_number',
         'customer_id','location','establishment_shop_id','allotment_date','number_of_years',
-        'valid_upto','allotment_number'
+        'valid_upto','allotment_number','trade_license_number'
     ];
     public function qrCodes()
     {

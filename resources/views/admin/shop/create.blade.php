@@ -155,6 +155,10 @@
                             <label>Allotment Number</label>
                             <input type="text" name="allotment_number" id="allotment_number" class="form-control" required>
                         </div>
+                        <div class="form-group col-md-6">
+                            <label>Trade License Number</label>
+                            <input type="text" name="trade_license_number" id="trade_license_number" class="form-control" required>
+                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>

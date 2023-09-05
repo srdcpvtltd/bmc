@@ -170,7 +170,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-12">
+                        <div class="col-xl-6">
+                            <div class="card border-left-3 border-left-info-400 rounded-left-0">
+                                <div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
+                                    <span><h5>Trade License Number </h5> <p class="font-weight-semibold">{{@$shop->trade_license_number}}</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
                             <div class="card border-left-3 border-left-info-400 rounded-left-0">
                                 <div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
                                     <span><h5>Shop Address </h5> <p class="font-weight-semibold">{{@$shop->location}}</p></span>
