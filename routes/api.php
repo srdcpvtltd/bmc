@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\EstablishmentCategoryController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EstablishmentController;
+use App\Http\Controllers\Api\EstablishmentShopController;
 use App\Http\Controllers\Api\ShopController;
+use App\Http\Controllers\Api\StructureController;
+use App\Http\Controllers\Api\WardController;
+use App\Http\Controllers\Api\ZoneController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +28,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login',[AuthController::class,'login'])->name('login');;
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('shops', ShopController::class);
+    Route::post('shop/store', [ShopController::class,'store']);
+    Route::resource('establishment_category', EstablishmentCategoryController::class);
+    Route::resource('establishment', EstablishmentController::class);
+    Route::resource('establishment_shop', EstablishmentShopController::class);
+    Route::resource('structure', StructureController::class);
+    Route::resource('ward', WardController::class);
+    Route::resource('zone', ZoneController::class);
     // Route::post('logout',[AuthController::class,'logout'])->name('logout');;
 });
