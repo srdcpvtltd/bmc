@@ -5,12 +5,39 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Establishment;
 use App\Models\Shop;
+use App\Models\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ReportController extends Controller
 {
+
+public function zoneReports(Request $request)
+{
+    $zones=Zone::all();
+
+    return view('admin.reports.zone-reports',compact('zones'));
+}
+
+public function zoneEstablishment($id)
+{
+   $establisments= Establishment::where('establishment_zone_id',Crypt::decrypt($id))->get();
+   return view('admin.reports.zone-establisment',compact('establisments'));
+}
+
+public function zoneEstablishmentShopReports($id)
+{
+
+   $shops= Shop::where('establishment_id',Crypt::decrypt($id))->get();
+   return view('admin.reports.shop-report',compact('shops'));
+}
+
     public function shopReports(Request $request)
     {
+
+
+
+          dd('dsds');
         $query = Shop::query();
         if($request->zone_id)
             $query->where('zone_id',$request->zone_id);

@@ -42,6 +42,7 @@ class EstablishmentController extends Controller
             $this->validate($request,[
                 'name' => 'required',
                 'establishment_category_id' => 'required',
+                'establishment_zone_id'=>'required',
             ]);
             $establishment = Establishment::create($request->all());
             foreach($request->shop_number as $key => $shop_number)
@@ -99,7 +100,7 @@ class EstablishmentController extends Controller
         $establishment = Establishment::find($id);
         $establishment->update($request->all());
         toastr()->success('Establishment Updated successfully');
-        return redirect()->back(); 
+        return redirect()->back();
     }
 
     /**

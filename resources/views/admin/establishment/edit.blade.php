@@ -42,11 +42,21 @@ Manage Establishment
                             <label>Establishment Total Shops</label>
                             <input readonly name="total_shops" value="{{$establishment->total_shops}}" type="number" class="form-control" placeholder="Enter Total Shops" required>
                         </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Choose Establishment Zone</label>
+                            <select  name="establishment_zone_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment Zone</option>
+                                @foreach (App\Models\Zone::all()  as $key => $zone)
+                                <option value="{{$zone->id}}" {{  $establishment->establishment_zone_id==$zone->id? 'selected':'' }}   >{{$zone->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Update <i class="icon-paperplane ml-2"></i></button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
@@ -85,8 +95,8 @@ Manage Establishment
                     <td>{{$shop->shop_rent}}</td>
                     <td>{{$shop->status?'Rented':'Vacant'}}</td>
                     <td>
-                        <button data-toggle="modal" data-target="#edit_modal" shop_number="{{$shop->shop_number}}" 
-                            shop_size="{{$shop->shop_size}}" shop_type="{{$shop->shop_type}}" 
+                        <button data-toggle="modal" data-target="#edit_modal" shop_number="{{$shop->shop_number}}"
+                            shop_size="{{$shop->shop_size}}" shop_type="{{$shop->shop_type}}"
                             shop_rent="{{$shop->shop_rent}}" id="{{$shop->id}}" class="edit-btn btn btn-primary">Edit</button>
                     </td>
                     <td>

@@ -10,6 +10,6 @@ class EstablishmentShop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'shop_number','shop_type','shop_size','shop_rent','establishment_id','status'
+        'shop_number','shop_type','shop_size','shop_rent','establishment_id','status','zone_id'
     ];
 }

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('total_shops')->default(0);
             $table->unsignedBigInteger('establishment_category_id')->nullable();
+
+            $table->unsignedBigInteger('establishment_zone_id')->nullable();
+            $table->foreign('establishment_zone_id')->references('id')->on('zones')->onDelete('cascade');
             $table->foreign('establishment_category_id')->references('id')->on('establishment_categories')->onDelete('cascade');
             $table->timestamps();
         });

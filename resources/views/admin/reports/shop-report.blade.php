@@ -19,17 +19,17 @@ View Shops
     </div>
     <div class="card-body">
 
-        <form method="GET" id="searchForm">
+        {{-- <form method="GET" id="searchForm">
             <div class="row">
                 <div class="form-group col-2">
-                    <label>Zone</label> 
+                    <label>Zone</label>
                     <select  name="zone_id" id="zone_id" class="form-control select-search" data-fouc required>
                         <option selected disabled>Select zone-</option>
                         @foreach(App\Models\Zone::all() as $zone)
                         <option @if(request()->zone_id == $zone->id) selected @endif value="{{$zone->id}}">{{$zone->name}}</option>
                         @endforeach
                     </select>
-                      
+
                 </div>
                 <div class="form-group col-2">
                     <label>Choose Ward</label>
@@ -42,7 +42,7 @@ View Shops
                         @endif
                     </select>
                 </div>
-                <div class="form-group col-3">                    
+                <div class="form-group col-3">
                     <label>Choose Establishment</label>
                     <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
                         <option disabled selected >Select Establishment</option>
@@ -60,8 +60,8 @@ View Shops
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
             </div>
-        </form>
-        
+        </form> --}}
+
         <div class="row" style="margin-top:20px!important;">
             <div class="col-md-12">
                 <table class="table datatable-button-html5-basic">
