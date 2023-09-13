@@ -43,7 +43,7 @@
                     </div>
                     <div class="media-body text-right">
                     <h3 class="mb-0">{{App\Models\Establishment::where('establishment_zone_id',$user->zone?->id)->count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Establishments Report</span>
+                        <span class="text-uppercase font-size-xs">Total Establishments</span>
                     </div>
                 </div>
             </div>
