@@ -22,7 +22,7 @@
                         <i class="icon-unlink2 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right">
-                    <h3 class="mb-0">{{ $user->zone->name }}</h3>
+                    <h3 class="mb-0">Market & Vending Zones of {{ $user->zone->name }}</h3>
                         <span class="text-uppercase font-size-xs"></span>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <h3 class="font-weight-semibold mb-0">
                         {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->sum('amount')}}
                     </h3>
-                    <span class="text-uppercase font-size-sm text-muted">Yesterday Daily Payments</span>
+                    <span class="text-uppercase font-size-sm text-muted">Yesterday Daily Collection</span>
                 </div>
             </div>
         </div>
