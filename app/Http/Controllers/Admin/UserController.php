@@ -102,7 +102,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
         toastr()->success('User Updated successfully');
-        return redirect()->back(); 
+        return redirect()->back();
     }
 
     /**

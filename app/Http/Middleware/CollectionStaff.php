@@ -15,11 +15,12 @@ class CollectionStaff
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {        
+    {
         if (!Auth::check())
             return redirect()->to(url('/'));
 
         $user_role = Auth::user()->getRole();
+         dd($user_role);
         if($user_role == 'Collection Staff')
         {
             return $next($request);

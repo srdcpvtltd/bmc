@@ -50,17 +50,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function role()
     {
         return $this->belongsTo(Role::class,'role_id');
     }
-    
+
     public function getRole()
     {
         return $this->role->name;
     }
-    
+
+    public function zone(){
+        return $this->hasOne(Zone::class,'id','zone_id');
+    }
+
     public function setPasswordAttribute($value){
         if (!empty($value)){
             $this->attributes['password'] = Hash::make($value);

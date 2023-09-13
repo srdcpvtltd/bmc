@@ -37,6 +37,14 @@ class AuthController extends Controller
                 toastr()->success('You Login Successfully');
                 return redirect()->intended(route('collection_staff.dashboard.index'));
             }
+            else if($user->role->name=='ZDC')
+            {
+                return redirect()->intended(route('zdc.dashboard.index'));
+                toastr()->success('You Login Successfully');
+
+            }
+
+
             else{
                 Auth::logout();
                 toastr()->error('User is In Active or Not Verified Yet By Admin.');
@@ -49,10 +57,11 @@ class AuthController extends Controller
         }
         //User Authentication Code End
     }
-    
-    public function logout()
-    {        
+
+    public function logout(Request $request)
+    {
         Auth::logout();
+        session()->flush();
         toastr()->success('You Logout Successfully');
         return redirect('/');
     }
@@ -86,7 +95,7 @@ class AuthController extends Controller
             toastr()->error($e->getMessage());
             return back();
         }
-    
+
     }
-    
+
 }
