@@ -66,7 +66,7 @@
                     </div>
                     <div class="media-body text-right"> 
                         <h3 class="mb-0">{{App\Models\Shop::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Shops Report</span>
+                        <span class="text-uppercase font-size-xs">Market & Vending Zones of BMC</span>
                     </div>
 
                 </div>
