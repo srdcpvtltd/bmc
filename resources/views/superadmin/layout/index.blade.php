@@ -4,7 +4,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>{{Auth::user()->name}} Collection Staff Panel | Shop System</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('favicon.PNG') }}">
+
+
+
+
+
+	<title>{{Auth::user()->name}} Admin Panel | BMC Market Dashboard</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -45,6 +52,11 @@
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/form_layouts.js')}}"></script>
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/dashboard.js')}}"></script>
 	<!-- /theme JS files -->
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/pdfmake.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/demo_pages/datatables_extension_buttons_html5.js')}}"></script>
 
 	<!-- Theme JS files -->
 
@@ -57,10 +69,10 @@
 <body>
 
 	<!-- Main navbar -->
-	<div class="navbar navbar-expand-md navbar-dark">
-		<div class="navbar-brand">
-			<a href="{{url('/')}}" class="text-light">
-				<h3 class="m-0"><b>ZDC Panel Menu</b></h3>
+	<div class="navbar navbar-expand-md navbar-dark" style="border-top:0px;padding-left:0px;">
+		<div class="navbar-brand" style="border-width:0px;padding-top:0px;padding-bottom:0px;" >
+			<a href="#" class="text-light">
+				<img src="https://bmcdashboard.in/uploaded_images/logo/bmc_logo.png" style="border-width:0px;width:108%;height:70px;" />
 			</a>
 		</div>
 
@@ -137,7 +149,7 @@
 
 							<div class="media-body">
 								<div class="media-title font-weight-semibold">{{Auth::user()->name}}</div>
-								<div class="font-size-xs opacity-50">SDS
+								<div class="font-size-xs opacity-50">BMC Market Dashboard
 								</div>
 							</div>
 
@@ -154,14 +166,55 @@
 				<div class="card card-sidebar-mobile">
 					<ul class="nav nav-sidebar" data-nav-type="accordion">
 							<!-- Main -->
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">ZDC Panel</div> <i class="icon-menu" title="Main"></i></li>
+
 						<li class="nav-item">
-							<a href="{{route('zdc.dashboard.index')}}" class="nav-link {{Request::is('zdc/dashboard')?'active':''}}">
+							<a href="{{route('admin.dashboard.index')}}" class="nav-link {{Request::is('admin/dashboard')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Dashboard</span>
 							</a>
 						</li>
+					<li class="nav-item nav-item-submenu {{Request::is('admin/user*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Users</span></a>
 
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/user*') ?'display:block':''}}">
+								<li class="nav-item"><a href="{{route('admin.user.create')}}" class="nav-link {{Request::is('admin/user/create')?'active':''}}">Create User</a></li>
+								<li class="nav-item"><a href="{{route('admin.user.index')}}" class="nav-link {{Request::is('admin/user')?'active':''}}">All Users</a></li>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Master Data</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('admin.zone.index')}}" class="nav-link {{Request::is('admin/zone')?'active':''}}">Zone</a></li>
+								<li class="nav-item"><a href="{{route('admin.ward.index')}}" class="nav-link {{Request::is('admin/ward')?'active':''}}">Ward</a></li>
+								<li class="nav-item"><a href="{{route('admin.structure.index')}}" class="nav-link {{Request::is('admin/structure')?'active':''}}">Structure</a></li>
+								<li class="nav-item"><a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">Establishment Category</a></li>
+								<li class="nav-item"><a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">Establishment</a></li>
+							</ul>
+						</li> 
+						<li class="nav-item">
+							<a href="{{route('admin.shop.index')}}" class="nav-link {{Request::is('admin/shop')?'active':''}}">
+								<i class="icon-home4"></i>
+								<span>Shop</span>
+							</a>
+						</li> 
+						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/collection*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('admin.qr_code_payment.index')}}" class="nav-link {{Request::is('admin/qr_code_payment')?'active':''}}">Payment Capture</a></li>
+								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
+								<li class="nav-item"><a href="{{route('admin.collection.monthly')}}" class="nav-link {{Request::is('admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('admin/report*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Reports</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/report*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('admin.report.establisments')}}" class="nav-link {{Request::is('admin/report/establisments')?'active':''}}">Establisment Report</a></li>
+								<li class="nav-item"><a href="{{route('admin.report.shops')}}" class="nav-link {{Request::is('admin/report/shops')?'active':''}}">Shop Report</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 				<!-- /main navigation -->
@@ -180,11 +233,7 @@
 			<div class="page-header page-header-light">
 				<div class="page-header-content header-elements-md-inline">
 					<div class="page-title d-flex">
-
-						<h4>
-
-                            <a href="{{route('zdc.dashboard.index')}}"><i class="icon-arrow-left52 mr-2"></i></a>
-                            <span class="font-weight-semibold">@yield('title')</span></h4>
+						<h4><a href="{{route('admin.dashboard.index')}}"><i class="icon-arrow-left52 mr-2"></i></a><span class="font-weight-semibold">@yield('title')</span></h4>
 						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 					</div>
 

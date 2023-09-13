@@ -1,290 +1,242 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('admin.layout.index')
 
-    <link rel="icon" type="image/png" href="{{ asset('favicon.PNG') }}">
+@section('title')
+    Dashboard
+@endsection
 
+@section('content')
 
 
 
+<div class="row">
+    
+    {{-- <div class="col-sm-3 col-xl-3">
+        <a href="{{route('admin.zone.index')}}">
+            <div class="card card-body bg-blue-400 has-bg-image">
+                <div class="media">
 
-	<title>{{Auth::user()->name}} Admin Panel | BMC Market Dashboard</title>
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-unlink2 icon-3x opacity-75"></i>
+                    </div>
+                    <div class="media-body text-right">
+                    <h3 class="mb-0">{{App\Models\Zone::count()}}</h3>
+                        <span class="text-uppercase font-size-xs">Total Zones</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-xl-3">
+        <a href="{{route('admin.ward.index')}}">
+            <div class="card card-body bg-danger-400 has-bg-image">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-stack-picture icon-3x opacity-75"></i>
+                    </div>
+                    <div class="media-body text-right">
+                    <h3 class="mb-0">{{App\Models\Ward::count()}}</h3>
+                        <span class="text-uppercase font-size-xs">Total Wards</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div> --}}
+    <div class="col-sm-6 col-xl-6">
+        <a href="{{route('admin.report.establisments')}}">
+            <div class="card card-body bg-success-400 has-bg-image">
+                <div class="media">
 
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/global_assets/css/icons/icomoon/styles.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/assets/css/bootstrap_limitless.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/assets/css/layout.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('user_asset/assets/css/toastr.css')}}" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-unlink2 icon-3x opacity-75"></i>
+                    </div>
+                    <div class="media-body text-right">
+                    <h3 class="mb-0">{{App\Models\Establishment::count()}}</h3>
+                        <span class="text-uppercase font-size-xs">Establishments Report</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-6">
+        <a href="{{route('admin.report.shops')}}">
+            <div class="card card-body bg-teal-400 has-bg-image">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-question4 icon-3x opacity-75"></i>
+                    </div>
+                    <div class="media-body text-right"> 
+                        <h3 class="mb-0">{{App\Models\Shop::count()}}</h3>
+                        <span class="text-uppercase font-size-xs">Market & Vending Zones of BMC</span>
+                    </div>
 
-	<!-- Core JS files -->
-	<script src="{{asset('user_asset/global_assets/js/main/jquery.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
-	<!-- /core JS files -->
+                </div>
+            </div>
+        </a>
+    </div>
+    {{-- <div class="col-sm-4 col-xl-4">
+        <a href="{{route('admin.location.index')}}">
+            <div class="card card-body bg-orange-400 has-bg-image">
+                <div class="media">
+                    <div class="media-body">
+                    <h3 class="mb-0">{{App\Models\Location::count()}}</h3>
+                        <span class="text-uppercase font-size-xs">Total Locations</span>
+                    </div>
 
-	<!-- Theme JS files -->
-	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/datatables.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js')}}"></script>
+                    <div class="ml-3 align-self-center">
+                        <i class="icon-blog icon-3x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div> --}}
+</div>
+<div class="row">
+    <div class="col-sm-6 col-xl-6">
+        <div class="card card-body">
+            <div class="media">
+                <div class="mr-3 align-self-center">
+                    <i class="icon-pointer icon-3x text-success-400"></i>
+                </div>
 
-	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/datatables.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/demo_pages/form_select2.js')}}"></script>
+                <div class="media-body text-right">
+                    <h3 class="font-weight-semibold mb-0">
+                        {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->sum('amount')}}
+                    </h3>
+                    <span class="text-uppercase font-size-sm text-muted">Yesterday Daily Collection</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<script src="{{asset('user_asset/global_assets/js/plugins/forms/selects/select2.min.js')}}"></script>
-    <script src="{{asset('user_asset/global_assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
+    <div class="col-sm-6 col-xl-6">
+        <div class="card card-body">
+            <div class="media">
+                <div class="mr-3 align-self-center">
+                    <i class="icon-enter6 icon-3x text-indigo-400"></i>
+                </div>
 
-	<script src="{{asset('user_asset/global_assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/ui/moment/moment.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/pickers/daterangepicker.js')}}"></script>
+                <div class="media-body text-right">
+                    <h3 class="font-weight-semibold mb-0">
+                        {{App\Models\QrCodePayment::whereBetween('payment_created_at',[Carbon\Carbon::now()->startOfMonth(),Carbon\Carbon::now()])->sum('amount')}}
+                    </h3>
+                    <span class="text-uppercase font-size-sm text-muted">Monthly Collection</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<script src="{{asset('user_asset/assets/js/app.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/demo_pages/datatables_basic.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/demo_pages/form_layouts.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/demo_pages/dashboard.js')}}"></script>
-	<!-- /theme JS files -->
-	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/pdfmake.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js')}}"></script>
-	<script src="{{asset('user_asset/global_assets/js/demo_pages/datatables_extension_buttons_html5.js')}}"></script>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            {{-- <div class="text-center" style="padding: 10px"> --}}
+                <canvas id="pie-chart" width="500" height="500"></canvas>
+            {{-- </div> --}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            {{-- <div class="text-center" style="padding: 10px"> --}}
+                <canvas id="withdraw-chart" width="500" height="500"></canvas>
+            {{-- </div> --}}
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+    <script src="{{ url('chart/Chart.min.js') }}"></script>
+    <script>
+        new Chart(document.getElementById("pie-chart"), {
 
-	<!-- Theme JS files -->
+            type: 'pie',
 
-	<script src="{{asset('user_asset/global_assets/js/demo_pages/job_list.js')}}"></script>
-	<!-- /theme JS files -->
+            data: {
+                labels: [{!! @$data['labels'] !!}],
+                datasets: [{
 
-	@yield('styles')
-</head>
+                    label: "Zone Wise Collection Of Current Month",
+                    backgroundColor: ["#990099","#109618","#ff9900", "#dc3912", "#3366cc","#33C4FF","#0C3343","#EC7063","#49BA98"],
+                    data: [{!! @$data['payments_for_month'] !!}],
 
-<body>
+                }]
+            },
 
-	<!-- Main navbar -->
-	<div class="navbar navbar-expand-md navbar-dark" style="border-top:0px;padding-left:0px;">
-		<div class="navbar-brand" style="border-width:0px;padding-top:0px;padding-bottom:0px;" >
-			<a href="#" class="text-light">
-				<img src="https://bmcdashboard.in/uploaded_images/logo/bmc_logo.png" style="border-width:0px;width:108%;height:70px;" />
-			</a>
-		</div>
+            options: {
 
-		<div class="d-md-none">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
-				<i class="icon-tree5"></i>
-			</button>
-			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
-				<i class="icon-paragraph-justify3"></i>
-			</button>
-		</div>
+                responsive: true,
+                title: {
 
-		<div class="collapse navbar-collapse" id="navbar-mobile">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
-						<i class="icon-paragraph-justify3"></i>
-					</a>
-				</li>
-			</ul>
+                    display: true,
 
-			<span class="badge bg-success ml-md-3 mr-md-auto">Online</span>
-
-			<ul class="navbar-nav">
-
-
-
-				<li class="nav-item dropdown dropdown-user">
-					<a href="" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
-						<img src="" class="rounded-circle mr-2" height="34" alt="">
-						<span>{{Auth::user()->name}}</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-right">
-						<a href="{{route('logout')}}" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!-- /main navbar -->
-
-
-	<!-- Page content -->
-	<div class="page-content">
-
-		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
-
-			<!-- Sidebar mobile toggler -->
-			<div class="sidebar-mobile-toggler text-center">
-				<a href="#" class="sidebar-mobile-main-toggle">
-					<i class="icon-arrow-left8"></i>
-				</a>
-				Navigation
-				<a href="#" class="sidebar-mobile-expand">
-					<i class="icon-screen-full"></i>
-					<i class="icon-screen-normal"></i>
-				</a>
-			</div>
-			<!-- /sidebar mobile toggler -->
-
-
-			<!-- Sidebar content -->
-			<div class="sidebar-content">
-
-				<!-- User menu -->
-				<div class="sidebar-user">
-					<div class="card-body">
-						<div class="media">
-							<div class="mr-3">
-								{{--  <a href="{{asset(Auth::user()->image)}}"><img src="{{asset(Auth::user()->image)}}" width="38" height="38" class="rounded-circle" alt=""></a>  --}}
-							</div>
-
-							<div class="media-body">
-								<div class="media-title font-weight-semibold">{{Auth::user()->name}}</div>
-								<div class="font-size-xs opacity-50">BMC Market Dashboard
-								</div>
-							</div>
-
-							<div class="ml-3 align-self-center">
-								<a href="#" class="text-white"><i class="icon-cog3"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /user menu -->
-
-
-				<!-- Main navigation -->
-				<div class="card card-sidebar-mobile">
-					<ul class="nav nav-sidebar" data-nav-type="accordion">
-							<!-- Main -->
-
-						<li class="nav-item">
-							<a href="{{route('admin.dashboard.index')}}" class="nav-link {{Request::is('admin/dashboard')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Dashboard</span>
-							</a>
-						</li>
-					<li class="nav-item nav-item-submenu {{Request::is('admin/user*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Users</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/user*') ?'display:block':''}}">
-								<li class="nav-item"><a href="{{route('admin.user.create')}}" class="nav-link {{Request::is('admin/user/create')?'active':''}}">Create User</a></li>
-								<li class="nav-item"><a href="{{route('admin.user.index')}}" class="nav-link {{Request::is('admin/user')?'active':''}}">All Users</a></li>
-							</ul>
-						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Master Data</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'display:block':''}}">
-							    <li class="nav-item"><a href="{{route('admin.zone.index')}}" class="nav-link {{Request::is('admin/zone')?'active':''}}">Zone</a></li>
-								<li class="nav-item"><a href="{{route('admin.ward.index')}}" class="nav-link {{Request::is('admin/ward')?'active':''}}">Ward</a></li>
-								<li class="nav-item"><a href="{{route('admin.structure.index')}}" class="nav-link {{Request::is('admin/structure')?'active':''}}">Structure</a></li>
-								<li class="nav-item"><a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">Establishment Category</a></li>
-								<li class="nav-item"><a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">Establishment</a></li>
-							</ul>
-						</li> 
-						<li class="nav-item">
-							<a href="{{route('admin.shop.index')}}" class="nav-link {{Request::is('admin/shop')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Shop</span>
-							</a>
-						</li> 
-						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/collection*') ?'display:block':''}}">
-							    <li class="nav-item"><a href="{{route('admin.qr_code_payment.index')}}" class="nav-link {{Request::is('admin/qr_code_payment')?'active':''}}">Payment Capture</a></li>
-								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
-								<li class="nav-item"><a href="{{route('admin.collection.monthly')}}" class="nav-link {{Request::is('admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
-							</ul>
-						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('admin/report*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Reports</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/report*') ?'display:block':''}}">
-							    <li class="nav-item"><a href="{{route('admin.report.establisments')}}" class="nav-link {{Request::is('admin/report/establisments')?'active':''}}">Establisment Report</a></li>
-								<li class="nav-item"><a href="{{route('admin.report.shops')}}" class="nav-link {{Request::is('admin/report/shops')?'active':''}}">Shop Report</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<!-- /main navigation -->
-
-			</div>
-			<!-- /sidebar content -->
-
-		</div>
-		<!-- /main sidebar -->
+                    text: 'Zone Wise Payment Colection For Current Month (Unregistered Vendors)'
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            return tooltipItem[0].xLabel;
+                        },
+                        label: function(dataItems, data) {
+                            var category = data.labels[dataItems.index];
+                            var value = data.datasets[0].data[dataItems.index];
 
 
-		<!-- Main content -->
-		<div class="content-wrapper">
+                            return ' ' + category + ': ' +value;
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
 
-			<!-- Page header -->
-			<div class="page-header page-header-light">
-				<div class="page-header-content header-elements-md-inline">
-					<div class="page-title d-flex">
-						<h4><a href="{{route('admin.dashboard.index')}}"><i class="icon-arrow-left52 mr-2"></i></a><span class="font-weight-semibold">@yield('title')</span></h4>
-						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-					</div>
+        new Chart(document.getElementById("withdraw-chart"), {
 
-					<div class="header-elements d-none">
-						<div class="d-flex justify-content-center">
+            type: 'pie',
 
-							<a href="#" class="btn btn-float mt-3">
-								<h4><span id="ct" class="font-weight-semibold"></span></h4>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /page header -->
+            data: {
 
+                labels: [{!! @$data['labels'] !!}],
 
-			<!-- Content area -->
-			<div class="content">
+                datasets: [{
 
-				@yield('content')
+                    label: "Zone Wise Collection Of Current Day ",
 
-			</div>
-			<!-- /content area -->
+                    backgroundColor: ["#ABB2B9","#7FB3D5","#C39BD3", "#EC7063", "#3366cc","#33C4FF","#0C3343"],
 
+                    data: [{!! @$data['payments_for_current_date'] !!}],
 
-			<!-- Footer -->
-			<div class="navbar navbar-expand-lg navbar-light">
-				<div class="text-center d-lg-none w-100">
-					<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
-						<i class="icon-unfold mr-2"></i>
-						Footer
-					</button>
-				</div>
+                }]
+            },
 
-				<div class="navbar-collapse collapse" id="navbar-footer">
-					<span class="navbar-text ml-lg-auto">
+            options: {
 
-					</span>
-				</div>
-			</div>
-			<!-- /footer -->
+                responsive: true,
+                title: {
 
-		</div>
-		<!-- /main content -->
+                    display: true,
 
-	</div>
-	<!-- /page content -->
+                    text: 'Zone Wise Payment Colection For Current Date (Unregistered Vendors)'
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            return tooltipItem[0].xLabel;
+                        },
+                        label: function(dataItems, data) {
+                            console.log(dataItems,data);
+                            var category = data.labels[dataItems.index];
+                            var value = data.datasets[0].data[dataItems.index];
 
 
-	<script src="{{asset('user_asset/assets/js/toastr.js')}}"></script>
-	@toastr_render
-	@yield('scripts')
-</body>
-</html>
+                            return ' ' + category + ': ' +value;
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+@endsection
