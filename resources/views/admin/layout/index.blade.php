@@ -173,31 +173,7 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
-					<!-- /main sidebar -->	<li class="nav-item nav-item-submenu {{Request::is('admin/user*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Users</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/user*') ?'display:block':''}}">
-								<li class="nav-item"><a href="{{route('admin.user.create')}}" class="nav-link {{Request::is('admin/user/create')?'active':''}}">Create User</a></li>
-								<li class="nav-item"><a href="{{route('admin.user.index')}}" class="nav-link {{Request::is('admin/user')?'active':''}}">All Users</a></li>
-							</ul>
-						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Master Data</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/zone*') || Request::is('admin/ward*') || Request::is('admin/structure*') || Request::is('admin/establishment_category*') || Request::is('admin/establishment*') ?'display:block':''}}">
-							    <li class="nav-item"><a href="{{route('admin.zone.index')}}" class="nav-link {{Request::is('admin/zone')?'active':''}}">Zone</a></li>
-								<li class="nav-item"><a href="{{route('admin.ward.index')}}" class="nav-link {{Request::is('admin/ward')?'active':''}}">Ward</a></li>
-								<li class="nav-item"><a href="{{route('admin.structure.index')}}" class="nav-link {{Request::is('admin/structure')?'active':''}}">Structure</a></li>
-								<li class="nav-item"><a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">Establishment Category</a></li>
-								<li class="nav-item"><a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">Establishment</a></li>
-							</ul>
-						</li> 
-						<li class="nav-item">
-							<a href="{{route('admin.shop.index')}}" class="nav-link {{Request::is('admin/shop')?'active':''}}">
-								<i class="icon-home4"></i>
-								<span>Shop</span>
-							</a>
-						</li> <!-- /main sidebar -->
+					
 						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
 
