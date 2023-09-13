@@ -173,7 +173,7 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('admin/user*')?'nav-item-open':''}}">
+					<!-- /main sidebar -->	<li class="nav-item nav-item-submenu {{Request::is('admin/user*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Users</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/user*') ?'display:block':''}}">
@@ -191,13 +191,13 @@
 								<li class="nav-item"><a href="{{route('admin.establishment_category.index')}}" class="nav-link {{Request::is('admin/establishment_category')?'active':''}}">Establishment Category</a></li>
 								<li class="nav-item"><a href="{{route('admin.establishment.index')}}" class="nav-link {{Request::is('admin/establishment')?'active':''}}">Establishment</a></li>
 							</ul>
-						</li>
+						</li> 
 						<li class="nav-item">
 							<a href="{{route('admin.shop.index')}}" class="nav-link {{Request::is('admin/shop')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Shop</span>
 							</a>
-						</li>
+						</li> <!-- /main sidebar -->
 						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
 

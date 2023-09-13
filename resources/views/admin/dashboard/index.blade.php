@@ -102,7 +102,7 @@
                     <h3 class="font-weight-semibold mb-0">
                         {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->sum('amount')}}
                     </h3>
-                    <span class="text-uppercase font-size-sm text-muted">Yesterday Daily Payments</span>
+                    <span class="text-uppercase font-size-sm text-muted">Yesterday Daily Collection</span>
                 </div>
             </div>
         </div>
