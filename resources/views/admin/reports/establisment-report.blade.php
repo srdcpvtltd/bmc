@@ -34,7 +34,7 @@ Establishment Report
                 @foreach ($establisments  as $key => $establishment)
                 <tr>
                     <td>{{$key+1}}</td>
-                    <td><a href="{{route('admin.establishment.edit',$establishment->id)}}">{{$establishment->name}}</a></td>
+                    <td><a>{{$establishment->name}}</a></td>
                     <td>{{$establishment->establishment_category->name}}</td>
                     <td>{{$establishment->total_shops}}</td>
                     <td>{{$establishment->total_shops - $establishment->shops->count()}}</td>
