@@ -64,6 +64,10 @@ class User extends Authenticatable
     public function zone(){
         return $this->hasOne(Zone::class,'id','zone_id');
     }
+    
+    public function shops(){
+        return $this->hasMany(Shop::class);
+    }
 
     public function setPasswordAttribute($value){
         if (!empty($value)){

@@ -48,4 +48,11 @@ class Shop extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+    public function getQRCode()
+    {
+        return "https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=shop-name:".
+        $this->shop_name.", Owner Name: ".$this->owner_name.", Phone: ".$this->phone.
+        ", Email: ".$this->email.", Shop Number: ".$this->shop_number.
+        ", Shop Rent: ".$this->shop_rent;
+    }
 }

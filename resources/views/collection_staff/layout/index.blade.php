@@ -162,6 +162,12 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a href="{{route('collection_staff.shop.index')}}" class="nav-link {{Request::is('collection_staff/shop')?'active':''}}">
+								<i class="icon-home4"></i>
+								<span>Shop</span>
+							</a>
+						</li> 
+						<li class="nav-item">
 							<a href="{{route('collection_staff.payment.index')}}" class="nav-link {{Request::is('collection_staff/payment')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Payment</span>
