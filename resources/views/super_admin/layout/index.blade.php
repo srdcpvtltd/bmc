@@ -11,7 +11,7 @@
 
 
 
-	<title>{{Auth::user()->name}} | Admin Panel | BMC Market Dashboard</title>
+	<title>{{Auth::user()->name}} | Super Admin Panel | BMC Market Dashboard</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -168,27 +168,51 @@
 							<!-- Main -->
 
 						<li class="nav-item">
-							<a href="{{route('admin.dashboard.index')}}" class="nav-link {{Request::is('admin/dashboard')?'active':''}}">
+							<a href="{{route('super_admin.dashboard.index')}}" class="nav-link {{Request::is('super_admin/dashboard')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Dashboard</span>
 							</a>
 						</li>
-					 
-						<li class="nav-item nav-item-submenu {{Request::is('admin/collection*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
+					<li class="nav-item nav-item-submenu {{Request::is('super_admin/user*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Users</span></a>
 
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/collection*') ?'display:block':''}}">
-							    {{-- <li class="nav-item"><a href="{{route('admin.qr_code_payment.index')}}" class="nav-link {{Request::is('admin/qr_code_payment')?'active':''}}">Payment Capture</a></li> --}}
-								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
-								<li class="nav-item"><a href="{{route('admin.collection.monthly')}}" class="nav-link {{Request::is('admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/user*') ?'display:block':''}}">
+								<li class="nav-item"><a href="{{route('super_admin.user.create')}}" class="nav-link {{Request::is('super_admin/user/create')?'active':''}}">Create User</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.user.index')}}" class="nav-link {{Request::is('super_admin/user')?'active':''}}">All Users</a></li>
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('admin/report*')?'nav-item-open':''}}">
+						<li class="nav-item nav-item-submenu {{Request::is('super_admin/zone*') || Request::is('super_admin/ward*') || Request::is('super_admin/structure*') || Request::is('super_admin/establishment_category*') || Request::is('super_admin/establishment*') ?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Master Data</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/zone*') || Request::is('super_admin/ward*') || Request::is('super_admin/structure*') || Request::is('super_admin/establishment_category*') || Request::is('super_admin/establishment*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('super_admin.zone.index')}}" class="nav-link {{Request::is('super_admin/zone')?'active':''}}">Zone</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.ward.index')}}" class="nav-link {{Request::is('super_admin/ward')?'active':''}}">Ward</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.structure.index')}}" class="nav-link {{Request::is('super_admin/structure')?'active':''}}">Structure</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.establishment_category.index')}}" class="nav-link {{Request::is('super_admin/establishment_category')?'active':''}}">Establishment Category</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.establishment.index')}}" class="nav-link {{Request::is('super_admin/establishment')?'active':''}}">Establishment</a></li>
+							</ul>
+						</li> 
+						<li class="nav-item">
+							<a href="{{route('super_admin.shop.index')}}" class="nav-link {{Request::is('super_admin/shop')?'active':''}}">
+								<i class="icon-home4"></i>
+								<span>Shop</span>
+							</a>
+						</li> 
+						<li class="nav-item nav-item-submenu {{Request::is('super_admin/collection*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/collection*') ?'display:block':''}}">
+							    {{-- <li class="nav-item"><a href="{{route('super_admin.qr_code_payment.index')}}" class="nav-link {{Request::is('super_admin/qr_code_payment')?'active':''}}">Payment Capture</a></li> --}}
+								<li class="nav-item"><a href="{{route('super_admin.collection.daily')}}" class="nav-link {{Request::is('super_admin/collection/daily')?'active':''}}">Daily Collection</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.collection.monthly')}}" class="nav-link {{Request::is('super_admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('super_admin/report*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Reports</span></a>
 
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/report*') ?'display:block':''}}">
-							    <li class="nav-item"><a href="{{route('admin.report.establisments')}}" class="nav-link {{Request::is('admin/report/establisments')?'active':''}}">Establisment Report</a></li>
-								<li class="nav-item"><a href="{{route('admin.report.shops')}}" class="nav-link {{Request::is('admin/report/shops')?'active':''}}">Shop Report</a></li>
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/report*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('super_admin.report.establisments')}}" class="nav-link {{Request::is('super_admin/report/establisments')?'active':''}}">Establisment Report</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.report.shops')}}" class="nav-link {{Request::is('super_admin/report/shops')?'active':''}}">Shop Report</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -209,7 +233,7 @@
 			<div class="page-header page-header-light">
 				<div class="page-header-content header-elements-md-inline">
 					<div class="page-title d-flex">
-						<h4><a href="{{route('admin.dashboard.index')}}"><i class="icon-arrow-left52 mr-2"></i></a><span class="font-weight-semibold">@yield('title')</span></h4>
+						<h4><a href="{{route('super_admin.dashboard.index')}}"><i class="icon-arrow-left52 mr-2"></i></a><span class="font-weight-semibold">@yield('title')</span></h4>
 						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 					</div>
 

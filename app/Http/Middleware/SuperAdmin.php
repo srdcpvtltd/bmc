@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CollectionStaff
+class SuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -20,7 +20,7 @@ class CollectionStaff
             return redirect()->to(url('/'));
 
         $user_role = Auth::user()->getRole();
-        if($user_role == 'Collection Staff')
+        if($user_role == 'Super Admin')
         {
             return $next($request);
         }else{

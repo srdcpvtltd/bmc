@@ -40,6 +40,9 @@ Route::post('get_state_against_countries',[AuthController::class,'getStateAgains
 /*******************ADMIN ROUTE START*************/
 include __DIR__ . '/admin.php';
 /*******************ADMIN ROUTE END*************/
+/*******************SUPER ADMIN ROUTE START*************/
+include __DIR__ . '/super_admin.php';
+/*******************SUPER ADMIN ROUTE END*************/
 /*******************COLLECTION STAFF ROUTE START*************/
 include __DIR__ . '/collection_staff.php';
 /*******************COLLECTION STAFF ROUTE END*************/

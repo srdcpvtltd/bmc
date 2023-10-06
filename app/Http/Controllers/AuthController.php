@@ -43,13 +43,16 @@ class AuthController extends Controller
                 toastr()->success('You Login Successfully');
 
             }
+            else if($user->role->name=='Super Admin')
+            {
+                return redirect()->intended(route('super_admin.dashboard.index'));
+                toastr()->success('You Login Successfully');
 
-
+            }
             else{
                 Auth::logout();
                 toastr()->error('User is In Active or Not Verified Yet By Admin.');
                 return redirect()->back();
-
             }
         } else {
             toastr()->error('Wrong Password.');

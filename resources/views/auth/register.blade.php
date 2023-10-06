@@ -121,7 +121,7 @@
 											<div class="form-group form-group-feedback form-group-feedback-left">
 												<select name="role_id" class="form-control select-search" id="role_id" required>
 													<option>Select</option>
-													@foreach(App\Models\Role::where('name','!=',['Admin','Prospect'])->get() as $role)
+													@foreach(App\Models\Role::where('name','!=',['Super Admin','Admin','Prospect'])->get() as $role)
 													<option value="{{$role->id}}">{{$role->name}}</option>
 													@endforeach
 												</select>

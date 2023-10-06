@@ -46,6 +46,15 @@ Manage Payment
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group col-md-6">
+                            <label>Payment Mode</label>
+                            <select  name="payment_mode" id="payment_mode"  class="form-control select-search" data-fouc required>
+                                <option >Select Payment Mode</option>
+                                <option value="Cash">Cash</option>
+                                <option value="UPI">UPI</option>
+                                <option value="Online">Online</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>
@@ -160,6 +169,17 @@ Manage Payment
             $('#name').val(name);
             $('#id').val(id);
             $('#updateForm').attr('action','{{route('collection_staff.payment.update','')}}' +'/'+id);
+        });
+        
+        $('#payment_mode').change(function(){
+            value = this.value;
+            if(value == 'UPI')
+            {
+                alert(value);
+            }else if(value == 'Online')
+            {
+                alert(value);
+            }
         });
     });
 </script>
