@@ -26,9 +26,11 @@ class CollectionController extends Controller
             $start_date = Carbon::now()->startOfMonth();
             $end_date = Carbon::today();
         } 
-        $payments = QrCodePayment::query()->select('qr_code_payments.*','qr_codes.name as qr_code')
-                        ->join('qr_codes','qr_codes.id','qr_code_payments.qr_code_id')
-                        ->whereBetween('qr_code_payments.payment_created_at',[$start_date,$end_date])->get();
+        $payments = Payment::query()->select('payments.*','users.name as user_name')
+                        ->join('users','users.id','payments.user_id')->where('payments.type','monthly')->get();
+        // $payments = QrCodePayment::query()->select('qr_code_payments.*','qr_codes.name as qr_code')
+        //                 ->join('qr_codes','qr_codes.id','qr_code_payments.qr_code_id')
+        //                 ->whereBetween('qr_code_payments.payment_created_at',[$start_date,$end_date])->get();
         return view('admin.collection.monthly',compact('start_date','end_date','payments'));
     }
 
@@ -37,7 +39,7 @@ class CollectionController extends Controller
         $zone = Zone::find($zone_id);
         $payments = Payment::query()->select('payments.*','users.name as user_name')
                         ->join('users','users.id','payments.user_id')
-                        ->where('users.zone_id',$zone_id)->get();
+                        ->where('users.zone_id',$zone_id)->where('payments.type','daily')->get();
         return view('admin.collection.show_daily',compact('payments','zone'));
     }
 }

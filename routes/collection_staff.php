@@ -16,7 +16,9 @@ Route::group(['prefix' => 'collection_staff', 'as'=>'collection_staff.','middlew
     Route::post('shop/get_wards',[ShopController::class,'getWards'])->name('shop.get_wards');
     Route::post('shop/get_establishments',[ShopController::class,'getEstablishments'])->name('shop.get_establishments');
     Route::post('shop/get_establishment_shops',[ShopController::class,'getEstablishmentShops'])->name('shop.get_establishment_shops');
+    Route::post('shop/get_taken_establishment_shops',[ShopController::class,'getTakenEstablishmentShops'])->name('shop.get_taken_establishment_shops');
     Route::post('shop/get_establishment_shop',[ShopController::class,'getEstablishmentShop'])->name('shop.get_establishment_shop');
+    Route::post('shop/get_establishment_shop_with_data',[ShopController::class,'getEstablishmentShopWithData'])->name('shop.get_establishment_shop_with_data');
     Route::resource('shop',ShopController::class);
     /*******************SHOP ROUTE END*************/
     /*******************PAYMENT ROUTE START*************/

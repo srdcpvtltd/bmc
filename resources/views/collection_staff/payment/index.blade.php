@@ -6,109 +6,59 @@ Manage Payment
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12">
-        <!-- Basic layout-->
-        <div class="card">
-            <div class="card-header header-elements-inline">
-                <h5 class="card-title">Add New Payment</h5>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a class="list-icons-item" data-action="collapse"></a>
-                        <a class="list-icons-item" data-action="remove"></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <form action="{{route('collection_staff.payment.store')}}" method="post" enctype="multipart/form-data" >
-                    @csrf
-                    <div class="row">
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <div class="form-group col-md-6">
-                            <label>Name</label>
-                            <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Amount</label>
-                            <input name="amount" type="text" class="form-control" placeholder="Enter Amount" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Location</label>
-                            <input name="location" id="location" readonly type="text" class="form-control" placeholder="Enter Location" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Choose Establishment</label>
-                            <select  name="establishment_id"  class="form-control select-search" data-fouc required>
-                                <option >Select Establishment</option>
-                                @foreach(App\Models\Establishment::all() as $establishment)
-                                <option value="{{$establishment->id}}">{{$establishment->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Payment Mode</label>
-                            <select  name="payment_mode" id="payment_mode"  class="form-control select-search" data-fouc required>
-                                <option >Select Payment Mode</option>
-                                <option value="Cash">Cash</option>
-                                <option value="UPI">UPI</option>
-                                <option value="Online">Online</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
-        <!-- /basic layout -->
-
-    </div>
-</div>
 
 <div class="card">
-
-    <table class="table datatable-save-state">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Location</th>
-                <th>Establishment</th>
-                <th>Update Date</th>
-                <th>Update Time</th>
-                <th>Action</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (App\Models\Payment::where('user_id',Auth::user()->id)->get()  as $key => $payment)
-            <tr>
-                <td>{{$key+1}}</td>
-                <td>{{$payment->name}}</td>
-                <td>{{$payment->amount}}</td>
-                <td>{{$payment->location}}</td>
-                <td>{{@$payment->establishment->name}}</td>
-                <td>{{@$payment->updated_at->format('d M,Y')}}</td>
-                <td>{{@$payment->updated_at->format('H:i s')}}</td>
-                <td>
-                    <button data-toggle="modal" data-target="#edit_modal" name="{{$payment->name}}" 
-                        amount="{{$payment->amount}}"  establishment_id="{{$payment->establishment_id}}" id="{{$payment->id}}" class="edit-btn btn btn-primary">Edit</button>
-                </td>
-                <td>
-                    <form action="{{route('collection_staff.payment.destroy',$payment->id)}}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                    <button class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="row mt-2 mr-2"> 
+        <div class="col-md-12">
+            <a href="{{route('collection_staff.payment.create')}}" class="btn btn-primary float-right">Create Payment</a>
+        </div>
+    </div>
+    <div class="table-responsive"> 
+        <table class="table datatable-save-state table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Mode</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Owner Name</th>
+                    <th>Phone</th>
+                    <th>Shop Number</th>
+                    <th>Shop Rent</th>
+                    <th>Location</th>
+                    <th>Establishment</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (App\Models\Payment::where('user_id',Auth::user()->id)->get()  as $key => $payment)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$payment->name}}</td>
+                    <td>{{@$payment->payment_mode}}</td>
+                    <td>{{@$payment->type}}</td>
+                    <td>{{$payment->amount}}</td>
+                    <td>{{@$payment->owner_name}}</td>
+                    <td>{{@$payment->phone}}</td>
+                    <td>{{@$payment->shop_number}}</td>
+                    <td>{{@$payment->shop_rent}}</td>
+                    <td>{{$payment->location}}</td>
+                    <td>{{@$payment->establishment->name}}</td>
+                    <td>{{@$payment->created_at->format('d M,Y H:i s')}}</td>
+                    <td>
+                        <form action="{{route('collection_staff.payment.destroy',$payment->id)}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                        <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div id="edit_modal" class="modal fade">
@@ -169,17 +119,6 @@ Manage Payment
             $('#name').val(name);
             $('#id').val(id);
             $('#updateForm').attr('action','{{route('collection_staff.payment.update','')}}' +'/'+id);
-        });
-        
-        $('#payment_mode').change(function(){
-            value = this.value;
-            if(value == 'UPI')
-            {
-                alert(value);
-            }else if(value == 'Online')
-            {
-                alert(value);
-            }
         });
     });
 </script>

@@ -161,11 +161,27 @@ class ShopController extends Controller
             'establishment_shops' => $establishment_shops
         ]);
     }
+    public function getTakenEstablishmentShops(Request $request)
+    {
+        $establishment_shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',1)->get();
+        return response()->json([
+            'establishment_shops' => $establishment_shops
+        ]);
+    }
     public function getEstablishmentShop(Request $request)
     {
         $establishment_shop = EstablishmentShop::find($request->id);
         return response()->json([
             'establishment_shop' => $establishment_shop
+        ]);
+    }
+    public function getEstablishmentShopWithData(Request $request)
+    {
+        $establishment_shop = EstablishmentShop::find($request->id);
+        $shop = $establishment_shop->shop;
+        return response()->json([
+            'establishment_shop' => $establishment_shop,
+            'shop' => $shop,
         ]);
     }
 }

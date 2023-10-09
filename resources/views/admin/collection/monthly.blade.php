@@ -41,7 +41,7 @@
                 </div>
             </div>
         </form>
-        <table class="table datatable-save-state">
+        {{-- <table class="table datatable-save-state">
             <thead>
                 <tr>
                     <th>#</th>
@@ -67,7 +67,50 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table> --}}
+        <div class="table-responsive">
+            <table class="table datatable-save-state">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User Name</th>
+                        <th>Name</th>
+                        <th>Mode</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Owner Name</th>
+                        <th>Phone</th>
+                        <th>Shop Name</th>
+                        <th>Shop Number</th>
+                        <th>Shop Rent</th>
+                        <th>Location</th>
+                        <th>Establishment</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($payments  as $key => $payment)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$payment->user_name}}</td>
+                        <td>{{$payment->name}}</td>
+                        <td>{{@$payment->payment_mode}}</td>
+                        <td>{{@$payment->type}}</td>
+                        <td>{{$payment->amount}}</td>
+                        <td>{{@$payment->owner_name}}</td>
+                        <td>{{@$payment->phone}}</td>
+                        <td>{{@$payment->shop_name}}</td>
+                        <td>{{@$payment->shop_number}}</td>
+                        <td>{{@$payment->shop_rent}}</td>
+                        <td>{{$payment->location}}</td>
+                        <td>{{@$payment->establishment->name}}</td>
+                        <td>{{@$payment->created_at->format('d M,Y H:i s')}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </div>
 @endsection

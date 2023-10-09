@@ -24,9 +24,9 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('collection_staff.payment.create');
     }
 
     /**
@@ -42,7 +42,8 @@ class PaymentController extends Controller
                 'name' => 'required',
                 'amount' => 'required',
                 'location' => 'required',
-                'establishment_id' => 'required',
+                'type' => 'required',
+                'payment_mode' => 'required',
                 'user_id' => 'required',
             ]);
             Payment::create($request->all());

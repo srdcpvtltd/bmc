@@ -18,26 +18,37 @@ Total Collection of Zone {{@$zone->name}}
         </div>
     </div>
     <div class="card-body">
-        <table class="table datatable-save-state">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>User Name</th>
-                    <th>Amount</th>
-                    <th>Update Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($payments  as $key => $payment)
-                <tr>
-                    <td>{{$key+1}}</td>
-                    <td>{{$payment->user_name}}</td>
-                    <td>{{$payment->amount}}</td>
-                    <td>{{$payment->updated_at->format("d M,Y")}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table datatable-save-state">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User Name</th>
+                        <th>Name</th>
+                        <th>Mode</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Location</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($payments  as $key => $payment)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$payment->user_name}}</td>
+                        <td>{{$payment->name}}</td>
+                        <td>{{@$payment->payment_mode}}</td>
+                        <td>{{@$payment->type}}</td>
+                        <td>{{$payment->amount}}</td>
+                        <td>{{$payment->location}}</td>
+                        <td>{{@$payment->created_at->format('d M,Y H:i s')}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </div>
 

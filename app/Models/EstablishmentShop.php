@@ -12,4 +12,8 @@ class EstablishmentShop extends Model
     protected $fillable = [
         'shop_number','shop_type','shop_size','shop_rent','establishment_id','status','zone_id'
     ];
+    public function shop()
+    {
+        return $this->hasOne(Shop::class,'establishment_shop_id');
+    }
 }

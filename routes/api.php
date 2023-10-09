@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\EstablishmentCategoryController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EstablishmentController;
 use App\Http\Controllers\Api\EstablishmentShopController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\StructureController;
 use App\Http\Controllers\Api\WardController;
@@ -29,6 +30,8 @@ Route::post('login',[AuthController::class,'login'])->name('login');;
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('shops', ShopController::class);
     Route::post('shop/store', [ShopController::class,'store']);
+    Route::resource('payments', PaymentController::class);
+    Route::post('payment/store', [PaymentController::class,'store']);
     Route::resource('establishment_category', EstablishmentCategoryController::class);
     Route::resource('establishment', EstablishmentController::class);
     Route::resource('establishment_shop', EstablishmentShopController::class);

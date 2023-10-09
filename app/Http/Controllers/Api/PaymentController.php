@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\EstablishmentShop;
-use App\Models\Shop;
+use App\Models\Payment;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ShopController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,18 +18,14 @@ class ShopController extends Controller
     public function index()
     {
         try {
-            $shops = Shop::select('shops.*')->with(
+            $payments = Payment::select('payments.*')->with(
                 'establishment_shop',
-                'establishment_category',
                 'establishment',
-                'zone',
-                'ward',
-                'structure',
                 'user',
                 )->where('user_id',Auth::user()->id)->get();
 
             return response([
-                "shops" => $shops,
+                "payments" => $payments,
             ], 200);
         } catch (\Exception $e) {
             return response([
@@ -57,27 +53,21 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         
-        try {
+        try{
             $this->validate($request,[
-                'owner_name' => 'required',
+                'name' => 'required',
+                'amount' => 'required',
+                'location' => 'required',
+                'type' => 'required',
+                'payment_mode' => 'required',
                 'user_id' => 'required',
             ]);
-            $shop = Shop::create($request->all());
-            if($request->establishment_shop_id)
-            {
-                $establishment_shop = EstablishmentShop::find($request->establishment_shop_id);
-                if($establishment_shop)
-                {
-                    $establishment_shop->update([
-                        'status' => true
-                    ]);
-                }
-            }
-
+            $payment = Payment::create($request->all());
             return response([
-                "shop" => $shop,
+                "payment" => $payment,
             ], 200);
-        } catch (\Exception $e) {
+        }catch (Exception $e)
+        {
             return response([
                 "error" => $e->getMessage()
             ], 500);
@@ -87,10 +77,10 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show(Payment $payment)
     {
         //
     }
@@ -98,10 +88,10 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shop $shop)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -110,10 +100,10 @@ class ShopController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shop $shop)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -121,10 +111,10 @@ class ShopController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy(Payment $payment)
     {
         //
     }
