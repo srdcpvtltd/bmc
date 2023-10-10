@@ -74,10 +74,10 @@
                     <tr>
                         <th>#</th>
                         <th>User Name</th>
-                        <th>Name</th>
                         <th>Mode</th>
                         <th>Type</th>
-                        <th>Amount</th>
+                        <th>Month</th>
+                        <th>Year</th>
                         <th>Owner Name</th>
                         <th>Phone</th>
                         <th>Shop Name</th>
@@ -96,12 +96,12 @@
                         <td>{{$payment->name}}</td>
                         <td>{{@$payment->payment_mode}}</td>
                         <td>{{@$payment->type}}</td>
+                        <td>{{@$payment->month}}</td>
+                        <td>{{@$payment->year}}</td>
                         <td>{{$payment->amount}}</td>
-                        <td>{{@$payment->owner_name}}</td>
                         <td>{{@$payment->phone}}</td>
                         <td>{{@$payment->shop_name}}</td>
                         <td>{{@$payment->shop_number}}</td>
-                        <td>{{@$payment->shop_rent}}</td>
                         <td>{{$payment->location}}</td>
                         <td>{{@$payment->establishment->name}}</td>
                         <td>{{@$payment->created_at->format('d M,Y H:i s')}}</td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CollectionStaff;
 use App\Http\Controllers\Controller;
 use App\Models\Establishment;
 use App\Models\EstablishmentShop;
+use App\Models\Payment;
 use App\Models\Shop;
 use App\Models\Ward;
 use Exception;
@@ -162,8 +163,16 @@ class ShopController extends Controller
         ]);
     }
     public function getTakenEstablishmentShops(Request $request)
-    {
-        $establishment_shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',1)->get();
+    {  
+        $shops = EstablishmentShop::where('establishment_id',5)->where('status',1)->get();
+        $establishment_shops = [];
+        foreach($shops as $shop)
+        {
+            if(Payment::where('month',$request->month)->where('establishment_shop_id',$shop->id)->where('year',$request->year)->count() == 0)
+            {
+                $establishment_shops[] = $shop; 
+            }
+        }
         return response()->json([
             'establishment_shops' => $establishment_shops
         ]);

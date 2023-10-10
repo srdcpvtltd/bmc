@@ -26,6 +26,8 @@ class Payment extends Model
         'shop_rent',
         'shop_size',
         'shop_type',
+        'month',
+        'year'
     ];
     
     public function establishment()

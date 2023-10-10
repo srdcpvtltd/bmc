@@ -27,28 +27,38 @@ Manage Payment
                     <div class="row">
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         <input type="hidden" name="type" value="{{request()->type}}">
+                        <input name="location" id="location" type="hidden" required>
+                        @if(request()->type == 'daily')
                         <div class="form-group col-md-6">
                             <label>Name</label>
-                            <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
+                            <input name="name" id="name" type="text" class="form-control" placeholder="Enter Name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Amount</label>
                             <input name="amount" type="text" class="form-control" placeholder="Enter Amount" required>
                         </div>
+                        @endif
+                        @if(request()->type == 'monthly')
+                        <input name="name" id="name" type="hidden" required>
+                        <input name="amount" id="amount" type="hidden" required>
                         <div class="form-group col-md-6">
-                            <label>Location</label>
-                            <input name="location" id="location" readonly type="text" class="form-control" placeholder="Enter Location" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Payment Mode</label>
-                            <select  name="payment_mode" id="payment_mode"  class="form-control select-search" data-fouc required>
-                                <option >Select Payment Mode</option>
-                                <option value="Cash">Cash</option>
-                                <option value="UPI">UPI</option>
-                                {{-- <option value="Online">Online</option> --}}
+                            <label>Month</label>
+                            <select name="month" id="month" class="form-control select-search" data-fouc required>
+                                <option value="">Select Month</option>
+                                @for($month = 1;$month <= 12;$month++)
+                                <option value="{{$month}}">{{$month}}</option>
+                                @endfor
                             </select>
                         </div>
-                        @if(request()->type == 'monthly')
+                        <div class="form-group col-md-6">
+                            <label>Year</label>
+                            <select name="year" id="year" class="form-control select-search" data-fouc required>
+                                <option value="" >Select Year</option>
+                                @for($year = 2000;$year <= 2050;$year++)
+                                <option value="{{$year}}">{{$year}}</option>
+                                @endfor
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label>Choose Establishment</label>
                             <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
@@ -68,25 +78,34 @@ Manage Payment
                         <input name="shop_id" id="shop_id" type="hidden" class="form-control"  >
                         <div class="form-group col-md-6">
                             <label>Shop Name</label>
-                            <input name="shop_name" id="shop_name" type="text" class="form-control"  required>
+                            <input name="shop_name" id="shop_name" type="text" class="form-control" readonly required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Owner Name</label>
-                            <input name="owner_name" id="owner_name" type="text" class="form-control"  required>
+                            <input name="owner_name" readonly id="owner_name" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Type</label>
-                            <input name="shop_type" id="shop_type" type="text" class="form-control"  required>
+                            <input name="shop_type" readonly id="shop_type" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Size</label>
-                            <input name="shop_size" id="shop_size" type="text" class="form-control"  required>
+                            <input name="shop_size" readonly id="shop_size" type="text" class="form-control"  required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Shop Rent</label>
-                            <input name="shop_rent" id="shop_rent" type="text" class="form-control"  required>
+                            <input name="shop_rent" readonly id="shop_rent" type="text" class="form-control"  required>
                         </div>
                         @endif
+                        <div class="form-group col-md-6">
+                            <label>Payment Mode</label>
+                            <select  name="payment_mode" id="payment_mode"  class="form-control select-search" data-fouc required>
+                                <option >Select Payment Mode</option>
+                                <option value="Cash">Cash</option>
+                                <option value="UPI">UPI</option>
+                                {{-- <option value="Online">Online</option> --}}
+                            </select>
+                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>
@@ -149,24 +168,37 @@ Manage Payment
         
         $('#establishment_id').change(function(){
             id = this.value;
-            $.ajax({
-                url: "{{route('collection_staff.shop.get_taken_establishment_shops')}}",
-                method: 'post',
-                data: {
-                    id: id,
-                },
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                success: function(result){
-                    establishment_shops = result.establishment_shops;
-                    $('#establishment_shop_id').empty();
-                    $('#establishment_shop_id').append('<option>Select Shop Number</option>');
-                    for (i=0;i<establishment_shops.length;i++){
-                        $('#establishment_shop_id').append('<option value="'+establishment_shops[i].id+'">'+establishment_shops[i].shop_number+'</option>');
+            month = $("#month").val();
+            year = $("#year").val();
+            if(month == "")
+            {
+                alert("Please Select Month");
+            }else if(year == "")
+            {
+                alert("Please Select Year");
+            }else{
+                $.ajax({
+                    url: "{{route('collection_staff.shop.get_taken_establishment_shops')}}",
+                    method: 'post',
+                    data: {
+                        id: id,
+                        month: month,
+                        year: year,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(result){
+                        establishment_shops = result.establishment_shops;
+                        $('#establishment_shop_id').empty();
+                        $('#establishment_shop_id').append('<option>Select Shop Number</option>');
+                        for (i=0;i<establishment_shops.length;i++){
+                            $('#establishment_shop_id').append('<option value="'+establishment_shops[i].id+'">'+establishment_shops[i].shop_number+'</option>');
+                        }
                     }
-                }
-            });
+                });
+
+            }
         });
         $('#establishment_shop_id').change(function(){
             id = this.value;
@@ -182,6 +214,7 @@ Manage Payment
                 success: function(result){
                     establishment_shop = result.establishment_shop;
                     shop = result.shop;
+                    $('#name').val(shop.owner_name);
                     $('#owner_name').val(shop.owner_name);
                     $('#shop_id').val(shop.id);
                     $('#shop_name').val(shop.shop_name);
@@ -189,6 +222,7 @@ Manage Payment
                     $('#email').val(shop.email);
                     $('#shop_size').val(establishment_shop.shop_size);
                     $('#shop_type').val(establishment_shop.shop_type);
+                    $('#amount').val(establishment_shop.shop_rent);
                     $('#shop_rent').val(establishment_shop.shop_rent);
                     $('#shop_number').val(establishment_shop.shop_number);
                 }
