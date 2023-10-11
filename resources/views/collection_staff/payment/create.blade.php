@@ -45,9 +45,18 @@ Manage Payment
                             <label>Month</label>
                             <select name="month" id="month" class="form-control select-search" data-fouc required>
                                 <option value="">Select Month</option>
-                                @for($month = 1;$month <= 12;$month++)
-                                <option value="{{$month}}">{{$month}}</option>
-                                @endfor
+                                <option value='Janaury'>Janaury</option>
+                                <option value='February'>February</option>
+                                <option value='March'>March</option>
+                                <option value='April'>April</option>
+                                <option value='May'>May</option>
+                                <option value='June'>June</option>
+                                <option value='July'>July</option>
+                                <option value='August'>August</option>
+                                <option value='September'>September</option>
+                                <option value='October'>October</option>
+                                <option value='November'>November</option>
+                                <option value='December'>December</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
