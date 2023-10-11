@@ -40,7 +40,7 @@ Manage Shop
                     <td><iframe src="{{$shop->getQRCode()}}" height="155" width="155" style="border:white;"></iframe></td>
                     <td>{{$shop->establishment->name}}</td>
                     <td>{{$shop->shop_name}}</td>
-                    <td>{{$shop->shop_number}}</td>
+                    <td>{{$shop->establishment->shop_number}}</td>
                     <td>{{$shop->owner_name}}</td>
                     <td>{{$shop->phone}}</td>
                     
