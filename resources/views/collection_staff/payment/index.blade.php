@@ -18,12 +18,12 @@ Manage Payment
             <thead>
                 <tr>
                     <th>SL No</th>
-                    <th>Establishment</th>
+                    <th>Establishment Name</th>
                     <th>Shop Name</th>
                     <th>Shop Number</th>
                     <th>Owner Name</th>
-                    <th>Amount</th>
-                    <th>Mode</th>                    
+                    <th>Payment Amount</th>
+                    <th>Mode of Payment</th>                    
                     <th>Payment Date</th>
                 </tr>
             </thead>
