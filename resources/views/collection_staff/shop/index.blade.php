@@ -23,14 +23,14 @@ Manage Shop
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Shop Data QR</th>
+                    <th>Shop QR Code</th>
+                    <th>Establishment Name</th>
                     <th>Shop Name</th>
+                    <th>Shop No</th>
                     <th>Owner Name</th>
                     <th>Phone</th>
                     {{-- <th>Register Shop</th> --}}
                     {{-- <th>Shop QR Code</th> --}}
-                    <th>Action</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,9 @@ Manage Shop
                 <tr>
                     <td>{{$key+1}}</td>
                     <td><iframe src="{{$shop->getQRCode()}}" height="155" width="155" style="border:white;"></iframe></td>
+                    <td>{{$shop->establishment->name}}</td>
                     <td>{{$shop->shop_name}}</td>
+                    <td>{{$shop->shop_number}}</td>
                     <td>{{$shop->owner_name}}</td>
                     <td>{{$shop->phone}}</td>
                     
@@ -54,16 +56,6 @@ Manage Shop
                             <a type="button"  href="{{route('collection_staff.shop.show',$shop->id)}}" class="btn btn-primary btn-sm">Generate QR Code</button>
                         @endif
                     </td> --}}
-                    <td>
-                        <a type="button"  href="{{route('collection_staff.shop.edit',$shop->id)}}" class="edit-btn btn btn-primary">Edit</button>
-                    </td>
-                    <td>
-                        <form action="{{route('collection_staff.shop.destroy',$shop->id)}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                        <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>

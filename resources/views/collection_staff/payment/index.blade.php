@@ -10,50 +10,35 @@ Manage Payment
 <div class="card">
     <div class="row mt-2 mr-2"> 
         <div class="col-md-12">
-            <a href="{{route('collection_staff.payment.create')}}" class="btn btn-primary float-right">Create Payment</a>
+            <a href="{{route('collection_staff.payment.create')}}" class="btn btn-primary float-right">Add New Payment</a>
         </div>
     </div>
     <div class="table-responsive"> 
         <table class="table datatable-save-state table-responsive">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Mode</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Owner Name</th>
-                    <th>Phone</th>
+                    <th>SL No</th>
+                    <th>Establishment Name</th>
+                    <th>Shop Name</th>
                     <th>Shop Number</th>
-                    <th>Shop Rent</th>
-                    <th>Location</th>
-                    <th>Establishment</th>
-                    <th>Created At</th>
-                    <th>Action</th>
+                    <th>Owner Name</th>
+                    <th>Amount</th>
+                    <th>Mode of Payment</th>                    
+                    <th>Payment Date</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (App\Models\Payment::where('user_id',Auth::user()->id)->get()  as $key => $payment)
                 <tr>
                     <td>{{$key+1}}</td>
-                    <td>{{$payment->name}}</td>
-                    <td>{{@$payment->payment_mode}}</td>
-                    <td>{{@$payment->type}}</td>
-                    <td>{{$payment->amount}}</td>
-                    <td>{{@$payment->owner_name}}</td>
-                    <td>{{@$payment->phone}}</td>
-                    <td>{{@$payment->shop_number}}</td>
-                    <td>{{@$payment->shop_rent}}</td>
-                    <td>{{$payment->location}}</td>
                     <td>{{@$payment->establishment->name}}</td>
+                    <td>{{$payment->name}}</td>
+                    <td>{{@$payment->shop_number}}</td>
+                    <td>{{@$payment->owner_name}}</td>
+                    <td>{{$payment->amount}}</td>
+                    <td>{{@$payment->payment_mode}}</td>
                     <td>{{@$payment->created_at->format('d M,Y H:i s')}}</td>
-                    <td>
-                        <form action="{{route('collection_staff.payment.destroy',$payment->id)}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                        <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+
                 </tr>
                 @endforeach
             </tbody>

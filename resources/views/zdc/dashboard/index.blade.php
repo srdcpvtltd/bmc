@@ -1,7 +1,7 @@
 @extends('zdc.layout.index')
 
 @section('title')
-    Dashboard
+    Dashboard: {{ $user->zone->name }} Zone
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
                         <i class="icon-unlink2 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right">
-                    <h3 class="mb-0">Market & Vending Zones of {{ $user->zone->name }}</h3>
+                    <h3 class="mb-0">Market & Vending Zones of {{ $user->zone->name }} Zone</h3>
                         <span class="text-uppercase font-size-xs"></span>
                     </div>
                 </div>
@@ -42,8 +42,8 @@
                         <i class="icon-unlink2 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right">
-                    <h3 class="mb-0">{{App\Models\Establishment::where('establishment_zone_id',$user->zone?->id)->count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Total Establishments</span>
+                    <h3 class="mb-0">Total Establishments of {{ $user->zone->name }} Zone</h3>
+                       <span class="text-uppercase font-size-xs"></span>
                     </div>
                 </div>
             </div>
