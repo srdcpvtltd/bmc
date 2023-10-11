@@ -83,7 +83,7 @@ View Shops
                         @foreach ($shops  as $key => $shop)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td><a href="{{route('admin.shop.detail',$shop->id)}}">{{$shop->shop_name}}</a></td>
+                            <td><a href="{{route('super_admin.shop.detail',$shop->id)}}">{{$shop->shop_name}}</a></td>
                             <td>{{@$shop->establishment->name}}</td>
                             <td>{{@$shop->zone->name}}</td>
                             <td>{{@$shop->ward->name}}</td>
