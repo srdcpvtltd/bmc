@@ -22,7 +22,7 @@ Manage Payment
                     <th>Shop Name</th>
                     <th>Shop Number</th>
                     <th>Owner Name</th>
-                    <th>Payment Amount</th>
+                    <th>Amount</th>
                     <th>Mode of Payment</th>                    
                     <th>Payment Date</th>
                 </tr>
