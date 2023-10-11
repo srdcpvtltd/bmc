@@ -24,7 +24,7 @@ Manage Shop
                 <tr>
                     <th>#</th>
                     <th>Shop QR Code</th>
-                    <th>Establishment</th>
+                    <th>Establishment Name</th>
                     <th>Shop Name</th>
                     <th>Shop No</th>
                     <th>Owner Name</th>
@@ -38,7 +38,7 @@ Manage Shop
                 <tr>
                     <td>{{$key+1}}</td>
                     <td><iframe src="{{$shop->getQRCode()}}" height="155" width="155" style="border:white;"></iframe></td>
-                    <td>{{$shop->shop_name}}</td>
+                    <td>{{$shop->establishment->name}}</td>
                     <td>{{$shop->shop_name}}</td>
                     <td>{{$shop->shop_number}}</td>
                     <td>{{$shop->owner_name}}</td>
