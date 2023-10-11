@@ -26,7 +26,7 @@ Establishment Report
                     <th>Name</th>
                     <th>Category</th>
                     <th>Total Shops</th>
-                    <th>Remaining Shops</th>
+                    <th>Vacant Shops</th>
                     <th></th>
                 </tr>
             </thead>
