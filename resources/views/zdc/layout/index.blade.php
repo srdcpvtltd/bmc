@@ -158,6 +158,14 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('zdc/collection*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('zdc/collection*') ?'display:block':''}}">
+								<li class="nav-item"><a href="{{route('zdc.collection.daily')}}" class="nav-link {{Request::is('zdc/collection/daily')?'active':''}}">Daily Collection</a></li>
+								<li class="nav-item"><a href="{{route('zdc.collection.monthly')}}" class="nav-link {{Request::is('zdc/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+							</ul>
+						</li>
 
 					</ul>
 				</div>

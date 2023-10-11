@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ZDC\CollectionController;
 use App\Http\Controllers\ZDC\ZdcController;
 
 
@@ -14,6 +15,9 @@ use App\Http\Controllers\ZDC\ZdcController;
     Route::get('report/zone/establishment/report/{id}',[ZdcController::class,'zoneEstablishmentShopReports'])->name('zone.estableshment.reports');
     Route::get('report/establisments/{id}',[ZdcController::class,'establismentReports'])->name('report.establisments');
 
-
+    Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');
+    Route::get('collection/monthly',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');
+    Route::get('collection/monthly_detail/{id}',[CollectionController::class,'getMonthlyCollectionDetail'])->name('collection.monthly_detail');
+   
 });
 ?>

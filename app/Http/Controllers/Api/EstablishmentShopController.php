@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\EstablishmentShop;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class EstablishmentShopController extends Controller
@@ -16,7 +17,7 @@ class EstablishmentShopController extends Controller
     public function index()
     {
         try {
-            $establishment_shops = EstablishmentShop::all();
+            $establishment_shops = EstablishmentShop::with('shop')->get();
             return response([
                 "establishment_shops" => $establishment_shops,
             ], 200);
@@ -91,5 +92,26 @@ class EstablishmentShopController extends Controller
     public function destroy(EstablishmentShop $establishmentShop)
     {
         //
+    }
+    public function getTakenEstablishmentShops(Request $request)
+    {
+        try {
+            $shops = EstablishmentShop::with('shop')->where('establishment_id',$request->id)->where('status',1)->get();
+            $establishment_shops = [];
+            foreach($shops as $shop)
+            {
+                if(Payment::where('month',$request->month)->where('establishment_shop_id',$shop->id)->where('year',$request->year)->count() == 0)
+                {
+                    $establishment_shops[] = $shop; 
+                }
+            }
+            return response([
+                "establishment_shops" => $establishment_shops,
+            ], 200);
+        } catch (\Exception $e) {
+            return response([
+                "error" => $e->getMessage()
+            ], 500);
+        }
     }
 }

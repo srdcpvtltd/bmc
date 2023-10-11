@@ -100,7 +100,7 @@
 
                 <div class="media-body text-right">
                     <h3 class="font-weight-semibold mb-0">
-                        {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->sum('amount')}}
+                        {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->where('type','daily')->sum('amount')}}
                     </h3>
                     <span class="text-uppercase font-size-sm text-muted">Yesterday Daily Collection</span>
                 </div>
@@ -117,7 +117,7 @@
 
                 <div class="media-body text-right">
                     <h3 class="font-weight-semibold mb-0">
-                        {{App\Models\QrCodePayment::whereBetween('payment_created_at',[Carbon\Carbon::now()->startOfMonth(),Carbon\Carbon::now()])->sum('amount')}}
+                        {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->sum('amount')}}
                     </h3>
                     <span class="text-uppercase font-size-sm text-muted">Monthly Collection</span>
                 </div>

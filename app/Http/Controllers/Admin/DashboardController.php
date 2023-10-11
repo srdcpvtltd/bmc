@@ -22,10 +22,13 @@ class DashboardController extends Controller
             array_push($labelsArray, $label);
             $amount = Payment::query()->select('payments.*')
                     ->join('users','users.id','payments.user_id')
-                    ->where('users.zone_id',$zone->id)->whereBetween('payments.created_at',[Carbon::now()->startOfMonth(),Carbon::now()])->sum('amount');
+                    ->where('payments.type','monthly')
+                    ->where('payments.month',Carbon::now()->format('F'))
+                    ->where('users.zone_id',$zone->id)->sum('amount');
             array_push($paymentsDataForMonth, $amount);
             $day_amount = Payment::query()->select('payments.*')
                     ->join('users','users.id','payments.user_id')
+                    ->where('payments.type','daily')
                     ->where('users.zone_id',$zone->id)->whereDate('payments.created_at',Carbon::today())->sum('amount');
             array_push($paymentsDataForCurrentDate, $day_amount);
         }
