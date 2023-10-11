@@ -29,8 +29,6 @@ Manage Shop
                     <th>Phone</th>
                     {{-- <th>Register Shop</th> --}}
                     {{-- <th>Shop QR Code</th> --}}
-                    <th>Action</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,16 +52,6 @@ Manage Shop
                             <a type="button"  href="{{route('collection_staff.shop.show',$shop->id)}}" class="btn btn-primary btn-sm">Generate QR Code</button>
                         @endif
                     </td> --}}
-                    <td>
-                        <a type="button"  href="{{route('collection_staff.shop.edit',$shop->id)}}" class="edit-btn btn btn-primary">Edit</button>
-                    </td>
-                    <td>
-                        <form action="{{route('collection_staff.shop.destroy',$shop->id)}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                        <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
