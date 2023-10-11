@@ -17,7 +17,7 @@ Manage Payment
         <table class="table datatable-save-state table-responsive">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>SL No</th>
                     <th>Establishment</th>
                     <th>Shop Name</th>
                     <th>Shop Number</th>
