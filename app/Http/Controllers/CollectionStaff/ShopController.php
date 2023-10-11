@@ -164,7 +164,7 @@ class ShopController extends Controller
     }
     public function getTakenEstablishmentShops(Request $request)
     {  
-        $shops = EstablishmentShop::where('establishment_id',5)->where('status',1)->get();
+        $shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',1)->get();
         $establishment_shops = [];
         foreach($shops as $shop)
         {
