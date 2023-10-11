@@ -1,7 +1,7 @@
 @extends('zdc.layout.index')
 
 @section('title')
-    Dashboard: {{ $user->zone->name }} Zone
+    Dashboard: {{ $user->zone->name }} Zone, Bhubaneswar Municipal Corporation
 @endsection
 
 @section('content')
