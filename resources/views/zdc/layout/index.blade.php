@@ -152,7 +152,6 @@
 				<div class="card card-sidebar-mobile">
 					<ul class="nav nav-sidebar" data-nav-type="accordion">
 							<!-- Main -->
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">ZDC Panel</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
 							<a href="{{route('zdc.dashboard.index')}}" class="nav-link {{Request::is('zdc/dashboard')?'active':''}}">
 								<i class="icon-home4"></i>
