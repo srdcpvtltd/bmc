@@ -38,7 +38,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
 
 
     // Route::get('report/shops',[ReportController::class,'shopReports'])->name('report.shops');
-
+    Route::get('shop/detail/{id}',[ShopController::class,'getShopDetail'])->name('shop.detail');
     Route::get('report/establisments',[ReportController::class,'establismentReports'])->name('report.establisments');
     /*******************REPORT ROUTE END*************/
 });
