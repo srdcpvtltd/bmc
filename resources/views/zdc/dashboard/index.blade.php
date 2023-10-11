@@ -1,7 +1,7 @@
 @extends('zdc.layout.index')
 
 @section('title')
-    Dashboard: {{ $user->zone->name }}
+    Dashboard: {{ $user->zone->name }} Zone
 @endsection
 
 @section('content')
