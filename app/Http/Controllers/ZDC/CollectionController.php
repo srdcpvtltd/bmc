@@ -17,17 +17,17 @@ class CollectionController extends Controller
     {
         $query = DB::table('users')
             ->join('payments', 'users.id', '=', 'payments.user_id')
-            ->selectRaw('users.*, 
-                        SUM(CASE WHEN payments.payment_mode = "Cash" THEN payments.amount ELSE 0 END) as cash_amount,
-                        SUM(CASE WHEN payments.payment_mode = "UPI" THEN payments.amount ELSE 0 END) as upi_amount')
+            ->selectRaw('users.id, users.name, 
+                         SUM(CASE WHEN payments.payment_mode = "Cash" THEN payments.amount ELSE 0 END) as cash_amount,
+                         SUM(CASE WHEN payments.payment_mode = "UPI" THEN payments.amount ELSE 0 END) as upi_amount')
             ->where('payments.type', 'daily')
             ->where('users.role_id', 5)
             ->where('users.zone_id', Auth::user()->zone_id);
-        if($request->date)
-        {
-            $query->whereDate('payments.created_at',Carbon::parse($request->date));
+        
+        if($request->date) {
+            $query->whereDate('payments.created_at', Carbon::parse($request->date));
         }
-        $users = $query->groupBy('users.id')->get();
+        $users = $query->groupBy('users.id', 'users.name')->get();
         return view('zdc.collection.daily',compact('users'));
     }
 
@@ -36,7 +36,7 @@ class CollectionController extends Controller
         $query = DB::table('establishments')
             ->join('payments', 'establishments.id', '=', 'payments.establishment_id')
             ->join('users','users.id','payments.user_id')
-            ->selectRaw('establishments.*, SUM(payments.amount) as total_amount')
+            ->selectRaw('establishments.id,establishments.name, SUM(payments.amount) as total_amount')
             ->where('payments.type', 'monthly')
             ->where('users.role_id', 5)
             ->where('users.zone_id', Auth::user()->zone_id);
@@ -44,7 +44,7 @@ class CollectionController extends Controller
         {
             $query->where('payments.month',$request->month);
         }
-        $establishments = $query->groupBy('establishments.id')->get();
+        $establishments = $query->groupBy('establishments.id','establishments.name')->get();
         return view('zdc.collection.monthly',compact('establishments'));
     }
 
