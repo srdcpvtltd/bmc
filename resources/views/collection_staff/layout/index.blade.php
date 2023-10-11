@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>{{Auth::user()->name}} Collection Staff Panel | Shop System</title>
+	<title>{{Auth::user()->name}} Collection Staff Panel | BMC Dashboard</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -60,7 +60,7 @@
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
 			<a href="{{url('/')}}" class="text-light">
-				<h3 class="m-0"><b>Collection Staff Panel Menu</b></h3>
+				<h3 class="m-0"><b>Collection Staff Panel</b></h3>
 			</a>
 		</div>
 
@@ -137,8 +137,6 @@
 
 							<div class="media-body">
 								<div class="media-title font-weight-semibold">{{Auth::user()->name}}</div>
-								<div class="font-size-xs opacity-50">SDS
-								</div>
 							</div>
 
 							<div class="ml-3 align-self-center">
@@ -154,7 +152,6 @@
 				<div class="card card-sidebar-mobile">
 					<ul class="nav nav-sidebar" data-nav-type="accordion">
 							<!-- Main -->
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Admin Panel</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
 							<a href="{{route('collection_staff.dashboard.index')}}" class="nav-link {{Request::is('collection_staff/dashboard')?'active':''}}">
 								<i class="icon-home4"></i>
