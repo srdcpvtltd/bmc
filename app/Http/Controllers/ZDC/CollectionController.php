@@ -54,6 +54,7 @@ class CollectionController extends Controller
         $query = Payment::query()->select('payments.*','users.name as user_name')
                         ->join('users','users.id','payments.user_id')
                         ->where('payments.type','monthly')
+                        ->where('payments.establishment_id',$id)
                         ->where('users.role_id', 5)
                         ->where('users.zone_id', Auth::user()->zone_id);
         if($request->month)
