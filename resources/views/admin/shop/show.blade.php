@@ -1,4 +1,4 @@
-@extends('super_admin.layout.index')
+@extends('admin.layout.index')
 
 @section('title')
 Generate QR Code For {{$shop->name}}

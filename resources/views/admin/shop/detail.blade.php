@@ -1,4 +1,4 @@
-@extends('super_admin.layout.index')
+@extends('admin.layout.index')
 
 @section('title')
     {{$shop->name}} Shop Detail
