@@ -16,4 +16,8 @@ class EstablishmentShop extends Model
     {
         return $this->hasOne(Shop::class,'establishment_shop_id');
     }
+    public function establishment()
+    {
+        return $this->hasOne(Establishment::class,'establishment_id');
+    }
 }
