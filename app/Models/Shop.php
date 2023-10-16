@@ -50,12 +50,12 @@ class Shop extends Model
     }
     public function getQRCode()
     {
-        return "https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=shop_name=".
-        $this->shop_name.",establishment_id=".$this->establishment_id.",establishment_name=".
-        @$this->establishment->name.",establishment_name=".@$this->establishment->name.
-        ",establishment_shop_id=".@$this->establishment_shop_id.",establishment_shop_name=".
-        @$this->establishment_shop->name.",shop_id=".$this->id.",owner_name=".$this->owner_name.
-        ",shop_number=".$this->shop_number.",phone=".$this->phone.",email=".$this->email.
-        ",shop_rent=".$this->shop_rent.",shop_size=".$this->shop_size.",shop_type=".$this->shop_type;
+        return "https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl={'shop_name'='".
+        $this->shop_name."','establishment_id':'".$this->establishment_id."','establishment_name':'".
+        @$this->establishment->name."','establishment_name':'".@$this->establishment->name.
+        "','establishment_shop_id':'".@$this->establishment_shop_id."','establishment_shop_name':'".
+        @$this->establishment_shop->name."','shop_id':'".$this->id."','owner_name':'".$this->owner_name.
+        "','shop_number':'".$this->shop_number."','phone':'".$this->phone."','email':'".$this->email.
+        "','shop_rent':'".$this->shop_rent."','shop_size':'".$this->shop_size."','shop_type':'".$this->shop_type."'}";
     }
 }
