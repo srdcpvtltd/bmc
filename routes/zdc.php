@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ZDC\CollectionController;
+use App\Http\Controllers\ZDC\ShopController;
 use App\Http\Controllers\ZDC\ZdcController;
 
 
@@ -19,5 +20,6 @@ use App\Http\Controllers\ZDC\ZdcController;
     Route::get('collection/monthly',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');
     Route::get('collection/monthly_detail/{id}',[CollectionController::class,'getMonthlyCollectionDetail'])->name('collection.monthly_detail');
    
+    Route::resource('shop',ShopController::class);
 });
 ?>

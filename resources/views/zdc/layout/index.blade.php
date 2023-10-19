@@ -158,6 +158,12 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="{{route('zdc.shop.index')}}" class="nav-link {{Request::is('zdc/shop')?'active':''}}">
+								<i class="icon-home4"></i>
+								<span>Shop</span>
+							</a>
+						</li>
 						<li class="nav-item nav-item-submenu {{Request::is('zdc/collection*')?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Collection</span></a>
 
