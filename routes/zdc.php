@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ZDC\CollectionController;
+use App\Http\Controllers\ZDC\PendingPaymentController;
 use App\Http\Controllers\ZDC\ShopController;
 use App\Http\Controllers\ZDC\ZdcController;
-
-
+use App\Models\PendingPayment;
 
  Route::group(['prefix' => 'zdc', 'as'=>'zdc.','middleware' => 'auth:user','Zdc'], function () {
 
@@ -21,5 +21,6 @@ use App\Http\Controllers\ZDC\ZdcController;
     Route::get('collection/monthly_detail/{id}',[CollectionController::class,'getMonthlyCollectionDetail'])->name('collection.monthly_detail');
    
     Route::resource('shop',ShopController::class);
+    Route::resource('pending_payment',PendingPaymentController::class);
 });
 ?>

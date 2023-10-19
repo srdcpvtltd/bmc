@@ -159,6 +159,12 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a href="{{route('zdc.pending_payment.index')}}" class="nav-link {{Request::is('zdc/pending_payment')?'active':''}}">
+								<i class="icon-home4"></i>
+								<span>Pending Payment</span>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a href="{{route('zdc.shop.index')}}" class="nav-link {{Request::is('zdc/shop')?'active':''}}">
 								<i class="icon-home4"></i>
 								<span>Shop</span>

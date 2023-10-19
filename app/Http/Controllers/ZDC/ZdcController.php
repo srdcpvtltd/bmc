@@ -16,7 +16,7 @@ class ZdcController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $establishments  = Establishment::all();
+        $establishments  = Establishment::where('establishment_zone_id',$user->zone_id)->get();
         $labelsArray= [];
         $paymentsDataForMonth= [];
         $paymentsDataForCurrentDate= [];
