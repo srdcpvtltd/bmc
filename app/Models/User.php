@@ -69,6 +69,10 @@ class User extends Authenticatable
         return $this->hasMany(Shop::class);
     }
 
+    public function pendingPayments(){
+        return $this->hasMany(PendingPayment::class);
+    }
+
     public function setPasswordAttribute($value){
         if (!empty($value)){
             $this->attributes['password'] = Hash::make($value);

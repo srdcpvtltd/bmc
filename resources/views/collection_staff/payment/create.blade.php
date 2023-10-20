@@ -29,14 +29,14 @@ Manage Payment
                         <input type="hidden" name="type" value="{{request()->type}}">
                         <input name="location" id="location" type="hidden" required>
                         @if(request()->type == 'daily')
-                        <div class="form-group col-md-6">
-                            <label>Name</label>
-                            <input name="name" id="name" type="text" class="form-control" placeholder="Enter Name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Amount</label>
-                            <input name="amount" type="text" class="form-control" placeholder="Enter Amount" required>
-                        </div>
+                            <div class="form-group col-md-6">
+                                <label>Name</label>
+                                <input name="name" id="name" type="text" class="form-control" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Amount</label>
+                                <input name="amount" type="text" class="form-control" placeholder="Enter Amount" required>
+                            </div>
                         @endif
                         @if(request()->type == 'monthly')
                         <input name="name" id="name" type="hidden" required>

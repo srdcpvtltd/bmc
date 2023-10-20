@@ -171,9 +171,9 @@ class ShopController extends Controller
     }
     public function getEstablishmentShops(Request $request)
     {
-        $establishment_shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',0)->get();
+        $shops = Shop::where('establishment_id',$request->id)->get();
         return response()->json([
-            'establishment_shops' => $establishment_shops
+            'shops' => $shops
         ]);
     }
     public function getEstablishmentShop(Request $request)

@@ -24,17 +24,24 @@ Manage Pending Payments
                 <form action="{{route('zdc.pending_payment.store')}}" method="post" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         <div class="form-group col-md-6">
                             <label>Pending Amount</label>
                             <input name="amount" type="number" step="0.01" class="form-control" placeholder="Enter Pending Amount" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Choose Shop</label>
-                            <select  name="shop_id"  class="form-control select-search" data-fouc required>
-                                <option selected disabled>Select Shop</option>
-                                @foreach(App\Models\Shop::all() as $shop)
-                                <option value="{{$shop->id}}">{{$shop->shop_name .'-'. $shop->shop_number }}</option>
+                            <label>Choose Establishment</label>
+                            <select  name="establishment_id" id="establishment_id"  class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Establishment</option>
+                                @foreach(App\Models\Establishment::all() as $establishment)
+                                <option value="{{$establishment->id}}">{{$establishment->name }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Choose Shop</label>
+                            <select  name="shop_id" id="shop_id" class="form-control select-search" data-fouc required>
+                                <option selected disabled>Select Shop</option>
                             </select>
                         </div>
 
@@ -57,6 +64,7 @@ Manage Pending Payments
         <thead>
             <tr>
                 <th>#</th>
+                <th>Establishment Name</th>
                 <th>Shop Name</th>
                 <th>Shop Number</th>
                 <th>Amount</th>
@@ -65,9 +73,10 @@ Manage Pending Payments
             </tr>
         </thead>
         <tbody>
-            @foreach (App\Models\PendingPayment::all()  as $key => $pending_payment)
+            @foreach (Auth::user()->pendingPayments  as $key => $pending_payment)
             <tr>
                 <td>{{$key+1}}</td>
+                <td>{{@$pending_payment->establishment->name}}</td>
                 <td>{{@$pending_payment->shop->shop_name}}</td>
                 <td>{{@$pending_payment->shop->shop_number}}</td>
                 <td>{{$pending_payment->amount}}</td>
@@ -89,4 +98,29 @@ Manage Pending Payments
 @endsection
 
 @section('scripts')
+<script>
+    $(document).ready(function(){
+        $('#establishment_id').change(function(){
+            id = this.value;
+            $.ajax({
+                url: "{{route('zdc.shop.get_establishment_shops')}}",
+                method: 'post',
+                data: {
+                    id: id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(result){
+                    shops = result.shops;
+                    $('#shop_id').empty();
+                    $('#shop_id').append('<option>Select Shop</option>');
+                    for (i=0;i<shops.length;i++){
+                        $('#shop_id').append('<option value="'+shops[i].id+'">'+shops[i].shop_name+'-'+shops[i].shop_number+'</option>');
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection

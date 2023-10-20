@@ -19,7 +19,7 @@ use App\Models\PendingPayment;
     Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');
     Route::get('collection/monthly',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');
     Route::get('collection/monthly_detail/{id}',[CollectionController::class,'getMonthlyCollectionDetail'])->name('collection.monthly_detail');
-   
+    Route::post('shop/get_establishment_shops',[ShopController::class,'getEstablishmentShops'])->name('shop.get_establishment_shops');
     Route::resource('shop',ShopController::class);
     Route::resource('pending_payment',PendingPaymentController::class);
 });
