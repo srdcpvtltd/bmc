@@ -72,6 +72,9 @@ class User extends Authenticatable
     public function pendingPayments(){
         return $this->hasMany(PendingPayment::class);
     }
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
 
     public function setPasswordAttribute($value){
         if (!empty($value)){

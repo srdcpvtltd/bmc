@@ -73,9 +73,10 @@ class PaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Payment $payment)
+    public function edit($id)
     {
-        //
+        $payment = Payment::find($id);
+        return view('collection_staff.payment.edit',compact('payment'));
     }
 
     /**

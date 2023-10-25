@@ -23,6 +23,7 @@ class DashboardController extends Controller
             $amount = Payment::query()->select('payments.*')
                     ->join('users','users.id','payments.user_id')
                     ->where('payments.type','monthly')
+                    ->where('payments.is_paid',1)
                     ->where('payments.month',Carbon::now()->format('F'))
                     ->where('users.zone_id',$zone->id)->sum('amount');
             array_push($paymentsDataForMonth, $amount);

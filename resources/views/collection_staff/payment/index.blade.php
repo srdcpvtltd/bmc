@@ -25,6 +25,7 @@ Manage Payment
                     <th>Amount</th>
                     <th>Mode of Payment</th>                    
                     <th>Payment Date</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +38,13 @@ Manage Payment
                     <td>{{@$payment->owner_name}}</td>
                     <td>{{$payment->amount}}</td>
                     <td>{{@$payment->payment_mode}}</td>
-                    <td>{{@$payment->created_at->format('d M,Y H:i s')}}</td>
+                    <td>{{@$payment->updated_at->format('d M,Y H:i s')}}</td>
+                    <td>
+                        {{$payment->is_paid ? 'Paid' : 'Not Paid'}}
+                        @if(!$payment->is_paid)
+                        <a href="{{route('collection_staff.payment.edit',$payment->id)}}" class="btn btn-sm btn-primary">Edit</a>
+                        @endif
+                    </td>
 
                 </tr>
                 @endforeach

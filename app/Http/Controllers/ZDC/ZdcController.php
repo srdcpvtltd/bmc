@@ -29,6 +29,7 @@ class ZdcController extends Controller
                     ->where('users.zone_id',$user->zone_id)
                     ->where('payments.establishment_id',$establishment->id)
                     ->where('payments.type','monthly')
+                    ->where('payments.is_paid',1)
                     ->where('payments.month',Carbon::now()->format('F'))->sum('amount');
             array_push($paymentsDataForMonth, $amount);
         }

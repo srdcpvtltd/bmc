@@ -28,7 +28,8 @@ class CollectionController extends Controller
         } 
         
         $payments = Payment::query()->select('payments.*','users.name as user_name')
-                        ->join('users','users.id','payments.user_id')->where('payments.type','monthly')->get();
+                        ->join('users','users.id','payments.user_id')
+                        ->where('payments.type','monthly')->where('payments.is_paid',1)->get();
        
         // $payments = QrCodePayment::query()->select('qr_code_payments.*','qr_codes.name as qr_code')
         //                 ->join('qr_codes','qr_codes.id','qr_code_payments.qr_code_id')

@@ -72,3 +72,10 @@ Route::get('cd', function() {
     Artisan::call('view:clear');
     return 'DONE';
   });
+
+  Route::get('testing', function() {
+    Artisan::call('create:monthly-payments');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    return 'DONE';
+  });

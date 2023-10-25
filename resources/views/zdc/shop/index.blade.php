@@ -6,49 +6,18 @@ Manage Shop
 
 @section('content')
 
-
-<div class="card">
-    <div class="card-header header-elements-inline">
-        <h5 class="card-title">Manage Shops</h5>
-        <div class="header-elements">
-            <div class="list-icons">
-                <a class="list-icons-item" data-action="collapse"></a>
-                <a class="list-icons-item" data-action="remove"></a>
+<div class="row">
+    @foreach (App\Models\Shop::all()  as $key => $shop)
+    <div class="col-xl-4">
+        <a href="{{route('zdc.shop.show',$shop->id)}}" style="color:black;">
+            <div class="card border-left-3 border-left-success-400 rounded-left-0">
+                <div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
+                    <span><h5>Shop Number </h5> <p class="font-weight-semibold">{{@$shop->shop_number}}</p></span>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
-    <div class="card-body">
-        <table class="table datatable-save-state">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Shop QR Code</th>
-                    <th>Establishment Name</th>
-                    <th>Shop Name</th>
-                    <th>Shop No</th>
-                    <th>Owner Name</th>
-                    <th>Phone</th>
-                    <th>Phone</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (App\Models\Shop::all()  as $key => $shop)
-                <tr>
-                    <td>{{$key+1}}</td>
-                    <td><iframe src="{{$shop->getQRCode()}}" height="155" width="155" style="border:white;"></iframe></td>
-                    <td>{{$shop->establishment->name}}</td>
-                    <td>{{$shop->shop_name}}</td>
-                    <td>{{$shop->shop_number}}</td>
-                    <td>{{$shop->owner_name}}</td>
-                    <td>{{$shop->phone}}</td>
-                    <td>
-                        <a type="button"  href="{{route('zdc.shop.show',$shop->id)}}" class="btn btn-primary btn-sm">Detail</button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @endforeach
 </div>
 
 @endsection
