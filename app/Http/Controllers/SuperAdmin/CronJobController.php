@@ -22,9 +22,8 @@ class CronJobController extends Controller
         {
             if(Payment::where('month',$month)->where('shop_id',$shop->id)->where('year',$year)->count() == 0)
             {
-                $inputNumber = $shop->establishment_shop ? $shop->establishment_shop->shop_rent : $shop->shop_rent;
-                // Remove commas
-                $numberWithoutCommas = str_replace(",", "", $inputNumber);
+                $amount = $shop->establishment_shop ? $shop->establishment_shop->shop_rent : $shop->shop_rent;
+                $amount = (float) $amount;
                 Payment::create([
                     'month' => $month,
                     'shop_id' => $shop->id,
@@ -40,7 +39,7 @@ class CronJobController extends Controller
                     'is_paid' => 0,
                     'establishment_shop_id' => $shop->establishment_shop ? $shop->establishment_shop->id : $shop->establishment_shop_id,
                     'establishment_id' => $shop->establishment_shop ? $shop->establishment_shop->establishment_id  : $shop->establishment_id,
-                    'amount' => number_format($numberWithoutCommas, 2),
+                    'amount' => number_format($amount, 2),
                     'shop_rent' => $shop->establishment_shop ? $shop->establishment_shop->shop_rent : $shop->shop_rent,
                     'shop_size' => $shop->establishment_shop ? $shop->establishment_shop->shop_size : $shop->shop_size,
                     'shop_type' => $shop->establishment_shop ? $shop->establishment_shop->shop_type : $shop->shop_type,
