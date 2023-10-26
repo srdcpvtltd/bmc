@@ -215,6 +215,13 @@
 								<li class="nav-item"><a href="{{route('super_admin.report.shops')}}" class="nav-link {{Request::is('super_admin/report/shops')?'active':''}}">Shop Report</a></li>
 							</ul>
 						</li>
+						<li class="nav-item nav-item-submenu {{Request::is('super_admin/cronjob*')?'nav-item-open':''}}">
+							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Cronjobs</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/cronjob*') ?'display:block':''}}">
+							    <li class="nav-item"><a href="{{route('super_admin.cronjob.monthly-payments')}}" class="nav-link {{Request::is('super_admin/cronjob/monthly-payments')?'active':''}}">Monthly Payment</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 				<!-- /main navigation -->

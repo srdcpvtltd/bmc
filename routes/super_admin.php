@@ -2,6 +2,7 @@
 /****************** ADMIN MIDDLEWARE PAGES ROUTES START****************/
 
 use App\Http\Controllers\SuperAdmin\CollectionController;
+use App\Http\Controllers\SuperAdmin\CronJobController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\EstablishmentCategoryController;
 use App\Http\Controllers\SuperAdmin\EstablishmentController;
@@ -77,6 +78,9 @@ Route::group(['prefix' => 'super_admin', 'as'=>'super_admin.','middleware' => 'a
 
     Route::get('report/establisments',[ReportController::class,'establismentReports'])->name('report.establisments');
     /*******************REPORT ROUTE END*************/
+
+    Route::get('cronjob/monthly-payments',[CronJobController::class,'monthlyPayments'])->name('cronjob.monthly-payments');
+    Route::post('cronjob/create-monthly-payment',[CronJobController::class,'createMonthlyPayments'])->name('cronjob.create-monthly-payment');
 });
 /****************** ADMIN MIDDLEWARE PAGES ROUTES END****************/
 ?>
