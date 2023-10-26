@@ -227,7 +227,7 @@
                                             <td>{{@$payment->month}}</td>
                                             <td>{{@$payment->amount}}</td>
                                             <td>{{@$payment->created_at->format('d M,Y')}}</td>
-                                            <td></td>
+                                            <td>{{@$payment->payment_date->format('d M,Y')}}</td>
                                             <td>{{@$payment->payment_mode}}</td>
                                             <td>{{$payment->is_paid ? 'Paid' : 'Not Paid'}}</td>
                                         </tr>
