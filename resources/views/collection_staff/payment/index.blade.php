@@ -22,6 +22,9 @@ Manage Payment
                     <th>Shop Name</th>
                     <th>Shop Number</th>
                     <th>Owner Name</th>
+                    <th>Type</th>
+                    <th>Month</th>
+                    <th>Year</th>
                     <th>Amount</th>
                     <th>Mode of Payment</th>                    
                     <th>Payment Date</th>
@@ -36,6 +39,9 @@ Manage Payment
                     <td>{{$payment->name}}</td>
                     <td>{{@$payment->shop_number}}</td>
                     <td>{{@$payment->owner_name}}</td>
+                    <td>{{$payment->type}}</td>
+                    <td>{{@$payment->month}}</td>
+                    <td>{{@$payment->year}}</td>
                     <td>{{$payment->amount}}</td>
                     <td>{{@$payment->payment_mode}}</td>
                     <td>{{@$payment->updated_at->format('d M,Y H:i s')}}</td>

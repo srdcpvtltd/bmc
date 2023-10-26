@@ -103,9 +103,25 @@ class PaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request)
     {
-        //
+        try{
+            $this->validate($request,[
+                'payment_id' => 'required',
+                'is_paid' => 'required',
+                'payment_mode' => 'required',
+            ]);
+            $payment = Payment::find($request->payment_id);
+            $payment->update($request->except('payment_id'));
+            return response([
+                "payment" => $payment,
+            ], 200);
+        }catch (Exception $e)
+        {
+            return response([
+                "error" => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
