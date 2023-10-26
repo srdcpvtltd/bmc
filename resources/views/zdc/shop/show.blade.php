@@ -214,6 +214,7 @@
                                             <th>#</th>
                                             <th>Month</th>
                                             <th>Amount</th>
+                                            <th>Invoice Date</th>
                                             <th>Payment Date</th>
                                             <th>Payment Mode</th>
                                             <th>Payment Status</th>
@@ -225,6 +226,7 @@
                                             <td>{{$key+1}}</td>
                                             <td>{{@$payment->month}}</td>
                                             <td>{{@$payment->amount}}</td>
+                                            <td>{{@$payment->created_at->format('d M,Y')}}</td>
                                             <td>{{@$payment->updated_at->format('d M,Y')}}</td>
                                             <td>{{@$payment->payment_mode}}</td>
                                             <td>{{$payment->is_paid ? 'Paid' : 'Not Paid'}}</td>
