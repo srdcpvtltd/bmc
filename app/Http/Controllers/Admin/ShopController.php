@@ -6,6 +6,7 @@ use App\Helpers\PaymentGateway;
 use App\Http\Controllers\Controller;
 use App\Models\Establishment;
 use App\Models\EstablishmentShop;
+use App\Models\Payment;
 use App\Models\Shop;
 use App\Models\Ward;
 use Exception;
@@ -186,6 +187,7 @@ class ShopController extends Controller
     public function getShopDetail($id)
     {
         $shop = Shop::find($id);
-        return view('admin.shop.detail',compact('shop'));
+        $payments = Payment::where('shop_id',$shop->id)->where('type','monthly')->get();
+        return view('admin.shop.detail',compact('shop','payments'));
     }
 }
