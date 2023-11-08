@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\State;
 use App\Models\User;
+use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -99,6 +104,100 @@ class AuthController extends Controller
             return back();
         }
 
+    }
+    public function payment_back(Request $request)
+    {
+        dd($request);
+    }
+    public function paymentTesting()
+    {
+        $headers = ["alg" => "HS256", "clientid" => 'bmcorpuat', 'typ' => 'JWT'];
+
+        $dateTime = Carbon::now()->setTimezone('Asia/Kolkata');
+        $formattedDateTime = $dateTime->format('Y-m-d\TH:i:sP');
+
+        $orderDate = $formattedDateTime;
+        $amount = 1;
+
+        $payload = [
+            "mercid" => 'BMCORPUAT',
+            "orderid" => rand(1111, 9999),
+            "amount" => $amount,
+            "order_date" => $orderDate,
+            "currency" => "356",
+            "ru" => "payment_back",
+            "additional_info" => [
+                "additional_info1" => 'q34324',
+                "additional_info2" => 'dsaasaasd',
+            ],
+            "itemcode" => "DIRECT",
+            "device" => [
+                "init_channel" => "internet",
+                "ip" => request()->ip(),
+                "accept_header" => "text/html",
+                "user_agent" => "Windows 10",
+            ]
+        ];
+        $header = base64_encode(json_encode($headers));
+        $payload = base64_encode(json_encode($payload));
+        $signature = hash_hmac('sha256', "$header.$payload", 'bmcorpuat', true);
+        $signature = base64_encode($signature);
+        $curl_payload = "$header.$payload.$signature";
+        // $this->load->library('jwt'); 
+        // // $encodedPayload = Crypt::encrypt(json_encode($payload));
+
+        // $curl_payload = $this->jwt->encode($payload, 'CLcDEsqfjhC0vrF1A3yOlJNoO9pwjOfL',"HS256",$headers); // you should use Firebase/JWT library to encrypt the response
+
+        
+        $ch = curl_init( 'https://api.billdesk.com/payments/ve1_2/orders/create' );
+
+        $tracid=rand(1111,9999);
+
+        $ch_headers = array(
+            "Content-Type: application/jose",
+            "accept: application/jose",
+            "BD-Traceid:".$tracid,
+            "BD-Timestamp: 20200817132207"
+        );
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, $ch_headers);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $curl_payload);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        $result = curl_exec($ch);
+        dd($result);
+        curl_close($ch);
+        // $encodedPayload = Crypt::encrypt(json_encode($payload));
+
+        // $tracid = rand(1111, 9999);
+        // $chHeaders = [
+        //     "Content-Type: application/jose",
+        //     "accept: application/jose",
+        //     "BD-Traceid:" . $tracid,
+        //     "BD-Timestamp: 20200817132207",
+        //     "alg: HS256", 
+        //     "clientid: bmcorpuat",
+        // ];
+
+        // $response = Http::withHeaders($chHeaders)
+        //     ->post('https://api.billdesk.com/payments/ve1_2/orders/create', [
+        //         'payload' => $encodedPayload
+        //     ]);
+        // dd($response->json());
+        // $decodedResponse = json_decode(Crypt::decrypt($response), true);
+        // dd($decodedResponse);
+        // if ($decodedResponse['status'] == 'ACTIVE') {
+        //     $bdOrderId = $decodedResponse['bdorderid'];
+        //     $authArray = $decodedResponse['links'][1];
+        //     $headersArray = $authArray['headers'];
+        //     $authorizationToken = $headersArray['authorization'];
+
+        //     $data['authorization_token'] = $authorizationToken;
+        //     $data['bdorderid'] = $bdOrderId;
+        //     return view("test.payment",compact('data'));
+        // } else {
+        //     // Response error
+        //     echo "Response error";
+        // }
     }
 
 }

@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 /******************LOGIN PAGE ROUTES START****************/
 Route::view('/','auth.login');
+Route::get('payment_test',[AuthController::class,'paymentTesting']);
+Route::get('payment_back',[AuthController::class,'payment_back']);
 Route::view('login','auth.login');
 Route::post('login',[AuthController::class,'login'])->name('login');
 /******************LOGIN PAGE ROUTES END****************/
