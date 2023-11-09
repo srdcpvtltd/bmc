@@ -169,18 +169,12 @@ class AuthController extends Controller
             $result_array =json_decode($result_decoded, true);
 
             if($result_array['status'] == "ACTIVE") {
-                $bdorderid= $result_array['bdorderid'];
+                $order_id= $result_array['bdorderid'];
                 $autharray= $result_array['links'][1];
-
-                
-
                 $headersArray= $autharray['headers'];
                 $authorization_token=$headersArray['authorization'];
-                
-                $data['authorization_token']= $authorization_token;
-                $data['bdorderid']= $bdorderid;
                 // lauching billdesk payment page
-                return view("test.payment",compact('data'));
+                return view("test.payment",compact('authorization_token','order_id'));
 
                
             } else { // Response error
