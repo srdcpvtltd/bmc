@@ -15,18 +15,8 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->payment_id)
-        {
-            $payment = Payment::find($request->payment_id);
-            if($payment)
-            {
-                $payment->update([
-                    'is_paid' => 1
-                ]);
-            }
-        }
         return view('collection_staff.payment.index');
     }
 
@@ -95,7 +85,7 @@ class PaymentController extends Controller
             $payment->update([
                 'order_id' => $order_id
             ]);
-            $url = url('collection_staff/payment?payment_id='.$payment->id);
+            $url = url('success?payment_id='.$payment->id);
             return view('collection_staff.payment.show',compact('authorization_token','order_id','url'));
         }else{
             toastr()->error($response['error']);

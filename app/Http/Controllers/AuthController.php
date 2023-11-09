@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Payment;
 use App\Models\State;
 use App\Models\User;
 use Carbon\Carbon;
@@ -103,6 +104,22 @@ class AuthController extends Controller
             toastr()->error($e->getMessage());
             return back();
         }
+
+    }
+    public function success(Request $request)
+    {
+        if($request->payment_id)
+        {
+            $payment = Payment::find($request->payment_id);
+            if($payment)
+            {
+                $payment->update([
+                    'is_paid' => 1
+                ]);
+            }
+        }
+        toastr()->success('Your Payment Success Successfully');
+        return redirect('/');
 
     }
 }
