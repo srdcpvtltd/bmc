@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Services\BillDeskService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
 {
@@ -85,7 +86,8 @@ class PaymentController extends Controller
             $payment->update([
                 'order_id' => $order_id
             ]);
-            $url = url('success?payment_id='.$payment->id);
+            $url = url('success');
+            Session::put('payment_id',$payment->id);
             return view('collection_staff.payment.show',compact('authorization_token','order_id','url'));
         }else{
             toastr()->error($response['error']);

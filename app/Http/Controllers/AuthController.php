@@ -12,8 +12,7 @@ use DateTimeZone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -106,11 +105,13 @@ class AuthController extends Controller
         }
 
     }
-    public function success(Request $request)
+    public function success()
     {
-        if($request->payment_id)
+        $payment_id = Session::get('payment_id');
+
+        if($payment_id)
         {
-            $payment = Payment::find($request->payment_id);
+            $payment = Payment::find($payment_id);
             if($payment)
             {
                 $payment->update([

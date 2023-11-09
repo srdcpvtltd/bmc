@@ -22,7 +22,7 @@ class BillDeskService
                 "amount" => $payment->amount,
                 "order_date" => $orderDate,
                 "currency" => "356",
-                "ru" => url('success?payment_id='.$payment->id),
+                "ru" => url('success'),
                 "additional_info" => [
                     "additional_info1" => $payment->name,
                     "additional_info2" => $payment->type,
