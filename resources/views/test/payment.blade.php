@@ -8,14 +8,14 @@
 	 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <script type="module" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
-	<script nomodule="" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
-	<link href="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet">
+    <script type="module" src="https://uat1.billdesk.com/merchant-uat/sdk/dist/billdesksdk/billdesksdk.esm.js"></script>
+	<script nomodule="" src="https://uat1.billdesk.com/merchant-uat/sdk/dist/billdesksdk.js"></script>
+	<link href="https://uat1.billdesk.com/merchant-uat/sdk/dist/billdesksdk/billdesksdk.css" rel="stylesheet">
 
 	   <script>
 
         var flow_config = {
-            merchantId: "XXXXXXX", //mechant id given by billdesk
+            merchantId: "BMCORPUAT", //mechant id given by billdesk
             bdOrderId: "{{$order_id}}", // get from orderCreate response
             authToken: "<?php echo $authorization_token; ?>", // get from orderCreate response
             childWindow: false,

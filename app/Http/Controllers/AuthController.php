@@ -140,16 +140,17 @@ class AuthController extends Controller
         ];
         $header = base64_encode(json_encode($headers));
         $payload = base64_encode(json_encode($payload));
-        $signature = hash_hmac('sha256', "$header.$payload", 'bmcorpuat', true);
+        $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
         $signature = base64_encode($signature);
         $curl_payload = "$header.$payload.$signature";
+       
         // $this->load->library('jwt'); 
         // // $encodedPayload = Crypt::encrypt(json_encode($payload));
 
         // $curl_payload = $this->jwt->encode($payload, 'CLcDEsqfjhC0vrF1A3yOlJNoO9pwjOfL',"HS256",$headers); // you should use Firebase/JWT library to encrypt the response
 
         
-        $ch = curl_init( 'https://api.billdesk.com/payments/ve1_2/orders/create' );
+        $ch = curl_init( 'https://uat1.billdesk.com/u2/payments/ve1_2/orders/create' );
 
         $tracid=rand(1111,9999);
 
