@@ -118,14 +118,13 @@ class AuthController extends Controller
 
         $orderDate = $formattedDateTime;
         $amount = 1;
-
         $payload = [
             "mercid" => 'BMCORPUAT',
             "orderid" => rand(1111, 9999),
             "amount" => $amount,
             "order_date" => $orderDate,
             "currency" => "356",
-            "ru" => "payment_back",
+            "ru" => url('payment_back'),
             "additional_info" => [
                 "additional_info1" => 'q34324',
                 "additional_info2" => 'dsaasaasd',
