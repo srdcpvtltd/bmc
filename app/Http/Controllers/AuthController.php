@@ -165,8 +165,39 @@ class AuthController extends Controller
         curl_setopt( $ch, CURLOPT_POSTFIELDS, $curl_payload);
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $result = curl_exec($ch);
-        dd($result);
         curl_close($ch);
+        $launch_billdesk = false;
+        try{ 
+         $hashResult = hash_hmac('sha256', "$result", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI');
+         $result_decoded = base64_decode($result);
+        dd($result_decoded);
+        
+
+            $result_array = (array) $result_decoded;
+
+            if($result_decoded->status == 'ACTIVE') {
+                $bdorderid= $result_decoded->bdorderid;
+                $autharray= $result_decoded->links[1];
+
+                
+
+                $headersArray= $autharray->headers;
+                $authorization_token=$headersArray->authorization;
+                
+                $data['authorization_token']= $authorization_token;
+                $data['bdorderid']= $bdorderid;
+                dd($data);
+                // lauching billdesk payment page
+                return view("test.payment",compact('data'));
+
+               
+            } else { // Response error
+                echo "Response error";
+            }
+                            
+        } catch (\Exception $e) {
+          echo $e;
+        }
         // $encodedPayload = Crypt::encrypt(json_encode($payload));
 
         // $tracid = rand(1111, 9999);
