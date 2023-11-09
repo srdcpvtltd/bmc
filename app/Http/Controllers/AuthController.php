@@ -132,8 +132,7 @@ class AuthController extends Controller
             "itemcode" => "DIRECT",
             "device" => [
                 "init_channel" => "internet",
-                "ip" => "2409:40e2:1007:d6b6:7d17:39bf:4a9d:c034",
-                // "ip" => request()->ip(),
+                "ip" => request()->ip(),
                 "accept_header" => "text/html",
                 "user_agent" => "Windows 10",
             ]
@@ -143,12 +142,6 @@ class AuthController extends Controller
         $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
         $signature = base64_encode($signature);
         $curl_payload = "$header.$payload.$signature";
-       
-        // $this->load->library('jwt'); 
-        // // $encodedPayload = Crypt::encrypt(json_encode($payload));
-
-        // $curl_payload = $this->jwt->encode($payload, 'CLcDEsqfjhC0vrF1A3yOlJNoO9pwjOfL',"HS256",$headers); // you should use Firebase/JWT library to encrypt the response
-
         
         $ch = curl_init( 'https://uat1.billdesk.com/u2/payments/ve1_2/orders/create' );
 
@@ -174,6 +167,7 @@ class AuthController extends Controller
          $result_decoded = base64_decode(strtr($response, '-_', '+/'));
 
             $result_array =json_decode($result_decoded, true);
+            dd($result_array);
             if($result_array['status'] == "ACTIVE") {
                 $bdorderid= $result_array['bdorderid'];
                 $autharray= $result_array['links'][1];
@@ -185,7 +179,6 @@ class AuthController extends Controller
                 
                 $data['authorization_token']= $authorization_token;
                 $data['bdorderid']= $bdorderid;
-                dd($data);
                 // lauching billdesk payment page
                 return view("test.payment",compact('data'));
 
