@@ -132,12 +132,12 @@ class AuthController extends Controller
             "itemcode" => "DIRECT",
             "device" => [
                 "init_channel" => "internet",
-                "ip" => request()->ip(),
+                "ip" => "2409:40e2:1007:d6b6:7d17:39bf:4a9d:c034",
+                // "ip" => request()->ip(),
                 "accept_header" => "text/html",
                 "user_agent" => "Windows 10",
             ]
         ];
-        dd($payload);
         $header = base64_encode(json_encode($headers));
         $payload = base64_encode(json_encode($payload));
         $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
@@ -168,16 +168,15 @@ class AuthController extends Controller
         curl_close($ch);
         $launch_billdesk = false;
         try{ 
-         $hashResult = hash_hmac('sha256', "$result", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI');
-         $result_decoded = base64_decode($result);
-        dd($result_decoded);
-        
+        //  $hashResult = hash_hmac('sha256', "$result", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI',true);
+        //  $result_decoded = base64_decode($result);
+         list(, $response,) = explode('.', $result);
+         $result_decoded = base64_decode(strtr($response, '-_', '+/'));
 
-            $result_array = (array) $result_decoded;
-
-            if($result_decoded->status == 'ACTIVE') {
-                $bdorderid= $result_decoded->bdorderid;
-                $autharray= $result_decoded->links[1];
+            $result_array =json_decode($result_decoded, true);
+            if($result_array['status'] == "ACTIVE") {
+                $bdorderid= $result_array['bdorderid'];
+                $autharray= $result_array['links'][1];
 
                 
 
