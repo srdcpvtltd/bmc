@@ -120,6 +120,7 @@ class AuthController extends Controller
             }
         }
         toastr()->success('Your Payment Success Successfully');
+        return view('test.success');
         return redirect()->to(url('collection_staff/dashboard'));
 
     }
