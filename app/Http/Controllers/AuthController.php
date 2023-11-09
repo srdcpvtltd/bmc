@@ -12,6 +12,8 @@ use DateTimeZone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -120,7 +122,6 @@ class AuthController extends Controller
             }
         }
         toastr()->success('Your Payment Success Successfully');
-        return view('test.success');
         return redirect()->to(url('collection_staff/dashboard'));
 
     }
