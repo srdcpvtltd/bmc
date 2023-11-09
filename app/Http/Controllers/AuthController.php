@@ -119,7 +119,7 @@ class AuthController extends Controller
             }
         }
         toastr()->success('Your Payment Success Successfully');
-        return redirect('/');
+        return redirect()->to(url('collection_staff/dashboard'));
 
     }
 }
