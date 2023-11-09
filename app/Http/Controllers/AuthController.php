@@ -137,6 +137,7 @@ class AuthController extends Controller
                 "user_agent" => "Windows 10",
             ]
         ];
+        dd($payload);
         $header = base64_encode(json_encode($headers));
         $payload = base64_encode(json_encode($payload));
         $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
