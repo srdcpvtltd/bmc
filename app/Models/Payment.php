@@ -28,7 +28,8 @@ class Payment extends Model
         'shop_type',
         'month',
         'year',
-        'is_paid'
+        'is_paid',
+        'order_id'
     ];
     
     public function establishment()
