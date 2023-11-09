@@ -17,9 +17,9 @@
         var flow_config = {
             merchantId: "BMCORPUAT", //mechant id given by billdesk
             bdOrderId: "{{$order_id}}", // get from orderCreate response
-            authToken: "<?php echo $authorization_token; ?>", // get from orderCreate response
+            authToken: "{{$authorization_token}}", // get from orderCreate response
             childWindow: false,
-            returnUrl: "callbackurl.php",
+            returnUrl: "{{url('payment_back')}}",
             crossButtonHandling: 'Y',
             retryCount: 0
         };

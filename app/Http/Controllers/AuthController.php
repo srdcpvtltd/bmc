@@ -167,15 +167,15 @@ class AuthController extends Controller
          $result_decoded = base64_decode(strtr($response, '-_', '+/'));
 
             $result_array =json_decode($result_decoded, true);
-            dd($result_array);
+
             if($result_array['status'] == "ACTIVE") {
                 $bdorderid= $result_array['bdorderid'];
                 $autharray= $result_array['links'][1];
 
                 
 
-                $headersArray= $autharray->headers;
-                $authorization_token=$headersArray->authorization;
+                $headersArray= $autharray['headers'];
+                $authorization_token=$headersArray['authorization'];
                 
                 $data['authorization_token']= $authorization_token;
                 $data['bdorderid']= $bdorderid;
