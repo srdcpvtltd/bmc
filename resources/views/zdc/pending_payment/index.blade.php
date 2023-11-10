@@ -1,7 +1,7 @@
 @extends('zdc.layout.index')
 
 @section('title')
-Manage Pending Payments
+Manage Arrears
 @endsection
 
 @section('content')
