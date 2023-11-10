@@ -39,6 +39,7 @@ class CollectionController extends Controller
             ->selectRaw('establishments.id,establishments.name, SUM(payments.amount) as total_amount')
             ->where('payments.type', 'monthly')
             ->where('users.role_id', 5)
+            ->where('payments.is_paid',1)
             ->where('users.zone_id', Auth::user()->zone_id);
         if($request->month)
         {

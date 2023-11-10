@@ -1,7 +1,7 @@
 @extends('zdc.layout.index')
 
 @section('title')
-Manage Pending Payments
+Manage Arrears
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Manage Pending Payments
         <!-- Basic layout-->
         <div class="card">
             <div class="card-header header-elements-inline">
-                <h5 class="card-title">Add New Pending Payment</h5>
+                <h5 class="card-title">Add New</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -26,7 +26,7 @@ Manage Pending Payments
                     <div class="row">
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         <div class="form-group col-md-6">
-                            <label>Pending Amount</label>
+                            <label>Arrear Amount</label>
                             <input name="amount" type="number" step="0.01" class="form-control" placeholder="Enter Pending Amount" required>
                         </div>
                         <div class="form-group col-md-6">
