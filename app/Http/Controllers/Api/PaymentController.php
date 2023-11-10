@@ -61,8 +61,11 @@ class PaymentController extends Controller
                 'type' => 'required',
                 'payment_mode' => 'required',
                 'user_id' => 'required',
+                'payment_id' => 'required',
             ]);
-            $payment = Payment::create($request->all());
+            // $payment = Payment::create($request->all());
+            $payment = Payment::find($request->payment_id);
+            $payment->update($request->except('payment_id'));
             return response([
                 "payment" => $payment,
             ], 200);
