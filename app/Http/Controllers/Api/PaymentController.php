@@ -65,19 +65,28 @@ class PaymentController extends Controller
             $request->merge([
                 'is_paid' => 1 
             ]);
-            $payment = Payment::where('month',$request->month)->where('shop_id',$request->shop_id)->where('establishment_shop_id',$request->establishment_shop_id)->where('year',$request->year)->first();
-            // $payment = Payment::create($request->all());
-            if($payment)
+            if($request->type == "monthly")
             {
-                $payment->update($request->all());
+                $payment = Payment::where('month',$request->month)->where('shop_id',$request->shop_id)->where('establishment_shop_id',$request->establishment_shop_id)->where('year',$request->year)->first();
+                // $payment = Payment::create($request->all());
+                if($payment)
+                {
+                    $payment->update($request->all());
+                    return response([
+                        "payment" => $payment,
+                    ], 200);
+                }
+                else{
+                    return response([
+                        "error" => "Payment Not Found"
+                    ], 302);
+                }
+
+            }else{
+                $payment = Payment::create($request->all());
                 return response([
                     "payment" => $payment,
                 ], 200);
-            }
-            else{
-                return response([
-                    "error" => "Payment Not Found"
-                ], 302);
             }
         }catch (Exception $e)
         {
