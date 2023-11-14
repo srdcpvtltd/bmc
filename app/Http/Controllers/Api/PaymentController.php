@@ -61,14 +61,33 @@ class PaymentController extends Controller
                 'type' => 'required',
                 'payment_mode' => 'required',
                 'user_id' => 'required',
-                'payment_id' => 'required',
             ]);
-            // $payment = Payment::create($request->all());
-            $payment = Payment::find($request->payment_id);
-            $payment->update($request->except('payment_id'));
-            return response([
-                "payment" => $payment,
-            ], 200);
+            $request->merge([
+                'is_paid' => 1 
+            ]);
+            if($request->type == "monthly")
+            {
+                $payment = Payment::where('month',$request->month)->where('shop_id',$request->shop_id)->where('establishment_shop_id',$request->establishment_shop_id)->where('year',$request->year)->first();
+                // $payment = Payment::create($request->all());
+                if($payment)
+                {
+                    $payment->update($request->all());
+                    return response([
+                        "payment" => $payment,
+                    ], 200);
+                }
+                else{
+                    return response([
+                        "error" => "Payment Not Found"
+                    ], 302);
+                }
+
+            }else{
+                $payment = Payment::create($request->all());
+                return response([
+                    "payment" => $payment,
+                ], 200);
+            }
         }catch (Exception $e)
         {
             return response([
