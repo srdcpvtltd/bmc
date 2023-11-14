@@ -90,7 +90,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class="card">
+        <div class="card" style="height:300px;">
             <div class="text-center">
                 <canvas id="period-billing-chart" ></canvas>
             </div>
@@ -121,7 +121,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card">
+        <div class="card" style="height:300px;">
             <div class="text-center">
                 <canvas id="daily-collection-chart"></canvas>
             </div>
@@ -347,7 +347,7 @@
 
                 responsive: true,
                 maintainAspectRatio: false, // Set to false to allow custom width and height
-                aspectRatio: 1.5, // Set your custom aspect ratio (width/height)
+                aspectRatio: 1, // Set your custom aspect ratio (width/height)
                 title: {
 
                     display: true,
