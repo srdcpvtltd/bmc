@@ -10,12 +10,14 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $zones  = Zone::all();
         $labelsArray= [];
         $paymentsDataForMonth= [];
         $paymentsDataForCurrentDate= [];
+        $paymentsDataForLastTwoDays= [];
+        $payments_of_month= [];
         foreach($zones as $zone)
         {
             $label = $zone->name;
@@ -32,10 +34,41 @@ class DashboardController extends Controller
                     ->where('payments.type','daily')
                     ->where('users.zone_id',$zone->id)->whereDate('payments.created_at',Carbon::today())->sum('amount');
             array_push($paymentsDataForCurrentDate, $day_amount);
+            $last_two_daily_collection = Payment::query()->select('payments.*')
+                    ->join('users','users.id','payments.user_id')
+                    ->where('payments.type','daily')
+                    ->where('users.zone_id',$zone->id)
+                    ->whereBetween('payments.created_at', [
+                        Carbon::yesterday()->startOfDay()->toDateTimeString(),
+                        Carbon::today()->endOfDay()->toDateTimeString()
+                    ])
+                    ->sum('amount');
+            array_push($paymentsDataForLastTwoDays, $last_two_daily_collection);
+
+        }
+        if($request->has('month'))
+        {
+            $month_text = 'Period Billing '.$request->month;
+            $total_payments = Payment::where('month',$request->month)->where('type','monthly')->sum('amount');
+            $paid_amount = Payment::where('month',$request->month)->where('is_paid',1)->where('type','monthly')->sum('amount');
+            $pending_amount = Payment::where('month',$request->month)->where('is_paid',0)->where('type','monthly')->sum('amount');
+            array_push($payments_of_month,$total_payments);
+            array_push($payments_of_month,$paid_amount);
+            array_push($payments_of_month,$pending_amount);
+        }else{
+            $month_text = 'Period Billing '.Carbon::now()->format('F');
+            $total_payments = Payment::where('month',Carbon::now()->format('F'))->where('type','monthly')->sum('amount');
+            $paid_amount = Payment::where('month',Carbon::now()->format('F'))->where('is_paid',1)->where('type','monthly')->sum('amount');
+            $pending_amount = Payment::where('month',Carbon::now()->format('F'))->where('is_paid',0)->where('type','monthly')->sum('amount');
+            array_push($payments_of_month,$total_payments);
+            array_push($payments_of_month,$paid_amount);
+            array_push($payments_of_month,$pending_amount);
         }
         $data['payments_for_month']    = implode(', ', $paymentsDataForMonth);
         $data['payments_for_current_date']    = implode(', ', $paymentsDataForCurrentDate);
         $data['labels']      = "'".implode("', '", $labelsArray)."'";
-        return view('admin.dashboard.index',compact('data'));
+        $data['payments_of_month']      = "'".implode("', '", $payments_of_month)."'";
+        $data['paymentsDataForLastTwoDays']      = "'".implode("', '", $paymentsDataForLastTwoDays)."'";
+        return view('admin.dashboard.index',compact('data','month_text'));
     }
 }

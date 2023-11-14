@@ -9,6 +9,102 @@
 
 
 <div class="row">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body bg-success-400 has-bg-image">
+            <div class="media mb-3">
+
+                <div class="media-body">
+                    <h6 class="font-weight-semibold mb-0">Establishments</h6>
+                    <span class="opacity-75">{{App\Models\Establishment::count()}}</span>
+                </div>
+                <div class="ml-3 align-self-center">
+                    <i class="icon-quill4 icon-2x"></i>
+                </div>
+            </div>
+
+            <div class="progress bg-success mb-2" style="height: 0.125rem;">
+                <div class="progress-bar bg-white" style="width: 90%">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body has-bg-image" style="background-color:#4caf50;">
+            <div class="media mb-3">
+                <div class="media-body">
+                    <h6 class="font-weight-semibold mb-0">Pending Amount</h6>
+                    <span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
+                </div>
+
+                <div class="ml-3 align-self-center">
+                    <i class="icon-cash3 icon-2x"></i>
+                </div>
+            </div>
+
+            <div class="progress mb-2" style="height: 0.125rem;background-color:#4caf50;">
+                <div class="progress-bar bg-white" style="width: 90%">
+                    {{-- <span class="sr-only">90% Complete</span> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body bg-success-400 has-bg-image">
+            <div class="media mb-3">
+
+                <div class="media-body">
+                    <h6 class="font-weight-semibold mb-0">Market & Vending Zones</h6>
+                    <span class="opacity-75">{{App\Models\Zone::count()}}</span>
+                </div>
+                <div class="ml-3 align-self-center">
+                    <i class="icon-lifebuoy icon-2x"></i>
+                </div>
+            </div>
+
+            <div class="progress bg-success mb-2" style="height: 0.125rem;">
+                <div class="progress-bar bg-white" style="width: 90%">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body has-bg-image" style="background-color:#4caf50;">
+            <div class="media mb-3">
+                <div class="media-body">
+                    <h6 class="font-weight-semibold mb-0">Shops</h6>
+                    <span class="opacity-75">{{App\Models\Shop::count()}}</span>
+                </div>
+
+                <div class="ml-3 align-self-center">
+                    <i class="icon-store2 icon-2x"></i>
+                </div>
+            </div>
+
+            <div class="progress mb-2" style="height: 0.125rem;background-color:#4caf50;">
+                <div class="progress-bar bg-white" style="width: 90%">
+                    {{-- <span class="sr-only">90% Complete</span> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            {{-- <div class="text-center" style="padding: 10px"> --}}
+                <canvas id="period-billing-chart" width="300" height="300"></canvas>
+            {{-- </div> --}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            {{-- <div class="text-center" style="padding: 10px"> --}}
+                <canvas id="daily-collection-chart" width="300" height="300"></canvas>
+            {{-- </div> --}}
+        </div>
+    </div>
+</div>
+<div class="row">
     
     {{-- <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.zone.index')}}">
@@ -145,6 +241,109 @@
 @endsection
 @section('scripts')
     <script src="{{ url('chart/Chart.min.js') }}"></script>
+    <script>
+        new Chart(document.getElementById("period-billing-chart"), {
+
+            type: 'doughnut',
+
+            data: {
+                labels: ["Total Bill Amount", "Paid Bill Amount","Pending Amount"],
+                datasets: [{
+
+                    label: "Period Billing",
+                    backgroundColor: ["#ffccff","#faf170","#bff1f5"],
+                    data: [{!! @$data['payments_of_month'] !!}],
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+                title: {
+
+                    display: true,
+
+                    text: "{{@$month_text}}"
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            return tooltipItem[0].xLabel;
+                        },
+                        label: function(dataItems, data) {
+                            var category = data.labels[dataItems.index];
+                            var value = data.datasets[0].data[dataItems.index];
+
+
+                            return ' ' + category + ': ' +value;
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <script></script>
+    <script>
+
+        new Chart(document.getElementById("daily-collection-chart"), {
+
+            type: 'bar',
+
+            data: {
+
+                labels: [{!! @$data['labels'] !!}],
+
+                datasets: [
+                    {
+
+                        label: [{!! @$data['labels'] !!}],
+
+                        backgroundColor: ["#ffccff","#faf170","#bff1f5"],
+
+                        data: [{!! @$data['paymentsDataForLastTwoDays'] !!}],
+
+                    }
+                ]
+            },
+
+            options: {
+
+                responsive: true,
+                title: {
+
+                    display: true,
+
+                    text: 'Daily Collection'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            return tooltipItem[0].xLabel;
+                        },
+                        label: function(dataItems, data) {
+                            console.log(dataItems,data);
+                            var category = data.labels[dataItems.index];
+                            var value = data.datasets[0].data[dataItems.index];
+
+
+                            return ' ' + category + ': ' +value;
+                        }
+                    }
+                }
+            }
+        });
+    </script>
     <script>
         new Chart(document.getElementById("pie-chart"), {
 
