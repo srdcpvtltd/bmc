@@ -95,34 +95,6 @@
 			</ul>
 
 			<span class="badge bg-success ml-md-3 mr-md-auto">Online</span>
-			@if(Request::is('admin/dashboard'))
-			<ul class="navbar-nav">
-
-
-
-				<li class="nav-item dropdown dropdown-user">
-					<a href="" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
-						<img src="" class="rounded-circle mr-2" height="34" alt="">
-						<span>Months</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-right">
-						<a href="{{url('admin/dashboard?month=Janaury')}}" class="dropdown-item"><i class="icon-calendar"></i> Janaury</a>
-						<a href="{{url('admin/dashboard?month=February')}}" class="dropdown-item"><i class="icon-calendar"></i> February</a>
-						<a href="{{url('admin/dashboard?month=March')}}" class="dropdown-item"><i class="icon-calendar"></i> March</a>
-						<a href="{{url('admin/dashboard?month=April')}}" class="dropdown-item"><i class="icon-calendar"></i> April</a>
-						<a href="{{url('admin/dashboard?month=May')}}" class="dropdown-item"><i class="icon-calendar"></i> May</a>
-						<a href="{{url('admin/dashboard?month=June')}}" class="dropdown-item"><i class="icon-calendar"></i> June</a>
-						<a href="{{url('admin/dashboard?month=July')}}" class="dropdown-item"><i class="icon-calendar"></i> July</a>
-						<a href="{{url('admin/dashboard?month=August')}}" class="dropdown-item"><i class="icon-calendar"></i> August</a>
-						<a href="{{url('admin/dashboard?month=September')}}" class="dropdown-item"><i class="icon-calendar"></i> September</a>
-						<a href="{{url('admin/dashboard?month=October')}}" class="dropdown-item"><i class="icon-calendar"></i> October</a>
-						<a href="{{url('admin/dashboard?month=November')}}" class="dropdown-item"><i class="icon-calendar"></i> November</a>
-						<a href="{{url('admin/dashboard?month=December')}}" class="dropdown-item"><i class="icon-calendar"></i> December</a>
-					</div>
-				</li>
-			</ul>
-			@endif
 			<ul class="navbar-nav">
 
 
