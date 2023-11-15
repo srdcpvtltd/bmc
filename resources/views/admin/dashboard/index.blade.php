@@ -291,7 +291,7 @@
             type: 'doughnut',
 
             data: {
-                labels: ["Total Bill Amount", "Paid Bill Amount","Pending Amount"],
+                labels: ["Billed", "Paid","Pending"],
                 datasets: [{
 
                     label: "Period Billing",
