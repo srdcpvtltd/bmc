@@ -257,7 +257,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class="card" style:"width:300px; height:300px">
+        <div class="card">
             {{-- <div class="text-center" style="padding: 10px"> --}}
                 <canvas id="pie-chart" width="300" height="300"></canvas>
             {{-- </div> --}}
@@ -266,7 +266,7 @@
     <div class="col-md-6">
         <div class="card">
             {{-- <div class="text-center" style="padding: 10px"> --}}
-                <canvas id="withdraw-chart" width="300" height="300"></canvas>
+                <canvas id="withdraw-chart" width="500" height="500"></canvas>
             {{-- </div> --}}
         </div>
     </div>
