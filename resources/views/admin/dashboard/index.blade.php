@@ -172,14 +172,15 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-     <span class="text-uppercase font-size-sm text-muted">Total Billing Amount</span>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-6">
         <div class="card" style="height:300px;">
             <div class="text-center">
                 <canvas id="period-billing-chart" ></canvas>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-4" style="margin-left:40px;">
+<span class="text-uppercase font-size-sm text-muted">Yesterday Daily Collection</span>
+                </div>
             </div>
             <div class="row">
                 
