@@ -178,7 +178,7 @@
             </div>
             <div class="row">
                 
-                <div class="col-md-4" style="margin-left:40px;">
+                <div class="col-md-6" style="margin-left:40px;">
                 <h7 class="font-weight-semibold mb-0">Billed:</h7><span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
                 <h7 class="font-weight-semibold mb-0">Paid:</h7>
                 <h7 class="font-weight-semibold mb-0">Pending:</h7>
