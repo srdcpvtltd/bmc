@@ -180,8 +180,8 @@
                 
                 <div class="col-md-4" style="margin-left:40px;">
                 <h7 class="font-weight-semibold mb-0">Billed:</h7>
-                <h7 class="font-weight-semibold mb-0">Billed:</h7>
-                <h7 class="font-weight-semibold mb-0">Billed:</h7>
+                <h7 class="font-weight-semibold mb-0">Paid:</h7>
+                <h7 class="font-weight-semibold mb-0">Pending:</h7>
                 </div>
             </div>
             <div class="row">
