@@ -177,16 +177,12 @@
                 <canvas id="period-billing-chart" ></canvas>
             </div>
             <div class="row">
-                <div class="row">
+                
                 <div class="col-md-6" style="margin-left:40px;">
-                <div class="media-body">
-                <h7 class="font-weight-semibold mb-0">Billed:</h7>
-                <span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
-                </div>
+                <h7 class="font-weight-semibold mb-0" "border:1px solid #000;">Billed:</h7><span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
                 <h7 class="font-weight-semibold mb-0">Paid:</h7>
                 <h7 class="font-weight-semibold mb-0">Pending:</h7>
                 </div>
-            </div>
             </div>
             <div class="row">
                 
