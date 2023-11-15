@@ -130,8 +130,8 @@
                         <i class="icon-unlink2 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right">
-                    <h3 class="mb-0">{{App\Models\Establishment::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Establishments Report</span>
+                    <h3 class="font-weight-semibold mb-0">{{App\Models\Establishment::count()}}</h3>
+                        <span class="text-uppercase font-size-sm text-muted">Establishments Report</span>
                     </div>
                 </div>
             </div>
