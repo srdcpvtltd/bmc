@@ -14,7 +14,7 @@
             <div class="media mb-3">
 
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Establishments</h6>
+                    <h7 class="font-weight-semibold mb-0">Establishments</h7>
                     <span class="opacity-75">{{App\Models\Establishment::count()}}</span>
                 </div>
                 <div class="ml-3 align-self-center">
@@ -32,7 +32,7 @@
         <div class="card card-body has-bg-image" style="background-color:#4caf50;">
             <div class="media mb-3">
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Pending Amount</h6>
+                    <h7 class="font-weight-semibold mb-0">Pending Amount</h7>
                     <span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
                 </div>
 
@@ -53,7 +53,7 @@
             <div class="media mb-3">
 
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Market & Vending Zones</h6>
+                    <h7 class="font-weight-semibold mb-0">Zones</h7>
                     <span class="opacity-75">{{App\Models\Zone::count()}}</span>
                 </div>
                 <div class="ml-3 align-self-center">
@@ -71,7 +71,7 @@
         <div class="card card-body has-bg-image" style="background-color:#4caf50;">
             <div class="media mb-3">
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Shops</h6>
+                    <h7 class="font-weight-semibold mb-0">Shops</h7>
                     <span class="opacity-75">{{App\Models\Shop::count()}}</span>
                 </div>
 
