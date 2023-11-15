@@ -89,46 +89,6 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
-        <div class="card" style="height:300px;">
-            <div class="text-center">
-                <canvas id="period-billing-chart" ></canvas>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label>Month</label>
-                        <select id="month" class="form-control select-search" data-fouc>
-                            <option value="">Select Month</option>
-                            <option {{@request()->month && request()->month == 'Janaury' ? 'selected' :'' }} value='Janaury'>Janaury</option>
-                            <option {{@request()->month && request()->month == 'February' ? 'selected' :'' }} value='February'>February</option>
-                            <option {{@request()->month && request()->month == 'March' ? 'selected' :'' }} value='March'>March</option>
-                            <option {{@request()->month && request()->month == 'April' ? 'selected' :'' }} value='April'>April</option>
-                            <option {{@request()->month && request()->month == 'May' ? 'selected' :'' }} value='May'>May</option>
-                            <option {{@request()->month && request()->month == 'June' ? 'selected' :'' }} value='June'>June</option>
-                            <option {{@request()->month && request()->month == 'July' ? 'selected' :'' }} value='July'>July</option>
-                            <option {{@request()->month && request()->month == 'August' ? 'selected' :'' }} value='August'>August</option>
-                            <option {{@request()->month && request()->month == 'September' ? 'selected' :'' }} value='September'>September</option>
-                            <option {{@request()->month && request()->month == 'October' ? 'selected' :'' }} value='October'>October</option>
-                            <option {{@request()->month && request()->month == 'November' ? 'selected' :'' }} value='November'>November</option>
-                            <option {{@request()->month && request()->month == 'December' ? 'selected' :'' }} value='December'>December</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="height:300px;">
-            <div class="text-center">
-                <canvas id="daily-collection-chart"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     
     {{-- <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.zone.index')}}">
@@ -210,6 +170,47 @@
         </a>
     </div> --}}
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card" style="height:300px;">
+            <div class="text-center">
+                <canvas id="period-billing-chart" ></canvas>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Month</label>
+                        <select id="month" class="form-control select-search" data-fouc>
+                            <option value="">Select Month</option>
+                            <option {{@request()->month && request()->month == 'Janaury' ? 'selected' :'' }} value='Janaury'>Janaury</option>
+                            <option {{@request()->month && request()->month == 'February' ? 'selected' :'' }} value='February'>February</option>
+                            <option {{@request()->month && request()->month == 'March' ? 'selected' :'' }} value='March'>March</option>
+                            <option {{@request()->month && request()->month == 'April' ? 'selected' :'' }} value='April'>April</option>
+                            <option {{@request()->month && request()->month == 'May' ? 'selected' :'' }} value='May'>May</option>
+                            <option {{@request()->month && request()->month == 'June' ? 'selected' :'' }} value='June'>June</option>
+                            <option {{@request()->month && request()->month == 'July' ? 'selected' :'' }} value='July'>July</option>
+                            <option {{@request()->month && request()->month == 'August' ? 'selected' :'' }} value='August'>August</option>
+                            <option {{@request()->month && request()->month == 'September' ? 'selected' :'' }} value='September'>September</option>
+                            <option {{@request()->month && request()->month == 'October' ? 'selected' :'' }} value='October'>October</option>
+                            <option {{@request()->month && request()->month == 'November' ? 'selected' :'' }} value='November'>November</option>
+                            <option {{@request()->month && request()->month == 'December' ? 'selected' :'' }} value='December'>December</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="height:300px;">
+            <div class="text-center">
+                <canvas id="daily-collection-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-sm-6 col-xl-6">
         <div class="card card-body">
