@@ -123,7 +123,7 @@
     </div> --}}
     <div class="col-sm-6 col-xl-6">
         <a href="{{route('admin.report.establisments')}}">
-            <div class="card card-body bg-success-400 has-bg-image">
+            <div class="card card-body has-bg-image">
                 <div class="media">
 
                     <div class="mr-3 align-self-center">
