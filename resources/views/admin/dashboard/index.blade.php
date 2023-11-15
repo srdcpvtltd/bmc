@@ -123,7 +123,7 @@
     </div> --}}
     <div class="col-sm-6 col-xl-6">
         <a href="{{route('admin.report.establisments')}}">
-            <div class="card card-body has-bg-image">
+            <div class="card card-body">
                 <div class="media">
 
                     <div class="mr-3 align-self-center">
@@ -139,14 +139,14 @@
     </div>
     <div class="col-sm-6 col-xl-6">
         <a href="{{route('admin.report.shops')}}">
-            <div class="card card-body bg-teal-400 has-bg-image">
+            <div class="card card-body">
                 <div class="media">
                     <div class="mr-3 align-self-center">
                         <i class="icon-question4 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right"> 
-                        <h3 class="mb-0">{{App\Models\Shop::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Market & Vending Zones of BMC</span>
+                        <h3 class="font-weight-semibold mb-0">{{App\Models\Shop::count()}}</h3>
+                        <span class="text-uppercase font-size-sm text-muted">Market & Vending Zones of BMC</span>
                     </div>
 
                 </div>
