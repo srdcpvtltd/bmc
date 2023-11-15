@@ -176,7 +176,7 @@
             <div class="text-center">
                 <canvas id="period-billing-chart" ></canvas>
             </div>
-            <div class="row">              
+            <div class="row" style="margin-top:10px">              
                 <div class="col-md-3" style="margin-left:40px;">
                 <h7 class="font-weight-semibold mb-0">Billed:</h7><span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
                 </div>
@@ -184,8 +184,7 @@
                 <h7 class="font-weight-semibold mb-0">Paid:</h7><span class="opacity-75">{{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}</span>
                 </div>
             </div>
-            <div class="row">
-                
+            <div class="row" style="margin-top:10px">               
                 <div class="col-md-6" style="margin-left:40px;">
                     <div class="form-group">
                         <select id="month" class="form-control select-search" data-fouc>
