@@ -179,7 +179,7 @@
             <div class="row">
                 
                 <div class="col-md-4" style="margin-left:40px;">
-<span class="text-uppercase font-size-sm text-muted">Yesterday Daily Collection</span>
+                <h7 class="font-weight-semibold mb-0">Establishments</h7>
                 </div>
             </div>
             <div class="row">
