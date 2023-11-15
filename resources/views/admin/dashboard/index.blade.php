@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-success-400 has-bg-image">
+        <div class="card card-body linear-gradient(60deg,#9ccc65,#9ccc65) has-bg-image">
             <div class="media mb-3">
 
                 <div class="media-body">
