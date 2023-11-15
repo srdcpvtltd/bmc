@@ -178,7 +178,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Month</label>
                         <select id="month" class="form-control select-search" data-fouc>
