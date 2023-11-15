@@ -259,14 +259,14 @@
     <div class="col-md-6">
         <div class="card">
             {{-- <div class="text-center" style="padding: 10px"> --}}
-                <canvas id="pie-chart" width="500" height="500"></canvas>
+                <canvas id="pie-chart" width="300" height="300"></canvas>
             {{-- </div> --}}
         </div>
     </div>
     <div class="col-md-6">
         <div class="card">
             {{-- <div class="text-center" style="padding: 10px"> --}}
-                <canvas id="withdraw-chart" width="500" height="500"></canvas>
+                <canvas id="withdraw-chart" width="300" height="300"></canvas>
             {{-- </div> --}}
         </div>
     </div>
