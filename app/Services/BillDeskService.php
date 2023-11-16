@@ -61,6 +61,7 @@ class BillDeskService
             $result_decoded = base64_decode(strtr($response, '-_', '+/'));
             $result_array =json_decode($result_decoded, true);
             if($result_array['status'] == "ACTIVE") {
+                dd($result_array);
                 $order_id= $result_array['bdorderid'];
                 $autharray= $result_array['links'][1];
                 $headersArray= $autharray['headers'];

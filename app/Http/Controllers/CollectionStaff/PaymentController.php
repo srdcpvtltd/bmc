@@ -87,6 +87,7 @@ class PaymentController extends Controller
                 'order_id' => $order_id
             ]);
             $url = url('success');
+            Session::put('payment_id',$payment->id);
             return view('collection_staff.payment.show',compact('authorization_token','order_id','url'));
         }else{
             toastr()->error($response['error']);
