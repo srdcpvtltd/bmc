@@ -22,7 +22,7 @@ class BillDeskService
                 "amount" => $payment->amount,
                 "order_date" => $orderDate,
                 "currency" => "356",
-                "ru" => url('/'),
+                "ru" => url('success'),
                 "additional_info" => [
                     "additional_info1" => $payment->name,
                     "additional_info2" => $payment->type,
@@ -35,6 +35,7 @@ class BillDeskService
                     "user_agent" => request()->header('User-Agent'),
                 ]
             ];
+            dd($payload);
             $header = base64_encode(json_encode($headers));
             $payload = base64_encode(json_encode($payload));
             $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
