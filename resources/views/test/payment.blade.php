@@ -19,7 +19,7 @@
             bdOrderId: "{{$order_id}}", // get from orderCreate response
             authToken: "{{$authorization_token}}", // get from orderCreate response
             childWindow: false,
-            returnUrl: "{{url('payment_back')}}",
+            // returnUrl: "{{url('payment_back')}}",
             crossButtonHandling: 'Y',
             retryCount: 0
         };
