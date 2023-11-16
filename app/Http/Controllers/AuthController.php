@@ -114,9 +114,7 @@ class AuthController extends Controller
         $result_array =json_decode($result_decoded, true);
         if($result_array['transaction_error_type'] == 'success')
         {
-            dd($result_array);
-            $payment = Payment::where('order_id',$request->order_id)->first();
-    
+            $payment = Payment::where('order_id',$result_array['orderid'])->first();
             $payment->update([
                 'is_paid' => 1,
                 'transcation_id' => $result_array['transactionid'],
