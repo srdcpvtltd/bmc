@@ -14,7 +14,7 @@
             <div class="media mb-3">
 
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Establishments</h6>
+                    <h7 class="font-weight-semibold mb-0">Establishments</h7>
                     <span class="opacity-75">{{App\Models\Establishment::count()}}</span>
                 </div>
                 <div class="ml-3 align-self-center">
@@ -32,7 +32,7 @@
         <div class="card card-body has-bg-image" style="background-color:#4caf50;">
             <div class="media mb-3">
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Pending Amount</h6>
+                    <h7 class="font-weight-semibold mb-0">Pending Amount</h7>
                     <span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
                 </div>
 
@@ -53,7 +53,7 @@
             <div class="media mb-3">
 
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Market & Vending Zones</h6>
+                    <h7 class="font-weight-semibold mb-0">Zones</h7>
                     <span class="opacity-75">{{App\Models\Zone::count()}}</span>
                 </div>
                 <div class="ml-3 align-self-center">
@@ -71,7 +71,7 @@
         <div class="card card-body has-bg-image" style="background-color:#4caf50;">
             <div class="media mb-3">
                 <div class="media-body">
-                    <h6 class="font-weight-semibold mb-0">Shops</h6>
+                    <h7 class="font-weight-semibold mb-0">Shops</h7>
                     <span class="opacity-75">{{App\Models\Shop::count()}}</span>
                 </div>
 
@@ -84,46 +84,6 @@
                 <div class="progress-bar bg-white" style="width: 90%">
                     {{-- <span class="sr-only">90% Complete</span> --}}
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card" style="height:300px;">
-            <div class="text-center">
-                <canvas id="period-billing-chart" ></canvas>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label>Month</label>
-                        <select id="month" class="form-control select-search" data-fouc>
-                            <option value="">Select Month</option>
-                            <option {{@request()->month && request()->month == 'Janaury' ? 'selected' :'' }} value='Janaury'>Janaury</option>
-                            <option {{@request()->month && request()->month == 'February' ? 'selected' :'' }} value='February'>February</option>
-                            <option {{@request()->month && request()->month == 'March' ? 'selected' :'' }} value='March'>March</option>
-                            <option {{@request()->month && request()->month == 'April' ? 'selected' :'' }} value='April'>April</option>
-                            <option {{@request()->month && request()->month == 'May' ? 'selected' :'' }} value='May'>May</option>
-                            <option {{@request()->month && request()->month == 'June' ? 'selected' :'' }} value='June'>June</option>
-                            <option {{@request()->month && request()->month == 'July' ? 'selected' :'' }} value='July'>July</option>
-                            <option {{@request()->month && request()->month == 'August' ? 'selected' :'' }} value='August'>August</option>
-                            <option {{@request()->month && request()->month == 'September' ? 'selected' :'' }} value='September'>September</option>
-                            <option {{@request()->month && request()->month == 'October' ? 'selected' :'' }} value='October'>October</option>
-                            <option {{@request()->month && request()->month == 'November' ? 'selected' :'' }} value='November'>November</option>
-                            <option {{@request()->month && request()->month == 'December' ? 'selected' :'' }} value='December'>December</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="height:300px;">
-            <div class="text-center">
-                <canvas id="daily-collection-chart"></canvas>
             </div>
         </div>
     </div>
@@ -163,15 +123,15 @@
     </div> --}}
     <div class="col-sm-6 col-xl-6">
         <a href="{{route('admin.report.establisments')}}">
-            <div class="card card-body bg-success-400 has-bg-image">
+            <div class="card card-body">
                 <div class="media">
 
                     <div class="mr-3 align-self-center">
                         <i class="icon-unlink2 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right">
-                    <h3 class="mb-0">{{App\Models\Establishment::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Establishments Report</span>
+                    <h3 class="font-weight-semibold mb-0">{{App\Models\Establishment::count()}}</h3>
+                        <span class="text-uppercase font-size-sm text-muted">Establishments Report</span>
                     </div>
                 </div>
             </div>
@@ -179,14 +139,14 @@
     </div>
     <div class="col-sm-6 col-xl-6">
         <a href="{{route('admin.report.shops')}}">
-            <div class="card card-body bg-teal-400 has-bg-image">
+            <div class="card card-body">
                 <div class="media">
                     <div class="mr-3 align-self-center">
                         <i class="icon-question4 icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right"> 
-                        <h3 class="mb-0">{{App\Models\Shop::count()}}</h3>
-                        <span class="text-uppercase font-size-xs">Market & Vending Zones of BMC</span>
+                        <h3 class="font-weight-semibold mb-0">{{App\Models\Shop::count()}}</h3>
+                        <span class="text-uppercase font-size-sm text-muted">Market & Vending Zones of BMC</span>
                     </div>
 
                 </div>
@@ -210,6 +170,55 @@
         </a>
     </div> --}}
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card" style="height:300px;">
+            <div class="text-center">
+                <canvas id="period-billing-chart" ></canvas>
+            </div>
+            <div class="row" style="margin-top:10px">              
+                <div class="col-md-3" style="margin-left:40px;">
+                <h7 class="font-weight-semibold mb-0">Billed:</h7><span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
+                </div>
+                <div class="col-md-3" style="margin-left:40px;">
+                <h7 class="font-weight-semibold mb-0">Paid:</h7><span class="opacity-75">{{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}</span>
+                </div>
+                <div class="col-md-3" style="margin-left:40px;">
+                <h7 class="font-weight-semibold mb-0">Pending:</h7><span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
+                </div>
+            </div>
+            <div class="row" style="margin-top:15px">               
+                <div class="col-md-6" style="margin-left:40px;">
+                    <div class="form-group">
+                        <select id="month" class="form-control select-search" data-fouc>
+                            <option value="">Select Month</option>
+                            <option {{@request()->month && request()->month == 'Janaury' ? 'selected' :'' }} value='Janaury'>Janaury</option>
+                            <option {{@request()->month && request()->month == 'February' ? 'selected' :'' }} value='February'>February</option>
+                            <option {{@request()->month && request()->month == 'March' ? 'selected' :'' }} value='March'>March</option>
+                            <option {{@request()->month && request()->month == 'April' ? 'selected' :'' }} value='April'>April</option>
+                            <option {{@request()->month && request()->month == 'May' ? 'selected' :'' }} value='May'>May</option>
+                            <option {{@request()->month && request()->month == 'June' ? 'selected' :'' }} value='June'>June</option>
+                            <option {{@request()->month && request()->month == 'July' ? 'selected' :'' }} value='July'>July</option>
+                            <option {{@request()->month && request()->month == 'August' ? 'selected' :'' }} value='August'>August</option>
+                            <option {{@request()->month && request()->month == 'September' ? 'selected' :'' }} value='September'>September</option>
+                            <option {{@request()->month && request()->month == 'October' ? 'selected' :'' }} value='October'>October</option>
+                            <option {{@request()->month && request()->month == 'November' ? 'selected' :'' }} value='November'>November</option>
+                            <option {{@request()->month && request()->month == 'December' ? 'selected' :'' }} value='December'>December</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="height:300px;">
+            <div class="text-center">
+                <canvas id="daily-collection-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-sm-6 col-xl-6">
         <div class="card card-body">
@@ -250,7 +259,7 @@
     <div class="col-md-6">
         <div class="card">
             {{-- <div class="text-center" style="padding: 10px"> --}}
-                <canvas id="pie-chart" width="500" height="500"></canvas>
+                <canvas id="pie-chart" width="300" height="300"></canvas>
             {{-- </div> --}}
         </div>
     </div>
@@ -282,7 +291,7 @@
             type: 'doughnut',
 
             data: {
-                labels: ["Total Bill Amount", "Paid Bill Amount","Pending Amount"],
+                labels: ["Billed", "Paid","Pending"],
                 datasets: [{
 
                     label: "Period Billing",
