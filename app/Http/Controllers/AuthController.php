@@ -112,17 +112,25 @@ class AuthController extends Controller
         list(, $response,) = explode('.', $request->transaction_response);
         $result_decoded = base64_decode(strtr($response, '-_', '+/'));
         $result_array =json_decode($result_decoded, true);
-        dd($result_array);
-        $payment = Payment::where('order_id',$request->order_id)->first();
-
-        if($payment)
+        if($result_array['transaction_error_type'] == 'success')
         {
-            $payment->update([
-                'is_paid' => 1
-            ]);
+            $payment = Payment::where('order_id',$request->order_id)->first();
+    
+            if($payment)
+            {
+                $payment->update([
+                    'is_paid' => 1,
+                    'transcation_id' => $result_array['transactionid'],
+                    'payment_method' => $result_array['payment_method_type'],
+                ]);
+            }
+            toastr()->success('Your Payment Success Successfully');
+            return redirect()->to(url('collection_staff/dashboard'));
+        }else{
+            
+            toastr()->error($result_array['transaction_error_type']);
+            return redirect()->to(url('collection_staff/dashboard'));
         }
-        toastr()->success('Your Payment Success Successfully');
-        return redirect()->to(url('collection_staff/dashboard'));
 
     }
 }

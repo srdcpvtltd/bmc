@@ -29,7 +29,9 @@ class Payment extends Model
         'month',
         'year',
         'is_paid',
-        'order_id'
+        'order_id',
+        'transcation_id',
+        'payment_method'
     ];
     
     public function establishment()
