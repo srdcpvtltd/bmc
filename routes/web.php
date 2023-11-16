@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 /******************LOGIN PAGE ROUTES START****************/
 Route::view('/','auth.login');
 Route::view('login','auth.login');
-Route::get('success',[AuthController::class,'success'])->name('success');
+Route::post('success',[AuthController::class,'success'])->name('success');
 Route::post('login',[AuthController::class,'login'])->name('login');
 /******************LOGIN PAGE ROUTES END****************/
 

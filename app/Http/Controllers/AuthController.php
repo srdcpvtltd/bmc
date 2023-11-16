@@ -107,8 +107,9 @@ class AuthController extends Controller
         }
 
     }
-    public function success()
+    public function success(Request $request)
     {
+        dd($request);
         $payment_id = Session::get('payment_id');
 
         if($payment_id)
