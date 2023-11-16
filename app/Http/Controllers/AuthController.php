@@ -116,14 +116,13 @@ class AuthController extends Controller
         {
             $payment = Payment::where('order_id',$request->order_id)->first();
     
-            if($payment)
-            {
-                $payment->update([
-                    'is_paid' => 1,
-                    'transcation_id' => $result_array['transactionid'],
-                    'payment_method' => $result_array['payment_method_type'],
-                ]);
-            }
+            $payment->update([
+                'is_paid' => 1,
+                'transcation_id' => $result_array['transactionid'],
+                'payment_method' => $result_array['payment_method_type'],
+            ]);
+            $user = User::find($payment->user_id);
+            Auth::login($user);
             toastr()->success('Your Payment Success Successfully');
             return redirect()->to(url('collection_staff/dashboard'));
         }else{

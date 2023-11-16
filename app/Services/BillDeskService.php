@@ -61,8 +61,8 @@ class BillDeskService
             $result_decoded = base64_decode(strtr($response, '-_', '+/'));
             $result_array =json_decode($result_decoded, true);
             if($result_array['status'] == "ACTIVE") {
-                dd($result_array);
                 $order_id= $result_array['bdorderid'];
+                $original_order_id= $result_array['orderid'];
                 $autharray= $result_array['links'][1];
                 $headersArray= $autharray['headers'];
                 $authorization_token=$headersArray['authorization'];
@@ -70,6 +70,7 @@ class BillDeskService
                     'success'=>true,
                     'authorization_token' => $authorization_token,
                     'order_id' => $order_id,
+                    'original_order_id' => $original_order_id,
                 ];
             } else { // Response error
                 return [

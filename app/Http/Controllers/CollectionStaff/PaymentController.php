@@ -83,11 +83,11 @@ class PaymentController extends Controller
         {
             $authorization_token = $response['authorization_token'];
             $order_id = $response['order_id'];
+            $original_order_id = $response['original_order_id'];
             $payment->update([
-                'order_id' => $order_id
+                'order_id' => $original_order_id
             ]);
             $url = url('success');
-            Session::put('payment_id',$payment->id);
             return view('collection_staff.payment.show',compact('authorization_token','order_id','url'));
         }else{
             toastr()->error($response['error']);
