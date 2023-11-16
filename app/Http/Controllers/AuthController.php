@@ -109,18 +109,17 @@ class AuthController extends Controller
     }
     public function success(Request $request)
     {
-        dd($request);
-        $payment_id = Session::get('payment_id');
+        list(, $response,) = explode('.', $request->transaction_response);
+        $result_decoded = base64_decode(strtr($response, '-_', '+/'));
+        $result_array =json_decode($result_decoded, true);
+        dd($result_array);
+        $payment = Payment::where('order_id',$request->order_id)->first();
 
-        if($payment_id)
+        if($payment)
         {
-            $payment = Payment::find($payment_id);
-            if($payment)
-            {
-                $payment->update([
-                    'is_paid' => 1
-                ]);
-            }
+            $payment->update([
+                'is_paid' => 1
+            ]);
         }
         toastr()->success('Your Payment Success Successfully');
         return redirect()->to(url('collection_staff/dashboard'));
