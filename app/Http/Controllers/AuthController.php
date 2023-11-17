@@ -121,7 +121,6 @@ class AuthController extends Controller
                 'payment_method' => $result_array['payment_method_type'],
             ]);
             $user = User::find($payment->user_id);
-            dd($user);
             Auth::guard('user')->loginUsingId($user->id);
             toastr()->success('Your Payment Success Successfully');
             return redirect()->intended(route('collection_staff.dashboard.index'));
