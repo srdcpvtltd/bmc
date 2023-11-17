@@ -98,10 +98,10 @@
                                 <option value="Driving License">Driving License</option>
                             </select>
                         </div>
-                        {{-- <div class="form-group col-md-6">
+                        <div class="form-group col-md-6">
                             <label>ID Proof Number</label>
                             <input name="id_proof_number" type="text" class="form-control"  required>
-                        </div> --}}
+                        </div>
                         <div class="form-group col-md-6">
                             <label>Lat/Long.</label>
                             <input name="lat_long" id="lat_long" readonly type="text" class="form-control"  required>
