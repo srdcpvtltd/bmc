@@ -55,7 +55,7 @@ class PaymentController extends Controller
                 ]);
             }
             $payment = Payment::create($request->all());
-            if($payment->payment_mode)
+            if($payment->payment_mode == "UPI")
             {
                 return redirect()->to(route('collection_staff.payment.show',$payment->id));
             }
@@ -124,7 +124,7 @@ class PaymentController extends Controller
             ]);
         }
         $payment->update($request->all());
-        if($payment->payment_mode)
+        if($payment->payment_mode == "UPI")
         {
             return redirect()->to(route('collection_staff.payment.show',$payment->id));
         }
