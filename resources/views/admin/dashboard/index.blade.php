@@ -248,7 +248,7 @@
                     <h3 class="font-weight-semibold mb-0">
                         {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}
                     </h3>
-                    <span class="text-uppercase font-size-sm text-muted">Monthly Collection</span>
+                    <span class="text-uppercase font-size-sm text-muted">Total Monthly Collection</span>
                 </div>
             </div>
         </div>
