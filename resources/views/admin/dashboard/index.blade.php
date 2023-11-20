@@ -413,7 +413,7 @@
 
                     display: true,
 
-                    text: 'Zone Wise Payment Colection For Current Month (Unregistered Vendors)'
+                    text: 'Zone Wise Payment Colection For Current Month (Registered Vendors)'
                 },
                 tooltips: {
                     enabled: true,
