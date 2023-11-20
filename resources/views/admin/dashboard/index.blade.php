@@ -146,7 +146,7 @@
                     </div>
                     <div class="media-body text-right"> 
                         <h3 class="font-weight-semibold mb-0">{{App\Models\Shop::count()}}</h3>
-                        <span class="text-uppercase font-size-sm text-muted">Market & Vending Zones of BMC</span>
+                        <span class="text-uppercase font-size-sm text-muted">Explore Market & Vending Zones of BMC</span>
                     </div>
 
                 </div>
