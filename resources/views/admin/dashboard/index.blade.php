@@ -10,12 +10,12 @@
 
 <div class="row">
     <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-success-400 has-bg-image">
+        <div class="card card-body has-bg-image" style="background-color:#669966;">
             <div class="media mb-3">
 
                 <div class="media-body">
                     <h7 class="font-weight-semibold mb-0">Establishments</h7>
-                    <span class="opacity-75">{{App\Models\Establishment::count()}}</span>
+                    <span class="opacity-100">{{App\Models\Establishment::count()}}</span>
                 </div>
                 <div class="ml-3 align-self-center">
                     <i class="icon-quill4 icon-2x"></i>
@@ -29,11 +29,11 @@
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card card-body has-bg-image" style="background-color:#4caf50;">
+        <div class="card card-body has-bg-image" style="background-color:#99CCFF;">
             <div class="media mb-3">
                 <div class="media-body">
                     <h7 class="font-weight-semibold mb-0">Pending Amount</h7>
-                    <span class="opacity-75">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
+                    <span class="opacity-100">{{App\Models\Payment::where('type','monthly')->where('is_paid',0)->sum('amount')}}</span>
                 </div>
 
                 <div class="ml-3 align-self-center">
@@ -49,12 +49,12 @@
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-success-400 has-bg-image">
+        <div class="card card-body has-bg-image" style="background-color:#CCCC66;">
             <div class="media mb-3">
 
                 <div class="media-body">
                     <h7 class="font-weight-semibold mb-0">Zones</h7>
-                    <span class="opacity-75">{{App\Models\Zone::count()}}</span>
+                    <span class="opacity-100">{{App\Models\Zone::count()}}</span>
                 </div>
                 <div class="ml-3 align-self-center">
                     <i class="icon-lifebuoy icon-2x"></i>
@@ -68,11 +68,11 @@
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card card-body has-bg-image" style="background-color:#4caf50;">
+        <div class="card card-body has-bg-image" style="background-color:#FFCC00;">
             <div class="media mb-3">
                 <div class="media-body">
                     <h7 class="font-weight-semibold mb-0">Shops</h7>
-                    <span class="opacity-75">{{App\Models\Shop::count()}}</span>
+                    <span class="opacity-100">{{App\Models\Shop::count()}}</span>
                 </div>
 
                 <div class="ml-3 align-self-center">
