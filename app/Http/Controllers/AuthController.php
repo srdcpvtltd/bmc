@@ -109,6 +109,7 @@ class AuthController extends Controller
     }
     public function success(Request $request)
     {
+        dd($request);
         list(, $response,) = explode('.', $request->transaction_response);
         $result_decoded = base64_decode(strtr($response, '-_', '+/'));
         $result_array =json_decode($result_decoded, true);
