@@ -109,26 +109,31 @@ class AuthController extends Controller
     }
     public function success(Request $request)
     {
-        dd($request);
-        list(, $response,) = explode('.', $request->transaction_response);
-        $result_decoded = base64_decode(strtr($response, '-_', '+/'));
-        $result_array =json_decode($result_decoded, true);
-        if($result_array['transaction_error_type'] == 'success')
+        if($request->transaction_response)
         {
-            $payment = Payment::where('order_id',$result_array['orderid'])->first();
-            $payment->update([
-                'is_paid' => 1,
-                'transcation_id' => $result_array['transactionid'],
-                'payment_method' => $result_array['payment_method_type'],
-            ]);
-            $user = User::find($payment->user_id);
-            Auth::guard('user')->loginUsingId($user->id);
-            toastr()->success('Your Payment Success Successfully');
-            return redirect()->intended(route('collection_staff.dashboard.index'));
+            list(, $response,) = explode('.', $request->transaction_response);
+            $result_decoded = base64_decode(strtr($response, '-_', '+/'));
+            $result_array =json_decode($result_decoded, true);
+            if($result_array['transaction_error_type'] == 'success')
+            {
+                $payment = Payment::where('order_id',$result_array['orderid'])->first();
+                $payment->update([
+                    'is_paid' => 1,
+                    'transcation_id' => $result_array['transactionid'],
+                    'payment_method' => $result_array['payment_method_type'],
+                ]);
+                $user = User::find($payment->user_id);
+                Auth::guard('user')->loginUsingId($user->id);
+                toastr()->success('Your Payment Success Successfully');
+                return redirect()->intended(route('collection_staff.dashboard.index'));
+            }else{
+                
+                toastr()->error($result_array['transaction_error_type']);
+                return redirect()->intended(route('collection_staff.dashboard.index'));
+            }
         }else{
-            
-            toastr()->error($result_array['transaction_error_type']);
-            return redirect()->intended(route('collection_staff.dashboard.index'));
+            toastr()->error("Something Went Wrong");
+            return redirect()->intended(route('collection_staff.payment.index'));
         }
 
     }
