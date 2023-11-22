@@ -91,7 +91,7 @@
                                 <div class="col-xl-6">  
                                     <span>
                                         <h5>Shop Number </h5> 
-                                        <p class="font-weight-semibold">{{@$shop->shop_number}}</p>
+                                        <p class="font-weight-semibold">{{@$shop->establishment_shop->shop_number}}</p>
                                         <hr class="dotted-line">
                                     </span>
                                 </div>
