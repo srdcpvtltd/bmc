@@ -156,4 +156,18 @@ class PaymentController extends Controller
     {
         //
     }
+    public function getPendingInvoice(Request $request)
+    {
+        try {
+            $payments = Payment::where('shop_id',$request->shop_id)->where('type','monthly')->where('is_paid',0)->get();
+
+            return response([
+                "payments" => $payments,
+            ], 200);
+        } catch (\Exception $e) {
+            return response([
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
 }
