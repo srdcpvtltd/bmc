@@ -140,7 +140,7 @@
                 aspectRatio: 1.5,
                 title: {
                     display: true,
-                    text: "Total Billed Amount"
+                    text: "{{@$totalBilledAmountText}}"
                 },
                 circumference: Math.PI, // Set to Math.PI for a semi-circle
                 rotation: -Math.PI / 1, // Rotate the chart to start from the top center
@@ -177,7 +177,7 @@
                 aspectRatio: 1.5,
                 title: {
                     display: true,
-                    text: "Total Collected Amount"
+                    text: "{{@$totalCollectedAmountText}}"
                 },
                 circumference: Math.PI, // Set to Math.PI for a semi-circle
                 rotation: -Math.PI / 1, // Rotate the chart to start from the top center

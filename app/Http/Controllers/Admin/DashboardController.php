@@ -96,6 +96,8 @@ class DashboardController extends Controller
             array_push($payments_of_month,$paid_amount);
             array_push($payments_of_month,$pending_amount);
         }
+        $totalBilledAmountText = "Total Billed Amount : ".$total_payments;
+        $totalCollectedAmountText = "Total Collected Amount : ".$paid_amount;
         $data['daily_collection_dates']      = "'".implode("', '", $daily_collection_dates)."'";
         $data['last_15_days_daily_collection']    = implode(', ', $last_15_days_daily_collection);
         $data['payments_for_month']    = implode(', ', $paymentsDataForMonth);
@@ -107,6 +109,6 @@ class DashboardController extends Controller
         $data['paymentsDataForLastTwoDays']      = "'".implode("', '", $paymentsDataForLastTwoDays)."'";
         $data['month_wise_name']      = "'".implode("', '", $month_wise_name)."'";
         $data['month_wise_paid_payments']      = "'".implode("', '", $month_wise_paid_payments)."'";
-        return view('admin.dashboard.index',compact('data','month_text','month','year','year_text'));
+        return view('admin.dashboard.index',compact('data','month_text','month','year','year_text','totalBilledAmountText','totalCollectedAmountText'));
     }
 }
