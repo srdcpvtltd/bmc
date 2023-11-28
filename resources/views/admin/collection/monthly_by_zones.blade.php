@@ -8,7 +8,7 @@
 <div class="card">
 
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Search Payment By Month</h5>
+        <h5 class="card-title">Search Payment</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -43,8 +43,7 @@
                     <option value="">Select Year</option>
                     @for($year_loop = 2022;$year_loop <= 2024;$year_loop++)
                     <option 
-                        @if(@request()->year == $year_loop) selected @endif
-                        @if(!@request()->year && Carbon\Carbon::today()->format('Y') == $year_loop) selected @endif
+                        @if($year == $year_loop) selected @endif
                          value="{{$year_loop}}">{{$year_loop}}</option>
                     @endfor
                 </select>
@@ -53,35 +52,41 @@
         </form>
     </div>
 </div>
-@foreach($establishments as $establishment)
+@foreach(App\Models\Zone::all() as $zone)
 <div class="row">
-    <div class="col-sm-6 col-xl-6">
-        <a href="{{route('admin.collection.monthly_detail',$establishment->id)}}">
-            <div class="card card-body">
-                <div class="media">
-                    <div class="mr-3 align-self-center">
-                        <i class="icon-user icon-3x text-success-400"></i>
-                    </div>
-    
-                    <div class="media-body text-right">
-                        <h3 class="font-weight-semibold mb-0">{{$establishment->name}}</h3>
-                        <span class="text-uppercase font-size-sm text-muted">Establishment Name</span>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-sm-6 col-xl-6">
+    <div class="col-md-12">
         <div class="card card-body">
-            <div class="media">
-                <div class="mr-3 align-self-center">
-                    <i class="icon-cash icon-3x text-indigo-400"></i>
+            <div class="row text-center">
+                <div class="col-2">
+                    <p><i class="icon-user icon-2x d-inline-block text-info"></i></p>
+                    <h5 class="font-weight-semibold mb-0">
+                        <a href="{{route('admin.collection.monthly',$zone->id)}}">
+                        {{$zone->name}}
+                        </a>
+                    </h5>
+                    <span class="text-muted font-size-sm">Zone Name</span>
+                </div>
+                <div class="col-3">
+                    <p><i class="icon-cash3 icon-2x d-inline-block text-info"></i></p>
+                    <h5 class="font-weight-semibold mb-0">{{$zone->getMonthlyBilledAmount($month,$year)}}</h5>
+                    <span class="text-muted font-size-sm">Total Billed Amount</span>
+                </div>
+                <div class="col-3">
+                    <p><i class="icon-cash4 icon-2x d-inline-block text-info"></i></p>
+                    <h5 class="font-weight-semibold mb-0">{{$zone->getMonthlyCollectedAmount($month,$year)}}</h5>
+                    <span class="text-muted font-size-sm">Total Collected Amount</span>
                 </div>
 
-                <div class="media-body text-right">
-                    <h3 class="font-weight-semibold mb-0">{{$establishment->total_amount}}</h3>
-                    <span class="text-uppercase font-size-sm text-muted">Total Collection Amount</span>
+                <div class="col-2">
+                    <p><i class="icon-cash icon-2x d-inline-block text-warning"></i></p>
+                    <h5 class="font-weight-semibold mb-0">{{$zone->getMonthlyCashAmount($month,$year)}}</h5>
+                    <span class="text-muted font-size-sm">Cash</span>
+                </div>
+
+                <div class="col-2">
+                    <p><i class="icon-credit-card icon-2x d-inline-block text-success"></i></p>
+                    <h5 class="font-weight-semibold mb-0">{{$zone->getMonthlyUpiAmount($month)}}</h5>
+                    <span class="text-muted font-size-sm">UPI</span>
                 </div>
             </div>
         </div>

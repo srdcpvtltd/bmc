@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 
 @section('title')
-Total Collection of Zone {{@$zone->name}}
+Total Collection of Collection Agent {{@$user->name}}
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Total Collection of Zone {{@$zone->name}}
 
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Total Collection of Zone {{@$zone->name}}</h5>
+        <h5 class="card-title">Total Collection of Collection Agent {{@$user->name}}</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>

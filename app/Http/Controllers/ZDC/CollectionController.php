@@ -52,7 +52,16 @@ class CollectionController extends Controller
     }
     public function getMonthlyByZones(Request $request)
     {
-        return view('zdc.collection.monthly_by_zones');
+        
+        if($request->month)
+            $month = $request->month;
+        else
+            $month = Carbon::now()->format('F');
+        if($request->year)
+            $year = $request->year;
+        else
+            $year = Carbon::now()->format('Y');
+        return view('zdc.collection.monthly_by_zones',compact('month','year'));
     }
 
     public function getMonthlyCollectionDetail(Request $request,$id)
