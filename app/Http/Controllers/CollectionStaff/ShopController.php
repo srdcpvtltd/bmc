@@ -75,7 +75,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        // $data['shop']  = $shop = Shop::find($id);
+        $data['shop']  = $shop = Shop::find($id);
         // $data['url']  = asset('uploaded_images/logo/bmc_logo-1.png');
         // $pdf = PDF::loadView('collection_staff.shop.pdf', $data);
 
