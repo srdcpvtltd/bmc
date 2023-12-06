@@ -10,21 +10,16 @@
 
 <div class="row">
     <div class="col-sm-6 col-xl-3">
-        <a href="{{route('admin.report.establisments')}}">
         <div class="card card-body text-center" style="background-color:#50cc50;color:black;">
             <p><b>Establishment {{App\Models\Establishment::count()}}</b></p>
         </div>
-        </a>
     </div>
     <div class="col-sm-6 col-xl-3">
-         <a href="{{route('admin.report.shops')}}">
-        <div class="card card-body text-center" style="background-color:#2B40DF;color:black;">
+        <div class="card card-body text-center" style="background-color:#e82610;color:black;">
             <p><b>Shops {{App\Models\Shop::count()}}</b></p>
         </div>
-        </a>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <a href="{{route('admin.collection.daily')}}">
         <div class="card card-body text-center" style="background-color:#9dc9ed;color:black;">
             <p>
                 <b>
@@ -32,17 +27,14 @@
                 </b>
             </p>
         </div>
-        </a>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <a href="{{route('admin.collection.monthly_by_zones')}}">
         <div class="card card-body text-center" style="background-color:#e6e229;color:black;">
             <p>
                 <b>Total Monthly Collection {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}
                 </b>
             </p>
         </div>
-        </a>
     </div>
 </div>
 <div class="row">

@@ -1,14 +1,15 @@
 @extends('admin.layout.index')
 
 @section('title')
-    Monthly Collection
+Total Monthly Collection of Establishment {{$establishment->name}}
 @endsection
 
 @section('content')
-<div class="card">
 
+
+<div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Search Payment By Month</h5>
+        <h5 class="card-title">Total Monthly Collection of Establishment {{$establishment->name}}</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -16,8 +17,7 @@
             </div>
         </div>
     </div>
-
-    <div class="card-body"> 
+    <div class="card-body">
         <form class="form-inline" method="GET">
             <div class="form-group col-md-3">
                 <label>Month</label>
@@ -43,51 +43,44 @@
                     <option value="">Select Year</option>
                     @for($year_loop = 2022;$year_loop <= 2024;$year_loop++)
                     <option 
-                        @if(@request()->year == $year_loop) selected @endif
-                        @if(!@request()->year && Carbon\Carbon::today()->format('Y') == $year_loop) selected @endif
+                        @if($year == $year_loop) selected @endif
                          value="{{$year_loop}}">{{$year_loop}}</option>
                     @endfor
                 </select>
             </div>
             <button type="submit" class="btn btn-primary ml-2">Search</button>
         </form>
-    </div>
-</div>
-@foreach($establishments as $establishment)
-<div class="row">
-    <div class="col-sm-6 col-xl-6">
-        <a href="{{route('admin.collection.monthly_detail',$establishment->id)}}">
-            <div class="card card-body">
-                <div class="media">
-                    <div class="mr-3 align-self-center">
-                        <i class="icon-user icon-3x text-success-400"></i>
-                    </div>
-    
-                    <div class="media-body text-right">
-                        <h3 class="font-weight-semibold mb-0">{{$establishment->name}}</h3>
-                        <span class="text-uppercase font-size-sm text-muted">Establishment Name</span>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
+        <div class="table-responsive mt-3">
+            <table class="table datatable-save-state">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Shop Name</th>
+                        <th>Rent</th>
+                        <th>Payment Status</th>
+                        <th>Payment Date</th>
+                        <th>Mode of Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($payments  as $key => $payment)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{@$payment->name}}</td>
+                        <td>{{@$payment->shop_rent}}</td>
+                        <td>Received</td>
+                        <td>{{@$payment->created_at->format('d M,Y')}}</td>
+                        <td>{{@$payment->payment_mode}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-    <div class="col-sm-6 col-xl-6">
-        <div class="card card-body">
-            <div class="media">
-                <div class="mr-3 align-self-center">
-                    <i class="icon-cash icon-3x text-indigo-400"></i>
-                </div>
-
-                <div class="media-body text-right">
-                    <h3 class="font-weight-semibold mb-0">{{$establishment->total_amount}}</h3>
-                    <span class="text-uppercase font-size-sm text-muted">Total Collection Amount</span>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-@endforeach
+
 @endsection
+
 @section('scripts')
 @endsection

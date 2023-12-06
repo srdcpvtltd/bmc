@@ -17,7 +17,8 @@ use App\Models\PendingPayment;
     Route::get('report/establisments/{id}',[ZdcController::class,'establismentReports'])->name('report.establisments');
 
     Route::get('collection/daily',[CollectionController::class,'getDailyCollection'])->name('collection.daily');
-    Route::get('collection/monthly',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');
+    Route::get('collection/monthly/{id}',[CollectionController::class,'getMonthlyCollection'])->name('collection.monthly');
+    Route::get('collection/monthly_by_zones',[CollectionController::class,'getMonthlyByZones'])->name('collection.monthly_by_zones');
     Route::get('collection/monthly_detail/{id}',[CollectionController::class,'getMonthlyCollectionDetail'])->name('collection.monthly_detail');
     Route::post('shop/get_establishment_shops',[ShopController::class,'getEstablishmentShops'])->name('shop.get_establishment_shops');
     Route::resource('shop',ShopController::class);

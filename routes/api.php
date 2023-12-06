@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('payments', PaymentController::class);
     Route::post('payment/store', [PaymentController::class,'store']);
     Route::post('payment/update', [PaymentController::class,'update']);
+    Route::post('payment/get-pending-invoices', [PaymentController::class,'getPendingInvoice']);
     Route::post('get_taken_establishment_shop', [EstablishmentShopController::class,'getTakenEstablishmentShops']);
     Route::resource('establishment_category', EstablishmentCategoryController::class);
     Route::resource('establishment', EstablishmentController::class);

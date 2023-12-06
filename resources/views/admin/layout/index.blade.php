@@ -57,10 +57,12 @@
 	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js')}}"></script>
 	<script src="{{asset('user_asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js')}}"></script>
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/datatables_extension_buttons_html5.js')}}"></script>
+	<script src="{{asset('user_asset/global_assets/js/demo_pages/widgets_stats.js')}}"></script>
 
 	<!-- Theme JS files -->
 
 	<script src="{{asset('user_asset/global_assets/js/demo_pages/job_list.js')}}"></script>
+
 	<!-- /theme JS files -->
 
 	@yield('styles')
@@ -179,7 +181,7 @@
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('admin/collection*') ?'display:block':''}}">
 							    {{-- <li class="nav-item"><a href="{{route('admin.qr_code_payment.index')}}" class="nav-link {{Request::is('admin/qr_code_payment')?'active':''}}">Payment Capture</a></li> --}}
 								<li class="nav-item"><a href="{{route('admin.collection.daily')}}" class="nav-link {{Request::is('admin/collection/daily')?'active':''}}">Daily Collection</a></li>
-								<li class="nav-item"><a href="{{route('admin.collection.monthly')}}" class="nav-link {{Request::is('admin/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+								<li class="nav-item"><a href="{{route('admin.collection.monthly_by_zones')}}" class="nav-link {{Request::is('admin/collection/monthly_by_zones')?'active':''}}">Monthly Collection</a></li>
 							</ul>
 						</li>
 						<li class="nav-item nav-item-submenu {{Request::is('admin/report*')?'nav-item-open':''}}">

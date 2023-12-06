@@ -31,22 +31,37 @@ class CollectionController extends Controller
         return view('zdc.collection.daily',compact('users'));
     }
 
-    public function getMonthlyCollection(Request $request)
+    public function getMonthlyCollection($id,Request $request)
     {
         $query = DB::table('establishments')
             ->join('payments', 'establishments.id', '=', 'payments.establishment_id')
             ->join('users','users.id','payments.user_id')
             ->selectRaw('establishments.id,establishments.name, SUM(payments.amount) as total_amount')
             ->where('payments.type', 'monthly')
-            ->where('users.role_id', 5)
+            // ->where('users.role_id', 5)
             ->where('payments.is_paid',1)
-            ->where('users.zone_id', Auth::user()->zone_id);
+            ->where('users.zone_id', $id);
         if($request->month)
         {
             $query->where('payments.month',$request->month);
+        }else{
+            $query->where('payments.month',Carbon::now()->format('F'));
         }
         $establishments = $query->groupBy('establishments.id','establishments.name')->get();
         return view('zdc.collection.monthly',compact('establishments'));
+    }
+    public function getMonthlyByZones(Request $request)
+    {
+        
+        if($request->month)
+            $month = $request->month;
+        else
+            $month = Carbon::now()->format('F');
+        if($request->year)
+            $year = $request->year;
+        else
+            $year = Carbon::now()->format('Y');
+        return view('zdc.collection.monthly_by_zones',compact('month','year'));
     }
 
     public function getMonthlyCollectionDetail(Request $request,$id)

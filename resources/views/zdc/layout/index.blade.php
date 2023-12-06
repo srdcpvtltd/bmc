@@ -169,7 +169,7 @@
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('zdc/collection*') ?'display:block':''}}">
 								<li class="nav-item"><a href="{{route('zdc.collection.daily')}}" class="nav-link {{Request::is('zdc/collection/daily')?'active':''}}">Daily Collection</a></li>
-								<li class="nav-item"><a href="{{route('zdc.collection.monthly')}}" class="nav-link {{Request::is('zdc/collection/monthly')?'active':''}}">Monthly Collection</a></li>
+								<li class="nav-item"><a href="{{route('zdc.collection.monthly_by_zones')}}" class="nav-link {{Request::is('zdc/collection/monthly')?'active':''}}">Monthly Collection</a></li>
 							</ul>
 						</li>
 
