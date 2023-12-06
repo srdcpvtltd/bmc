@@ -11,19 +11,19 @@
 <div class="row">
     <div class="col-sm-6 col-xl-3">
         <div class="card card-body text-center" style="background-color:#50cc50;color:black;">
-            <p><b>Establishment {{App\Models\Establishment::count()}}</b></p>
+            <p><b><i class="icon-lifebuoy"></i> Establishment {{App\Models\Establishment::count()}}</b></p>
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
         <div class="card card-body text-center" style="background-color:#e82610;color:black;">
-            <p><b>Shops {{App\Models\Shop::count()}}</b></p>
+            <p><b><i class="icon-store2"></i> Shops {{App\Models\Shop::count()}}</b></p>
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
         <div class="card card-body text-center" style="background-color:#9dc9ed;color:black;">
             <p>
                 <b>
-                    Total Daily Collection {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->where('type','daily')->sum('amount')}}
+                    <i class="icon-cash3"></i> Total Daily Collection {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->where('type','daily')->sum('amount')}}
                 </b>
             </p>
         </div>
@@ -31,7 +31,7 @@
     <div class="col-sm-6 col-xl-3">
         <div class="card card-body text-center" style="background-color:#e6e229;color:black;">
             <p>
-                <b>Total Monthly Collection {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}
+                <b><i class="icon-enter6"></i>  Total Monthly Collection {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}
                 </b>
             </p>
         </div>
