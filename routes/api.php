@@ -26,13 +26,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('login',[AuthController::class,'login'])->name('login');;
+Route::post('login',[AuthController::class,'login'])->name('login');
+Route::post('payment-success', [PaymentController::class,'successResponse']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('shops', ShopController::class);
     Route::post('shop/store', [ShopController::class,'store']);
     Route::resource('payments', PaymentController::class);
     Route::post('payment/store', [PaymentController::class,'store']);
     Route::post('payment/update', [PaymentController::class,'update']);
+    Route::post('payment/update-upi-payment', [PaymentController::class,'updateUPIPayment']);
     Route::post('payment/get-pending-invoices', [PaymentController::class,'getPendingInvoice']);
     Route::post('get_taken_establishment_shop', [EstablishmentShopController::class,'getTakenEstablishmentShops']);
     Route::resource('establishment_category', EstablishmentCategoryController::class);

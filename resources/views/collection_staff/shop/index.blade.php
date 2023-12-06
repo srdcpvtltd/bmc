@@ -37,8 +37,8 @@ Manage Shop
                 @foreach (Auth::user()->shops  as $key => $shop)
                 <tr>
                     <td>{{$key+1}}</td>
-                    <td><iframe src="{{$shop->getQRCode()}}" height="155" width="155" style="border:white;"></iframe></td>
-                    <td>{{$shop->establishment->name}}</td>
+                    <td><iframe src="{{$shop->getQRCode(100,100)}}" height="155" width="155" style="border:white;"></iframe></td>
+                    <td><a href="{{route('collection_staff.shop.show',$shop->id)}}"> {{$shop->establishment->name}}</a></td>
                     <td>{{$shop->shop_name}}</td>
                     <td>{{$shop->shop_number}}</td>
                     <td>{{$shop->owner_name}}</td>

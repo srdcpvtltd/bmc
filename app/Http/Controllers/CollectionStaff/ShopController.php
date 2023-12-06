@@ -8,6 +8,7 @@ use App\Models\EstablishmentShop;
 use App\Models\Payment;
 use App\Models\Shop;
 use App\Models\Ward;
+// use PDF;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -72,9 +73,23 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show($id)
     {
-        //
+        $data['shop']  = $shop = Shop::find($id);
+        // $data['url']  = asset('uploaded_images/logo/bmc_logo-1.png');
+        // $pdf = PDF::loadView('collection_staff.shop.pdf', $data);
+
+        // // Set paper size and orientation
+        // $pdf->setPaper('A4', 'portrait');
+
+        // // Output PDF to browser
+        // return $pdf->stream('shop.pdf');
+        // $customPaper = array(0, 0, 270.80, 312.00);
+		// $view_file = 'collection_staff.shop.pdf';
+		// $pdf = PDF::loadView($view_file, $data)->setPaper($customPaper, 'portrait')->setOptions(['defaultFont' => 'sans-serif']);
+		// return $pdf->stream('shop.pdf', array("Attachment" => false));
+
+        return view('collection_staff.shop.pdf',compact('shop'));
     }
 
     /**
