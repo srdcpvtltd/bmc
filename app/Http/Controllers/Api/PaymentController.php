@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
+use App\Services\BillDeskService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -165,6 +167,75 @@ class PaymentController extends Controller
                 "payments" => $payments,
             ], 200);
         } catch (\Exception $e) {
+            return response([
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function updateUPIPayment(Request $request)
+    {
+        try {
+            $payment = Payment::find($request->payment_id);
+            $billdeskService = new BillDeskService();
+            $response = $billdeskService->createOrder($payment);
+            if($response['success'] == true)
+            {
+                $authorization_token = $response['authorization_token'];
+                $order_id = $response['order_id'];
+                $original_order_id = $response['original_order_id'];
+                $payment->update([
+                    'order_id' => $original_order_id
+                ]);
+                $url = url('api/payment-success');
+                return response([
+                    "authorization_token" => $authorization_token,
+                    "order_id" => $order_id,
+                    "url" => $url,
+                ], 200);
+            }else{
+                return response([
+                    "error" => $response['error']
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response([
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function successResponse(Request $request)
+    {
+        try{
+            if($request->transaction_response)
+            {
+                list(, $response,) = explode('.', $request->transaction_response);
+                $result_decoded = base64_decode(strtr($response, '-_', '+/'));
+                $result_array =json_decode($result_decoded, true);
+                if($result_array['transaction_error_type'] == 'success')
+                {
+                    $payment = Payment::where('order_id',$result_array['orderid'])->first();
+                    $payment->update([
+                        'is_paid' => 1,
+                        'transcation_id' => $result_array['transactionid'],
+                        'payment_method' => $result_array['payment_method_type'],
+                    ]);
+                    // $user = User::find($payment->user_id);
+                    return response([
+                        "message" => "Your Payment Done Successfully!"
+                    ], 200);
+                }else{
+                    return response([
+                        "error" => $result_array['transaction_error_type']
+                    ], 500);
+                }
+            }else{
+                return response([
+                    "error" => "Something Went Wrong"
+                ], 500);
+            }
+
+        }catch(Exception $e)
+        {
             return response([
                 "error" => $e->getMessage()
             ], 500);
