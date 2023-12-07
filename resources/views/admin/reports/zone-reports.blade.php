@@ -10,13 +10,13 @@
 <div class="row">
 
 @foreach ( $zones as $zone )
-    <div class="col-sm-6 col-xl-6">
+    <div class="col-sm-4 col-xl-4">
         <a href="{{route('admin.zone.estableshment',Crypt::encrypt($zone->id))}}">
-            <div class="card card-body bg-success-400 has-bg-image">
+            <div class="card card-body has-bg-image" style="background-color:{{$zone->background_color ? $zone->background_color : '#93ad65' }}">
                 <div class="media">
 
                     <div class="mr-3 align-self-center">
-                        <i class="icon-unlink2 icon-3x opacity-75"></i>
+                        <i class="{{$zone->icon_name ? $zone->icon_name : 'icon-unlink2' }} icon-3x opacity-75"></i>
                     </div>
                     <div class="media-body text-right">
                     <h3 class="mb-0">{{ $zone->name }}</h3>

@@ -10,7 +10,7 @@
 <div class="row">
 
 @foreach ( $establisments as $establisment )
-    <div class="col-sm-6 col-xl-6">
+    <div class="col-sm-4 col-xl-4">
         <a href="{{route('admin.zone.estableshment.reports',Crypt::encrypt($establisment->id))}}">
             <div class="card card-body bg-success-400 has-bg-image">
                 <div class="media">
