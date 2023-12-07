@@ -10,7 +10,7 @@ class Zone extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','background_color','icon_name'];
 
     public function getCollection()
     {

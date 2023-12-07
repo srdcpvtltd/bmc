@@ -28,6 +28,14 @@ Manage Zone
                             <label>Zone Name</label>
                             <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
                         </div>
+                        <div class="form-group col-md-3">
+                            <label>Zone Background Color</label>
+                            <input name="background_color" type="color" class="form-control" placeholder="Enter Name" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Zone Icon Name</label>
+                            <input name="icon_name" type="text" class="form-control" placeholder="Enter Icon Name" required>
+                        </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Create <i class="icon-paperplane ml-2"></i></button>
@@ -48,6 +56,8 @@ Manage Zone
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Background Color</th>
+                <th>Icon Name</th>
                 <th>Action</th>
                 <th>Action</th>
             </tr>
@@ -57,8 +67,11 @@ Manage Zone
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$zone->name}}</td>
+                <td>{{$zone->background_color}}</td>
+                <td>{{$zone->icon_name}}</td>
                 <td>
                     <button data-toggle="modal" data-target="#edit_modal" name="{{$zone->name}}" 
+                        background_color="{{$zone->background_color}}" icon_name="{{$zone->icon_name}}"  
                         id="{{$zone->id}}" class="edit-btn btn btn-primary">Edit</button>
                 </td>
                 <td>
@@ -89,6 +102,14 @@ Manage Zone
                         <label for="name">Zone Name</label>
                         <input class="form-control" type="text" id="name" name="name" placeholder="Enter name" required>
                     </div>
+                    <div class="form-group">
+                        <label>Zone Background Color</label>
+                        <input name="background_color" id="background_color" type="color" class="form-control" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group ">
+                        <label>Zone Icon Name</label>
+                        <input name="icon_name" id="icon_name" type="text" class="form-control" placeholder="Enter Icon Name" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
@@ -106,6 +127,10 @@ Manage Zone
         $('.edit-btn').click(function(){
             let name = $(this).attr('name');
             let id = $(this).attr('id');
+            let icon_name = $(this).attr('icon_name');
+            let background_color = $(this).attr('background_color');
+            $('#background_color').val(background_color);
+            $('#icon_name').val(icon_name);
             $('#name').val(name);
             $('#id').val(id);
             $('#updateForm').attr('action','{{route('super_admin.zone.update','')}}' +'/'+id);
