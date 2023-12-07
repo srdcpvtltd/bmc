@@ -10,7 +10,7 @@
 <div class="row">
 
 @foreach ( $establisments as $establisment )
-    <div class="col-sm-6 col-xl-6">
+    <div class="col-sm-4 col-xl-4">
         <a href="{{route('admin.zone.estableshment.reports',Crypt::encrypt($establisment->id))}}">
             <div class="card card-body has-bg-image" style="background-color:{{$establisment->background_color ? $establisment->background_color : '#93ad65' }}">
                 <div class="media">
