@@ -9,7 +9,7 @@ class Establishment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','establishment_category_id','total_shops','establishment_zone_id'];
+    protected $fillable = ['name','establishment_category_id','total_shops','establishment_zone_id','background_color','icon_name'];
 
     public function establishment_category()
     {

@@ -28,6 +28,14 @@ Manage Establishment
                             <label>Establishment Name</label>
                             <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
                         </div>
+                        <div class="form-group col-md-3">
+                            <label>Establishment Background Color</label>
+                            <input name="background_color" type="color" class="form-control" placeholder="Enter Name" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Establishment Icon Name</label>
+                            <input name="icon_name" type="text" class="form-control" placeholder="Enter Icon Name" required>
+                        </div>
                         <div class="form-group col-md-6">
                             <label>Choose Establishment Category</label>
                             <select  name="establishment_category_id"  class="form-control select-search" data-fouc required>
@@ -79,6 +87,8 @@ Manage Establishment
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Background Color</th>
+                <th>Icon Name</th>
                 <th>Category</th>
                 <th>Total Shops</th>
                 <th>Remaining Shops</th>
@@ -91,6 +101,8 @@ Manage Establishment
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$establishment->name}}</td>
+                <td>{{$zone->background_color}}</td>
+                <td>{{$zone->icon_name}}</td>
                 <td>{{$establishment->establishment_category->name}}</td>
                 <td>{{$establishment->total_shops}}</td>
                 <td>{{$establishment->total_shops - $establishment->shops->count()}}</td>
