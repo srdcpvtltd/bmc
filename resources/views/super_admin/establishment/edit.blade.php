@@ -30,12 +30,16 @@ Manage Establishment
                             <input name="name" type="text" class="form-control" value="{{$establishment->name}}" placeholder="Enter Name" required>
                         </div>
                         <div class="form-group col-md-3">
+                            <label>Establishment Image</label>
+                            <input name="image" type="file" class="form-control" placeholder="Enter Name" >
+                        </div>
+                        <div class="form-group col-md-3">
                             <label>Establishment Background Color</label>
-                            <input name="background_color" type="color" class="form-control" value="{{$establishment->background_color}}" placeholder="Enter Name" required>
+                            <input name="background_color" type="color" class="form-control" value="{{$establishment->background_color}}" placeholder="Enter Name" >
                         </div>
                         <div class="form-group col-md-3">
                             <label>Establishment Icon Name</label>
-                            <input name="icon_name" type="text" class="form-control"  value="{{$establishment->icon_name}}" placeholder="Enter Icon Name" required>
+                            <input name="icon_name" type="text" class="form-control"  value="{{$establishment->icon_name}}" placeholder="Enter Icon Name" >
                         </div>
                         <div class="form-group col-md-6">
                             <label>Choose Establishment Category</label>

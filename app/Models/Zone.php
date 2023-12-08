@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\ImageHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,8 +11,11 @@ class Zone extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','background_color','icon_name'];
+    protected $fillable = ['name','background_color','icon_name','image'];
 
+    public function setImageAttribute($value){
+        $this->attributes['image'] = ImageHelper::saveImage($value,'/uploaded_images/');
+    }
     public function getCollection()
     {
         return User::query()->join('payments','payments.user_id','users.id')->where('zone_id',$this->id)->where('payments.type','daily')->sum('payments.amount');
