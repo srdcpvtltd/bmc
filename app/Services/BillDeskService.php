@@ -36,7 +36,7 @@ class BillDeskService
                     "user_agent" => request()->header('User-Agent'),
                 ]
             ];
-            dd($payload);
+
             $header = base64_encode(json_encode($headers));
             $payload = base64_encode(json_encode($payload));
             $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
@@ -62,6 +62,7 @@ class BillDeskService
             list(, $response,) = explode('.', $result);
             $result_decoded = base64_decode(strtr($response, '-_', '+/'));
             $result_array =json_decode($result_decoded, true);
+            dd($result_array);
             if($result_array['status'] == "ACTIVE") {
                 $order_id= $result_array['bdorderid'];
                 $original_order_id= $result_array['orderid'];
