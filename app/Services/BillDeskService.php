@@ -58,9 +58,9 @@ class BillDeskService
             curl_setopt( $ch, CURLOPT_POSTFIELDS, $curl_payload);
             curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
             $result = curl_exec($ch);
-            dd($result);
             curl_close($ch);
             list(, $response,) = explode('.', $result);
+            dd($response);
             $result_decoded = base64_decode(strtr($response, '-_', '+/'));
             $result_array =json_decode($result_decoded, true);
             dd($result_array);
