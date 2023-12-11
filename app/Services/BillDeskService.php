@@ -10,6 +10,7 @@ class BillDeskService
     {
         // Make POST request to BillDesk API to create an order
         try {
+            dd(config('services.bill_desk.client_id'));
             $headers = ["alg" => "HS256", "clientid" => config('services.bill_desk.client_id'), 'typ' => 'JWT'];
 
             $dateTime = Carbon::now()->setTimezone('Asia/Kolkata');
