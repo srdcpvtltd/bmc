@@ -85,6 +85,7 @@ class BillDeskService
            
         } catch (\Exception $e) {
             // Handle API request error
+            dd($e->getMessage());
             return ['success'=>false,'error' => $e->getMessage()];
         }
     }
