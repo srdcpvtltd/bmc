@@ -31,9 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'bill_desk' => [
-        'client_id' => env('BILL_DESK_CLIENT_ID','bmcorpuat'),
-        'merchant_id' => env('BILL_DESK_MECHANT_ID','BMCORPUAT'),
-        'order_url' => env('BILL_DESK_ORDER_URL','https://uat1.billdesk.com/u2/payments/ve1_2/orders/create'),
+        'client_id' => env('BILL_DESK_CLIENT_ID','ids6bmmunc'),
+        'merchant_id' => env('BILL_DESK_MECHANT_ID','IDS6BMMUNC'),
+        'order_url' => env('BILL_DESK_ORDER_URL','https://api.billdesk.com/payments/ve1_2/orders/create'),
     ],
     'razor_pay' => [
         'merchant_name' => env('MERCHANT_NAME','SHOP System'),
