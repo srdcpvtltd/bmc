@@ -60,10 +60,10 @@ class BillDeskService
             $result = curl_exec($ch);
             curl_close($ch);
             list(, $response,) = explode('.', $result);
-            dd($response);
+
             $result_decoded = base64_decode(strtr($response, '-_', '+/'));
             $result_array =json_decode($result_decoded, true);
-            dd($result_array);
+
             if($result_array['status'] == "ACTIVE") {
                 $order_id= $result_array['bdorderid'];
                 $original_order_id= $result_array['orderid'];
@@ -86,8 +86,7 @@ class BillDeskService
            
         } catch (\Exception $e) {
             // Handle API request error
-            dd($e->getMessage());
-            return ['success'=>false,'error' => $e->getMessage()];
+            return ['success'=>false,'error' => "Something Went Wrong"];
         }
     }
 }
