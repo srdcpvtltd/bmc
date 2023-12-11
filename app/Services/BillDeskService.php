@@ -53,6 +53,7 @@ class BillDeskService
                 "BD-Traceid:".$tracid,
                 "BD-Timestamp: 20200817132207"
             );
+            dd($ch_headers);
             curl_setopt( $ch, CURLOPT_HTTPHEADER, $ch_headers);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt( $ch, CURLOPT_POSTFIELDS, $curl_payload);
