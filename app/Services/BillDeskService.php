@@ -10,7 +10,7 @@ class BillDeskService
     {
         // Make POST request to BillDesk API to create an order
         try {
-            dd(config('services.bill_desk.client_id'));
+
             $headers = ["alg" => "HS256", "clientid" => config('services.bill_desk.client_id'), 'typ' => 'JWT'];
 
             $dateTime = Carbon::now()->setTimezone('Asia/Kolkata');
@@ -36,6 +36,7 @@ class BillDeskService
                     "user_agent" => request()->header('User-Agent'),
                 ]
             ];
+            dd($payload);
             $header = base64_encode(json_encode($headers));
             $payload = base64_encode(json_encode($payload));
             $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
