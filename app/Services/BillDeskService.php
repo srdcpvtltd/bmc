@@ -42,7 +42,7 @@ class BillDeskService
             $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
             $signature = base64_encode($signature);
             $curl_payload = "$header.$payload.$signature";
-            
+            dd(config('services.bill_desk.order_url'));
             $ch = curl_init(config('services.bill_desk.order_url'));
     
             $tracid=rand(1111,9999);
