@@ -10,31 +10,28 @@
 <div class="row">
 
 @foreach ( $zones as $zone )
-    <div class="col-sm-4 col-xl-4">
-        <a href="{{route('admin.zone.estableshment',Crypt::encrypt($zone->id))}}">
-            <div class="card card-body has-bg-image" style="background-color:{{$zone->background_color ? $zone->background_color : '#93ad65' }}">
-                <div class="media">
+<div class="col-md-6 col-xl-3">
 
-                    <div class="mr-3 align-self-center">
-                        <i class="{{$zone->icon_name ? $zone->icon_name : 'icon-unlink2' }} icon-3x opacity-75"></i>
-                    </div>
-                    <div class="media-body text-right">
-                    <h3 class="mb-0">{{ $zone->name }}</h3>
-                        <span class="text-uppercase font-size-xs"></span>
-                    </div>
+    <div class="card">
+        <div class="card-body text-center card-img-top" style="background-image: url({{asset('user_asset/global_assets/images/backgrounds/panel_bg.png')}}); background-size: contain;background-color:{{$zone->background_color ? $zone->background_color : '#93ad65' }}">
+            <div class="card-img-actions d-inline-block mb-3">
+                <img class="img-fluid rounded-circle" src="{{asset($zone->image?$zone->image : 'user_asset/global_assets/images/placeholders/placeholder.jpg')}}" width="170" height="170" alt="">
+                <div class="card-img-actions-overlay card-img rounded-circle">
+                    <a href="{{route('admin.zone.estableshment',Crypt::encrypt($zone->id))}}" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                        <i class="icon-link"></i>
+                    </a>
                 </div>
             </div>
-        </a>
+
+            <h6 class="font-weight-semibold mb-0">{{ $zone->name }}</h6>
+        </div>
+
     </div>
-
-
-
+</div>
 @endforeach
 </div>
 
 @endif
-
-
 @endsection
 @section('scripts')
     <script src="{{ url('chart/Chart.min.js') }}"></script>

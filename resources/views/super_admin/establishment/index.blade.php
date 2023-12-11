@@ -24,9 +24,21 @@ Manage Establishment
                 <form action="{{route('super_admin.establishment.store')}}" method="post" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
                             <label>Establishment Name</label>
                             <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Establishment Image</label>
+                            <input name="image" type="file" class="form-control" placeholder="Enter Name" >
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Establishment Background Color</label>
+                            <input name="background_color" type="color" class="form-control" placeholder="Enter Name" >
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Establishment Icon Name</label>
+                            <input name="icon_name" type="text" class="form-control" placeholder="Enter Icon Name" >
                         </div>
                         <div class="form-group col-md-6">
                             <label>Choose Establishment Category</label>
@@ -78,7 +90,10 @@ Manage Establishment
         <thead>
             <tr>
                 <th>#</th>
+                <th>Image</th>
                 <th>Name</th>
+                <th>Background Color</th>
+                <th>Icon Name</th>
                 <th>Category</th>
                 <th>Total Shops</th>
                 <th>Remaining Shops</th>
@@ -90,7 +105,14 @@ Manage Establishment
             @foreach (App\Models\Establishment::all()  as $key => $establishment)
             <tr>
                 <td>{{$key+1}}</td>
+                <td>
+                    @if($establishment->image)
+                    <img src="{{asset($establishment->image)}}" height="100" width="100" alt="">
+                    @endif
+                </td>
                 <td>{{$establishment->name}}</td>
+                <td>{{$zone->background_color}}</td>
+                <td>{{$zone->icon_name}}</td>
                 <td>{{$establishment->establishment_category->name}}</td>
                 <td>{{$establishment->total_shops}}</td>
                 <td>{{$establishment->total_shops - $establishment->shops->count()}}</td>
