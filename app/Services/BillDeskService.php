@@ -39,7 +39,7 @@ class BillDeskService
 
             $header = base64_encode(json_encode($headers));
             $payload = base64_encode(json_encode($payload));
-            $signature = hash_hmac('sha256', "$header.$payload", 'Kr7mREYKcU9E0HExLpb1grnxVqsf9YfI', true);
+            $signature = hash_hmac('sha256', "$header.$payload", 'GArYKL0QdCwGnYc5qYHFyoN8dB9OjN6o', true);
             $signature = base64_encode($signature);
             $curl_payload = "$header.$payload.$signature";
 
