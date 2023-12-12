@@ -37,7 +37,7 @@ class BillDeskService
                     "user_agent" => request()->header('User-Agent'),
                 ]
             ];
-
+            Log::info("Payload : ".json_encode($payload,1));
             $header = base64_encode(json_encode($headers));
             $payload = base64_encode(json_encode($payload));
             $signature = hash_hmac('sha256', "$header.$payload", 'GArYKL0QdCwGnYc5qYHFyoN8dB9OjN6o', true);

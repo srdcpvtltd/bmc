@@ -97,7 +97,7 @@ class EstablishmentShopController extends Controller
     {
         try {
 
-            $shops = EstablishmentShop::with('shop','establishment')->where('establishment_id',$request->id)->where('status',1)->get();
+            $shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',1)->get();
             $establishment_shops = [];
             foreach($shops as $shop)
             {

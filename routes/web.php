@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 /******************LOGIN PAGE ROUTES START****************/
 Route::view('/','auth.login');
 Route::view('login','auth.login');
+Route::view('success_message','auth.success_message');
 Route::post('success',[AuthController::class,'success'])->name('success');
 Route::get('payment-for-api',[AuthController::class,'paymentForApi'])->name('payment_for_api');
 Route::post('success-for-api',[AuthController::class,'successForApi'])->name('success_for_api');
