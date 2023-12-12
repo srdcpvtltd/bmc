@@ -51,7 +51,7 @@ class BillDeskService
                 "Content-Type: application/jose",
                 "accept: application/jose",
                 "BD-Traceid:".$tracid,
-                "BD-Timestamp: 20200817132207"
+                "BD-Timestamp: ".Carbon::now()->setTimezone('Asia/Kolkata')->timestamp
             );
 
             curl_setopt( $ch, CURLOPT_HTTPHEADER, $ch_headers);
