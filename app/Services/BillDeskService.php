@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class BillDeskService
 {
@@ -53,7 +54,8 @@ class BillDeskService
                 "BD-Traceid:".$tracid,
                 "BD-Timestamp: ".Carbon::now()->setTimezone('Asia/Kolkata')->timestamp
             );
-
+            Log::info("Header : ".json_encode($ch_headers,1));
+            Log::info("Payload Encrypted : ".json_encode($curl_payload,1));
             curl_setopt( $ch, CURLOPT_HTTPHEADER, $ch_headers);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt( $ch, CURLOPT_POSTFIELDS, $curl_payload);
