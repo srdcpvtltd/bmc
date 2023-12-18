@@ -64,9 +64,18 @@ class PaymentController extends Controller
                 'payment_mode' => 'required',
                 'user_id' => 'required',
             ]);
-            $request->merge([
-                'is_paid' => 1 
-            ]);
+            
+            if($request->payment_mode == "UPI")
+            {
+                $request->merge([
+                    'is_paid' => 0
+                ]);
+            }else{
+                $request->merge([
+                    'is_paid' => 1 
+                ]);
+
+            }
             if($request->type == "monthly")
             {
                 $payment = Payment::where('month',$request->month)->where('shop_id',$request->shop_id)->where('establishment_shop_id',$request->establishment_shop_id)->where('year',$request->year)->first();
