@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CronjobController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,5 +84,7 @@ Route::get('cd', function() {
     Artisan::call('view:clear');
     return 'DONE';
   });
-  Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+  Route::get('logs', [LogViewerController::class, 'index']);
+
+  // Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
