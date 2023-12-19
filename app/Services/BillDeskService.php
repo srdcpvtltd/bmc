@@ -89,7 +89,7 @@ class BillDeskService
            
         } catch (\Exception $e) {
             // Handle API request error
-            return ['success'=>false,'error' => "Something Went Wrong"];
+            return ['success'=>false,'error' => $e->getMessage()];
         }
     }
 }
