@@ -89,7 +89,7 @@ class BillDeskService
                     
            
         } catch (\Exception $e) {
-            Log::info("Exception Error Billdesk : ".json_encode($ch_headers,1));
+            Log::info("Exception Error Billdesk : ". $e->getMessage());
             // Handle API request error
             return ['success'=>false,'error' => $e->getMessage()];
         }
