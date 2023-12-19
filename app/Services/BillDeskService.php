@@ -37,7 +37,7 @@ class BillDeskService
                     "user_agent" => request()->header('User-Agent'),
                 ]
             ];
-            Log::info("Payload : ".json_encode($payload,1));
+            Log::info("Payload Billdesk : ".json_encode($payload,1));
             $header = base64_encode(json_encode($headers));
             $payload = base64_encode(json_encode($payload));
             $signature = hash_hmac('sha256', "$header.$payload", 'GArYKL0QdCwGnYc5qYHFyoN8dB9OjN6o', true);
@@ -54,8 +54,8 @@ class BillDeskService
                 "BD-Traceid:".$tracid,
                 "BD-Timestamp: ".Carbon::now()->setTimezone('Asia/Kolkata')->timestamp
             );
-            Log::info("Header : ".json_encode($ch_headers,1));
-            Log::info("Payload Encrypted : ".json_encode($curl_payload,1));
+            Log::info("Header Billdesk : ".json_encode($ch_headers,1));
+            Log::info("Payload Encrypted Billdesk : ".json_encode($curl_payload,1));
             curl_setopt( $ch, CURLOPT_HTTPHEADER, $ch_headers);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt( $ch, CURLOPT_POSTFIELDS, $curl_payload);
@@ -80,6 +80,7 @@ class BillDeskService
                     'original_order_id' => $original_order_id,
                 ];
             } else { // Response error
+                Log::info("Response Error Billdesk : ".$result_array['message']);
                 return [
                     'success'=>false,
                     'error' => $result_array['message']
@@ -88,6 +89,7 @@ class BillDeskService
                     
            
         } catch (\Exception $e) {
+            Log::info("Exception Error Billdesk : ".json_encode($ch_headers,1));
             // Handle API request error
             return ['success'=>false,'error' => $e->getMessage()];
         }
