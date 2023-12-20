@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '*payment_callback*',
         'success',
+        'success-for-api',
     ];
 }
