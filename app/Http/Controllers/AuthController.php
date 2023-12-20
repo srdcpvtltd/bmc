@@ -153,6 +153,7 @@ class AuthController extends Controller
                 list(, $response,) = explode('.', $request->transaction_response);
                 $result_decoded = base64_decode(strtr($response, '-_', '+/'));
                 $result_array =json_decode($result_decoded, true);
+                dd($result_array);
                 if($result_array['transaction_error_type'] == 'success')
                 {
                     $payment = Payment::where('order_id',$result_array['orderid'])->first();
