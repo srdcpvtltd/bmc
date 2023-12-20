@@ -153,17 +153,21 @@ class AuthController extends Controller
                 list(, $response,) = explode('.', $request->transaction_response);
                 $result_decoded = base64_decode(strtr($response, '-_', '+/'));
                 $result_array =json_decode($result_decoded, true);
-                dd($result_array);
                 if($result_array['transaction_error_type'] == 'success')
                 {
                     $payment = Payment::where('order_id',$result_array['orderid'])->first();
-                    $payment->update([
-                        'is_paid' => 1,
-                        'transcation_id' => $result_array['transactionid'],
-                        'payment_method' => $result_array['payment_method_type'],
-                    ]);
-                    // $user = User::find($payment->user_id);
-                    return redirect()->intended(url('success_message?success=1'));
+                    if($payment)
+                    {
+                        $payment->update([
+                            'is_paid' => 1,
+                            'transcation_id' => $result_array['transactionid'],
+                            'payment_method' => $result_array['payment_method_type'],
+                        ]);
+                        // $user = User::find($payment->user_id);
+                        return redirect()->intended(url('success_message?success=1'));
+                    }else{
+                        return redirect()->intended(url('success_message?success=0'));
+                    }
                     // return response([
                     //     "message" => "Your Payment Done Successfully!"
                     // ], 200);
