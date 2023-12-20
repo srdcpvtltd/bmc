@@ -164,23 +164,23 @@ class AuthController extends Controller
                             'payment_method' => $result_array['payment_method_type'],
                         ]);
                         // $user = User::find($payment->user_id);
-                        return redirect()->intended(url('success_message?success=1'));
+                        return redirect()->intended(url('?success=1'));
                     }else{
-                        return redirect()->intended(url('success_message?success=0'));
+                        return redirect()->intended(url('?success=0'));
                     }
                     // return response([
                     //     "message" => "Your Payment Done Successfully!"
                     // ], 200);
                 }else{
-                    return redirect()->intended(url('success_message?success=0'));
+                    return redirect()->intended(url('?success=0'));
                 }
             }else{
-                return redirect()->intended(url('success_message?success=0'));
+                return redirect()->intended(url('?success=0'));
             }
 
         }catch(Exception $e)
         {
-            return redirect()->intended(url('success_message?success=0'));
+            return redirect()->intended(url('?success=0'));
         }
 
     }
