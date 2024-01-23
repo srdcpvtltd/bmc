@@ -46,4 +46,8 @@ class Payment extends Model
     {
         return $this->belongsTo(Shop::class,'shop_id');
     }
+    public function setAmountAttribute($value){
+        $numberWithoutCommas = str_replace(",", "", $value);
+        $this->attributes['amount'] = $numberWithoutCommas;
+    }
 }

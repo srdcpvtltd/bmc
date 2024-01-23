@@ -209,4 +209,14 @@ class AuthController extends Controller
         }
 
     }
+    public function paymentIssue()
+    {
+        $payments = Payment::all();
+        foreach($payments as $payment)
+        {
+            $payment->update([
+                'amount' => $payment->amount
+            ]);
+        }
+    }
 }

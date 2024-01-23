@@ -59,7 +59,7 @@ class createMonthlyPayments extends Command
                     'is_paid' => 0,
                     'establishment_shop_id' => $shop->establishment_shop ? $shop->establishment_shop->id : $shop->establishment_shop_id,
                     'establishment_id' => $shop->establishment_shop ? $shop->establishment_shop->establishment_id  : $shop->establishment_id,
-                    'amount' => number_format($numberWithoutCommas, 2),
+                    'amount' => $numberWithoutCommas,
                     'shop_rent' => $shop->establishment_shop ? $shop->establishment_shop->shop_rent : $shop->shop_rent,
                     'shop_size' => $shop->establishment_shop ? $shop->establishment_shop->shop_size : $shop->shop_size,
                     'shop_type' => $shop->establishment_shop ? $shop->establishment_shop->shop_type : $shop->shop_type,

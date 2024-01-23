@@ -26,6 +26,7 @@ Route::post('success',[AuthController::class,'success'])->name('success');
 Route::get('payment-for-api',[AuthController::class,'paymentForApi'])->name('payment_for_api');
 Route::post('success-for-api',[AuthController::class,'successForApi'])->name('success_for_api');
 Route::post('login',[AuthController::class,'login'])->name('login');
+Route::get('fix-payment-issue',[AuthController::class,'paymentIssue'])->name('paymment.issue');
 /******************LOGIN PAGE ROUTES END****************/
 
 /*******************REGISTER ROUTE START*************/
@@ -76,7 +77,6 @@ Route::get('cd', function() {
     Artisan::call('config:cache');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
-    Payment::where('month','Janaury')->update(['month' => 'January']);
     return 'DONE';
   });
 
