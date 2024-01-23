@@ -23,7 +23,7 @@ Total Monthly Collection of Zone {{@Auth::user()->zone->name}}
                 <label>Month</label>
                 <select name="month" id="month" class="form-control select-search" data-fouc required>
                     <option value="">Select Month</option>
-                    <option {{@request()->month == 'Janaury' ? 'selected' : ''}} value='Janaury'>Janaury</option>
+                    <option {{@request()->month == 'January' ? 'selected' : ''}} value='January'>January</option>
                     <option {{@request()->month == 'February' ? 'selected' : ''}} value='February'>February</option>
                     <option {{@request()->month == 'March' ? 'selected' : ''}} value='March'>March</option>
                     <option {{@request()->month == 'April' ? 'selected' : ''}} value='April'>April</option>

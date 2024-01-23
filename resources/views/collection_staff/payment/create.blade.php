@@ -45,7 +45,7 @@ Manage Payment
                             <label>Month</label>
                             <select name="month" id="month" class="form-control select-search" data-fouc required>
                                 <option value="">Select Month</option>
-                                <option value='Janaury'>Janaury</option>
+                                <option value='January'>January</option>
                                 <option value='February'>February</option>
                                 <option value='March'>March</option>
                                 <option value='April'>April</option>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CronjobController;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
@@ -75,6 +76,7 @@ Route::get('cd', function() {
     Artisan::call('config:cache');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
+    Payment::where('month','Janaury')->update(['month' => 'January']);
     return 'DONE';
   });
 

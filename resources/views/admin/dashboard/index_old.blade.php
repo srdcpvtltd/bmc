@@ -193,7 +193,7 @@
                     <div class="form-group">
                         <select id="month" class="form-control select-search" data-fouc>
                             <option value="">Select Month</option>
-                            <option {{@request()->month && request()->month == 'Janaury' ? 'selected' :'' }} value='Janaury'>Janaury</option>
+                            <option {{@request()->month && request()->month == 'January' ? 'selected' :'' }} value='January'>January</option>
                             <option {{@request()->month && request()->month == 'February' ? 'selected' :'' }} value='February'>February</option>
                             <option {{@request()->month && request()->month == 'March' ? 'selected' :'' }} value='March'>March</option>
                             <option {{@request()->month && request()->month == 'April' ? 'selected' :'' }} value='April'>April</option>

@@ -47,7 +47,7 @@
         <div class="form-group">
             <select id="month" class="form-control select-search" data-fouc>
                 <option value="">Select Month</option>
-                <option {{@$month == 'Janaury' ? 'selected' :'' }} value='Janaury'>Janaury</option>
+                <option {{@$month == 'January' ? 'selected' :'' }} value='January'>January</option>
                 <option {{@$month == 'February' ? 'selected' :'' }} value='February'>February</option>
                 <option {{@$month == 'March' ? 'selected' :'' }} value='March'>March</option>
                 <option {{@$month == 'April' ? 'selected' :'' }} value='April'>April</option>
