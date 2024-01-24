@@ -24,7 +24,6 @@ class CronJobController extends Controller
             if(Payment::where('month',$month)->where('shop_id',$shop->id)->where('year',$year)->count() == 0)
             {
                 $amount = $shop->establishment_shop ? $shop->establishment_shop->shop_rent : $shop->shop_rent;
-                $amount = (float) $amount;
                 Payment::create([
                     'month' => $month,
                     'shop_id' => $shop->id,
