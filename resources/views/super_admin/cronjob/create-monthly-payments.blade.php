@@ -23,7 +23,7 @@ Manage Monthly Payment Cronjob
             <div class="card-body">
                 <form action="{{route('super_admin.cronjob.create-monthly-payment')}}" method="post" enctype="multipart/form-data" >
                     @csrf
-                    <div class="row"><div class="form-group col-md-6">
+                    <div class="row"><div class="form-group col-md-4">
                         <label>Month</label>
                         <select name="month" id="month" class="form-control select-search" data-fouc required>
                             <option value="">Select Month</option>
@@ -41,13 +41,22 @@ Manage Monthly Payment Cronjob
                             <option value='December'>December</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label>Year</label>
                         <select name="year" id="year" class="form-control select-search" data-fouc required>
                             <option value="" >Select Year</option>
                             @for($year = 2022;$year <= 2026;$year++)
                             <option value="{{$year}}">{{$year}}</option>
                             @endfor
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Establishment</label>
+                        <select name="establishment_id" id="establishment_id" class="form-control select-search" data-fouc required>
+                            <option value="" >Select Year</option>
+                            @foreach(App\Models\Establishment::all() as $establishment)
+                            <option value="{{$establishment->id}}">{{$establishment->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     </div>

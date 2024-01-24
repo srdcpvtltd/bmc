@@ -17,7 +17,8 @@ class CronJobController extends Controller
     {
         $month = $request->month;
         $year = $request->year;
-        $shops = Shop::all();
+        $establishment_id = $request->establishment_id;
+        $shops = Shop::where('establishment_id',$establishment_id)->get();
         foreach($shops as $shop)
         {
             if(Payment::where('month',$month)->where('shop_id',$shop->id)->where('year',$year)->count() == 0)
