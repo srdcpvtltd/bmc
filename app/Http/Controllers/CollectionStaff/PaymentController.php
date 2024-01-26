@@ -54,6 +54,10 @@ class PaymentController extends Controller
                 $request->merge([
                     'is_paid' => 0
                 ]);
+            }else{
+                $request->merge([
+                    'is_paid' => 1
+                ]);
             }
             $payment = Payment::create($request->all());
             dd($payment);
