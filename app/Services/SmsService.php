@@ -29,11 +29,13 @@ class SmsService
             ]);
             if($response->getStatusCode() == 200)
             {
+                Log::info('Response Form Send Sms Api Send Successfully ');
                 return [
                     'success'=>true,
                     'message' => "Message Send Successfully.",
                 ];
             }else{
+                Log::info('Response Form Send Sms Api : Something went wrong. ');
                 return [
                     'success'=>false,
                     'message' => "Something Went Wrong",
