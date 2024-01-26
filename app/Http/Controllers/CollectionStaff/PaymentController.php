@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CollectionStaff;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Services\BillDeskService;
+use App\Services\SmsService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -55,6 +56,14 @@ class PaymentController extends Controller
                 ]);
             }
             $payment = Payment::create($request->all());
+            if($payment->is_paid)
+            {
+                $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                if($phone && strlen($phone) == 10)
+                {
+                    (new SmsService())->sendSMS($phone);
+                }
+            }
             if($payment->payment_mode == "UPI")
             {
                 return redirect()->to(route('collection_staff.payment.show',$payment->id));
