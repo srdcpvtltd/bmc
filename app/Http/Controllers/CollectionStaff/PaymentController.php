@@ -8,6 +8,7 @@ use App\Services\BillDeskService;
 use App\Services\SmsService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
@@ -60,17 +61,16 @@ class PaymentController extends Controller
                 ]);
             }
             $payment = Payment::create($request->all());
-            dd($payment);
             if($payment->is_paid)
             {
                 $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
-                dd($phone);
                 if($phone && strlen($phone) == 10)
                 {
                     (new SmsService())->sendSMS($phone);
+                }else{
+                    Log::info("Sms Service phone number have issue : ".$phone);
                 }
             }
-            dd(2);
             if($payment->payment_mode == "UPI")
             {
                 return redirect()->to(route('collection_staff.payment.show',$payment->id));
