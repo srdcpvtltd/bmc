@@ -90,7 +90,7 @@ Route::get('test_sms', function() {
     Artisan::call('view:clear');
     return 'DONE';
   });
-  // Route::get('logs', [LogViewerController::class, 'index']);
+  Route::get('logs', [LogViewerController::class, 'index']);
 // 
-  Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+  // Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
