@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CronjobController;
-use App\Models\Payment;
+use App\Services\SmsService;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
@@ -60,7 +60,11 @@ include __DIR__ . '/zdc.php';
 /*******************ZDC STAFF ROUTE END*************/
 
 /******************FUNCTIONALITY ROUTES****************/
-Route::get('cd', function() {
+Route::get('test_sms', function() {
+   $response = (new SmsService())->sendSMS('7008124707');
+   dd($response);
+    return 'DONE';
+  });Route::get('cd', function() {
     Artisan::call('config:cache');
     Artisan::call('migrate:refresh');
     Artisan::call('db:seed', [ '--class' => DatabaseSeeder::class]);

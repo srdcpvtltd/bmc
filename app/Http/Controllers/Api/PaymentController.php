@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\User;
 use App\Services\BillDeskService;
+use App\Services\SmsService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,14 @@ class PaymentController extends Controller
                 if($payment)
                 {
                     $payment->update($request->all());
+                    if($payment->is_paid)
+                    {
+                        $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                        if($phone && strlen($phone) == 10)
+                        {
+                            (new SmsService())->sendSMS($phone);
+                        }
+                    }
                     return response([
                         "payment" => $payment,
                     ], 200);
@@ -95,6 +104,14 @@ class PaymentController extends Controller
 
             }else{
                 $payment = Payment::create($request->all());
+                if($payment->is_paid)
+                {
+                    $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                    if($phone && strlen($phone) == 10)
+                    {
+                        (new SmsService())->sendSMS($phone);
+                    }
+                }
                 return response([
                     "payment" => $payment,
                 ], 200);
@@ -228,6 +245,14 @@ class PaymentController extends Controller
                         'transcation_id' => $result_array['transactionid'],
                         'payment_method' => $result_array['payment_method_type'],
                     ]);
+                    if($payment->is_paid)
+                    {
+                        $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                        if($phone && strlen($phone) == 10)
+                        {
+                            (new SmsService())->sendSMS($phone);
+                        }
+                    }
                     // $user = User::find($payment->user_id);
                     return response([
                         "message" => "Your Payment Done Successfully!"

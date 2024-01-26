@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\State;
 use App\Models\User;
 use App\Services\BillDeskService;
+use App\Services\SmsService;
 use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
@@ -124,6 +125,11 @@ class AuthController extends Controller
                         'transcation_id' => $result_array['transactionid'],
                         'payment_method' => $result_array['payment_method_type'],
                     ]);
+                    $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                    if($phone && strlen($phone) == 10)
+                    {
+                        (new SmsService())->sendSMS($phone);
+                    }
                     $user = User::find($payment->user_id);
                     Auth::guard('user')->loginUsingId($user->id);
                     toastr()->success('Your Payment Success Successfully');
@@ -163,6 +169,11 @@ class AuthController extends Controller
                             'transcation_id' => $result_array['transactionid'],
                             'payment_method' => $result_array['payment_method_type'],
                         ]);
+                        $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                        if($phone && strlen($phone) == 10)
+                        {
+                            (new SmsService())->sendSMS($phone);
+                        }
                         // $user = User::find($payment->user_id);
                         return redirect()->intended(url('?success=1'));
                     }else{
