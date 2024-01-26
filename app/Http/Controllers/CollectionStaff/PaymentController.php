@@ -64,6 +64,7 @@ class PaymentController extends Controller
             if($payment->is_paid)
             {
                 $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                dd($phone);
                 if($phone && strlen($phone) == 10)
                 {
                     (new SmsService())->sendSMS($phone);
@@ -71,6 +72,7 @@ class PaymentController extends Controller
                     Log::info("Sms Service phone number have issue : ".$phone);
                 }
             }
+            dd($payment);
             if($payment->payment_mode == "UPI")
             {
                 return redirect()->to(route('collection_staff.payment.show',$payment->id));
