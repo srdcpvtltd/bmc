@@ -56,6 +56,7 @@ class PaymentController extends Controller
                 ]);
             }
             $payment = Payment::create($request->all());
+            dd($payment);
             if($payment->is_paid)
             {
                 $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
