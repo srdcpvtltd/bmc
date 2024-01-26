@@ -5,7 +5,7 @@ use App\Http\Controllers\CronjobController;
 use App\Services\SmsService;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Rap2hpoutre\LaravelLogViewer\LogViewerController;
+// use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ Route::get('test_sms', function() {
     Artisan::call('view:clear');
     return 'DONE';
   });
-  Route::get('logs', [LogViewerController::class, 'index']);
+  // Route::get('logs', [LogViewerController::class, 'index']);
 // 
   // Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
