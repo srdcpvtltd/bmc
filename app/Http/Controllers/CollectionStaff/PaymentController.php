@@ -67,6 +67,7 @@ class PaymentController extends Controller
                 if($phone && strlen($phone) == 10)
                 {
                     (new SmsService())->sendSMS($phone);
+                    (new SmsService())->sendWhatsappSMS($phone);
                 }else{
                     Log::info("Sms Service phone number have issue : ".$phone);
                 }
@@ -140,6 +141,17 @@ class PaymentController extends Controller
             ]);
         }
         $payment->update($request->all());
+        if($payment->is_paid)
+        {
+            $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+            if($phone && strlen($phone) == 10)
+            {
+                (new SmsService())->sendSMS($phone);
+                (new SmsService())->sendWhatsappSMS($phone);
+            }else{
+                Log::info("Sms Service phone number have issue : ".$phone);
+            }
+        }
         if($payment->payment_mode == "UPI")
         {
             return redirect()->to(route('collection_staff.payment.show',$payment->id));

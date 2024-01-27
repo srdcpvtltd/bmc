@@ -129,6 +129,7 @@ class AuthController extends Controller
                     if($phone && strlen($phone) == 10)
                     {
                         (new SmsService())->sendSMS($phone);
+                        (new SmsService())->sendWhatsappSMS($phone);
                     }
                     $user = User::find($payment->user_id);
                     Auth::guard('user')->loginUsingId($user->id);
@@ -173,6 +174,7 @@ class AuthController extends Controller
                         if($phone && strlen($phone) == 10)
                         {
                             (new SmsService())->sendSMS($phone);
+                            (new SmsService())->sendWhatsappSMS($phone);
                         }
                         // $user = User::find($payment->user_id);
                         return redirect()->intended(url('?success=1'));
