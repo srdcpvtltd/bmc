@@ -6,41 +6,80 @@
 
 @section('content')
 
-
-
 <div class="row">
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.report.establisments')}}">
-            <div class="card card-body text-center" style="background-color:#50cc50;color:black; padding-bottom:0px">
-                <b><i class="icon-lifebuoy" style="font-size:35px;color:white;padding-bottom:10px"></i> </b>
-                <p style="font-size:18px;"> Establishment {{App\Models\Establishment::count()}}</p>
+
+            <div class="card card-body">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-lifebuoy icon-3x text-success-400"></i>
+                    </div>
+
+                    <div class="media-body text-success-400">
+                        <h3 class="font-weight-semibold mb-0">
+                            {{App\Models\Establishment::count()}}                    
+                        </h3>
+                        <span class="text-uppercase font-size-sm text-muted">Establishment</span>
+                    </div>
+                </div>
             </div>
         </a>
     </div>
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.report.shops')}}">
-            <div class="card card-body text-center" style="background-color:#e82610;color:black;padding-bottom:0px">
-               <b><i class="icon-store2" style="font-size:35px;color:white;padding-bottom:10px"></i></b>
-               <p style="font-size:18px;"> Shops {{App\Models\Shop::count()}}</p>
+            <div class="card card-body">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-store2 icon-3x text-indigo-400"></i>
+                    </div>
+
+                    <div class="media-body text-indigo-400">
+                        <h3 class="font-weight-semibold mb-0">
+                            {{App\Models\Shop::count()}}                    
+                        </h3>
+                        <span class="text-uppercase font-size-sm text-muted">Shop</span>
+                    </div>
+                </div>
             </div>
         </a>
     </div>
-    <div class="col-sm-6 col-xl-3">
+
+    <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.collection.daily')}}">
-            <div class="card card-body text-center" style="background-color:#9dc9ed;color:black;padding-bottom:0px">
-                <b><i class="icon-cash3" style="font-size:35px;color:white;padding-bottom:10px"></i></b>
-                <p style="font-size:18px;">Daily Collection {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->where('type','daily')->sum('amount')}}</p>
+            <div class="card card-body">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-cash3 icon-3x" style="color:#9dc9ed;"></i>
+                    </div>
+
+                    <div class="media-body "style="color:#9dc9ed;">
+                        <h3 class="font-weight-semibold mb-0">
+                            {{App\Models\Payment::whereDate('created_at',Carbon\Carbon::yesterday())->where('type','daily')->sum('amount')}}                    </h3>
+                        <span class="text-uppercase font-size-sm text-muted">Daily Collection</span>
+                    </div>
+                </div>
             </div>
         </a>
     </div>
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-3 col-xl-3">
         <a href="{{route('admin.collection.monthly_by_zones')}}">
-            <div class="card card-body text-center" style="background-color:#e6e229;color:black;padding-bottom:0px">
-                <b><i class="icon-enter6" style="font-size:35px;color:white;padding-bottom:10px"></i></b>
-                <p style="font-size:18px;">Monthly Collection {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}</p>
+            <div class="card card-body">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-enter6 icon-3x" style="color:#e6e229;"></i>
+                    </div>
+
+                    <div class="media-body "style="color:#e6e229;">
+                        <h3 class="font-weight-semibold mb-0">
+                            {{App\Models\Payment::where('month',Carbon\Carbon::now()->format('F'))->where('type','monthly')->where('is_paid',1)->sum('amount')}}                    </h3>
+                        <span class="text-uppercase font-size-sm text-muted">Monthly Collect.</span>
+                    </div>
+                </div>
             </div>
         </a>
     </div>
+
 </div>
 <div class="row">
     <div class="col-md-3">
