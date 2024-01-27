@@ -181,15 +181,16 @@
 								<li class="nav-item"><a href="{{route('super_admin.user.index')}}" class="nav-link {{Request::is('super_admin/user')?'active':''}}">All Users</a></li>
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('super_admin/zone*') || Request::is('super_admin/ward*') || Request::is('super_admin/structure*') || Request::is('super_admin/establishment_category*') || Request::is('super_admin/establishment*') ?'nav-item-open':''}}">
+						<li class="nav-item nav-item-submenu {{Request::is('super_admin/zone*') || Request::is('super_admin/ward*') || Request::is('super_admin/structure*') || Request::is('super_admin/establishment_category*') || Request::is('super_admin/establishment*') || Request::is('super_admin/shop_tax*') ?'nav-item-open':''}}">
 							<a href="#" class="nav-link"><i class="icon-cart-remove"></i> <span>Master Data</span></a>
 
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/zone*') || Request::is('super_admin/ward*') || Request::is('super_admin/structure*') || Request::is('super_admin/establishment_category*') || Request::is('super_admin/establishment*') ?'display:block':''}}">
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('super_admin/zone*') || Request::is('super_admin/ward*') || Request::is('super_admin/structure*') || Request::is('super_admin/establishment_category*') || Request::is('super_admin/establishment*') || Request::is('super_admin/shop_tax*') ?'display:block':''}}">
 							    <li class="nav-item"><a href="{{route('super_admin.zone.index')}}" class="nav-link {{Request::is('super_admin/zone')?'active':''}}">Zone</a></li>
 								<li class="nav-item"><a href="{{route('super_admin.ward.index')}}" class="nav-link {{Request::is('super_admin/ward')?'active':''}}">Ward</a></li>
 								<li class="nav-item"><a href="{{route('super_admin.structure.index')}}" class="nav-link {{Request::is('super_admin/structure')?'active':''}}">Structure</a></li>
 								<li class="nav-item"><a href="{{route('super_admin.establishment_category.index')}}" class="nav-link {{Request::is('super_admin/establishment_category')?'active':''}}">Establishment Category</a></li>
 								<li class="nav-item"><a href="{{route('super_admin.establishment.index')}}" class="nav-link {{Request::is('super_admin/establishment')?'active':''}}">Establishment</a></li>
+								<li class="nav-item"><a href="{{route('super_admin.shop_tax.index')}}" class="nav-link {{Request::is('super_admin/shop_tax')?'active':''}}">Shop Tax</a></li>
 							</ul>
 						</li> 
 						<li class="nav-item">

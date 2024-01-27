@@ -40,7 +40,6 @@ Manage Payment
                         @endif
                         @if(request()->type == 'monthly')
                         <input name="name" id="name" type="hidden" required>
-                        <input name="amount" id="amount" type="hidden" required>
                         <div class="form-group col-md-6">
                             <label>Month</label>
                             <select name="month" id="month" class="form-control select-search" data-fouc required>
@@ -104,6 +103,14 @@ Manage Payment
                         <div class="form-group col-md-6">
                             <label>Shop Rent</label>
                             <input name="shop_rent" readonly id="shop_rent" type="text" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Tax Amount</label>
+                            <input name="tax_amount" readonly id="tax_amount" type="text" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Amount</label>
+                            <input name="amount" readonly id="amount" type="text" class="form-control"  required>
                         </div>
                         @endif
                         <div class="form-group col-md-6">
@@ -231,9 +238,10 @@ Manage Payment
                     $('#email').val(shop.email);
                     $('#shop_size').val(establishment_shop.shop_size);
                     $('#shop_type').val(establishment_shop.shop_type);
-                    $('#amount').val(establishment_shop.shop_rent);
                     $('#shop_rent').val(establishment_shop.shop_rent);
                     $('#shop_number').val(establishment_shop.shop_number);
+                    $('#amount').val(result.total_amount);
+                    $('#tax_amount').val(result.tax_amount);
                 }
             });
         });

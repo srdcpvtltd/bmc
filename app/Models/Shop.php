@@ -20,6 +20,10 @@ class Shop extends Model
     {
         return $this->hasMany(QrCode::class,'shop_id');
     }
+    public function arrears()
+    {
+        return $this->hasMany(PendingPayment::class,'shop_id');
+    }
     public function establishment_shop()
     {
         return $this->belongsTo(EstablishmentShop::class,'establishment_shop_id');

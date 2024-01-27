@@ -24,4 +24,8 @@ class Establishment extends Model
     {
         return $this->hasMany(Shop::class,'establishment_id');
     }
+    public function tax()
+    {
+        return $this->hasOne(ShopTax::class,'establishment_id');
+    }
 }

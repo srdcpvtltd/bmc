@@ -56,7 +56,7 @@ class SmsService
         try {
             
             $client = new Client();
-            $url = 'https://control.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/?content_type=text&integrated_number=917605926564&recipient_number='.$to.'&text="Hi Debendra"';
+            $url = 'https://control.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/?content_type=text&integrated_number=917605926564&recipient_number='.$to.'&text="bmc"';
             $response = $client->request('POST',$url , [
                 'headers' => [
                   'accept' => 'application/json',

@@ -7,6 +7,7 @@ use App\Models\Establishment;
 use App\Models\EstablishmentShop;
 use App\Models\Payment;
 use App\Models\Shop;
+use App\Models\ShopTax;
 use App\Models\Ward;
 // use PDF;
 use Exception;
@@ -203,9 +204,24 @@ class ShopController extends Controller
     {
         $establishment_shop = EstablishmentShop::find($request->id);
         $shop = $establishment_shop->shop;
+        $shopTax = ShopTax::where('establishment_id',$shop->establishment_id)->first();
+        $total_amount = $establishment_shop->shop_rent;
+        $tax_amount = 0;
+        if($shopTax)
+        {
+            if($shopTax->type == "Percentage")
+            {
+                $tax_amount = $shopTax->amount;
+            }else{
+                $tax_amount = $total_amount/100 * $shopTax->amount;
+            }
+        }
+        $total_amount = $total_amount + $tax_amount;
         return response()->json([
             'establishment_shop' => $establishment_shop,
             'shop' => $shop,
+            'tax_amount' => $tax_amount,
+            'total_amount' => $total_amount,
         ]);
     }
 }

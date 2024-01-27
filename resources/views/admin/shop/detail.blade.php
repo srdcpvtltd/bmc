@@ -39,6 +39,7 @@
                 <ul class="nav nav-tabs nav-tabs-top">
                     <li class="nav-item"><a href="#top-tab1" class="nav-link active" class="nav-link" data-toggle="tab">Shop Detail</a></li>
                     <li class="nav-item"><a href="#top-tab2" class="nav-link" data-toggle="tab">Payment Detail</a></li>
+                    <li class="nav-item"><a href="#top-tab3" class="nav-link" data-toggle="tab">Arrears</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="top-tab1">
@@ -204,7 +205,7 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade show active" id="top-tab2">
+                    <div class="tab-pane fade show " id="top-tab2">
                         <div class="card-body">
                             
                             <div class="table-responsive mt-3">
@@ -228,6 +229,39 @@
                                             <td>{{@$payment->updated_at->format('d M,Y')}}</td>
                                             <td>{{@$payment->payment_mode}}</td>
                                             <td>{{$payment->is_paid ? 'Paid' : 'Not Paid'}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade show" id="top-tab3">
+                        <div class="card-body">
+                            
+                            <div class="table-responsive mt-3">
+                                <table class="table datatable-save-state">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Amount</th>
+                                            <th>Arrear Date</th>
+                                            <th>User</th>
+                                            <th>Shop Name</th>
+                                            <th>Establishment Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($shop->arrears  as $key => $arrear)
+                                        <tr>
+                                            <td>{{$key+1}}</td>
+                                            <td>{{@$arrear->amount}}</td>
+                                            <td>{{@$arrear->created_at->format('d M,Y')}}</td>
+                                            <td>{{@$arrear->user->name}}</td>
+                                            <td>{{@$arrear->shop->shop_name}}</td>
+                                            <td>{{@$arrear->establishment->name}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

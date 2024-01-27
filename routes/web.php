@@ -61,7 +61,7 @@ include __DIR__ . '/zdc.php';
 
 /******************FUNCTIONALITY ROUTES****************/
 Route::get('test_sms', function() {
-   $response = (new SmsService())->sendSMS('7008124707');
+   $response = (new SmsService())->sendWhatsappSMS('7008124707');
    dd($response);
     return 'DONE';
   });Route::get('cd', function() {

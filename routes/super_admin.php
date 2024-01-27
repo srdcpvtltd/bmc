@@ -12,6 +12,7 @@ use App\Http\Controllers\SuperAdmin\QrCodeController;
 use App\Http\Controllers\SuperAdmin\QrCodePaymentController;
 use App\Http\Controllers\SuperAdmin\ReportController;
 use App\Http\Controllers\SuperAdmin\ShopController;
+use App\Http\Controllers\SuperAdmin\ShopTaxController;
 use App\Http\Controllers\SuperAdmin\StructureController;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\SuperAdmin\WardController;
@@ -81,6 +82,10 @@ Route::group(['prefix' => 'super_admin', 'as'=>'super_admin.','middleware' => 'a
 
     Route::get('cronjob/monthly-payments',[CronJobController::class,'monthlyPayments'])->name('cronjob.monthly-payments');
     Route::post('cronjob/create-monthly-payment',[CronJobController::class,'createMonthlyPayments'])->name('cronjob.create-monthly-payment');
+
+    /*******************Shop Tax Route Start*************/
+    Route::resource('shop_tax',ShopTaxController::class);
+    /*******************Shop Tax Route End*************/
 });
 /****************** ADMIN MIDDLEWARE PAGES ROUTES END****************/
 ?>

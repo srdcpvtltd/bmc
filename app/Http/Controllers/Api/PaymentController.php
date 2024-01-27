@@ -165,6 +165,15 @@ class PaymentController extends Controller
             ]);
             $payment = Payment::find($request->payment_id);
             $payment->update($request->except('payment_id'));
+            if($payment->is_paid)
+            {
+                $phone = $payment->phone ? $payment->phone : @$payment->shop->phone;
+                if($phone && strlen($phone) == 10)
+                {
+                    (new SmsService())->sendSMS($phone);
+                    (new SmsService())->sendWhatsappSMS($phone);
+                }
+            }
             return response([
                 "payment" => $payment,
             ], 200);
