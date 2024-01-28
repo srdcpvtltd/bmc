@@ -31,9 +31,9 @@ class CronJobController extends Controller
                 {
                     if($shopTax->type == "Percentage")
                     {
-                        $tax_amount = $shopTax->amount;
-                    }else{
                         $tax_amount = $amount/100 * $shopTax->amount;
+                    }else{
+                        $tax_amount = $shopTax->amount;
                     }
                 }
                 $amount = $amount + $tax_amount;

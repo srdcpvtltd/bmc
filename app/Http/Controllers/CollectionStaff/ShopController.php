@@ -211,9 +211,9 @@ class ShopController extends Controller
         {
             if($shopTax->type == "Percentage")
             {
-                $tax_amount = $shopTax->amount;
-            }else{
                 $tax_amount = $total_amount/100 * $shopTax->amount;
+            }else{
+                $tax_amount = $shopTax->amount;
             }
         }
         $total_amount = $total_amount + $tax_amount;
