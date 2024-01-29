@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\EstablishmentShop;
 use App\Models\Payment;
+use App\Models\ShopTax;
 use Illuminate\Http\Request;
 
 class EstablishmentShopController extends Controller
@@ -98,11 +99,26 @@ class EstablishmentShopController extends Controller
         try {
 
             $shops = EstablishmentShop::where('establishment_id',$request->id)->where('status',1)->get();
+            $shopTax = ShopTax::where('establishment_id',$request->id)->first();
             $establishment_shops = [];
             foreach($shops as $shop)
             {
                 if(Payment::where('month',$request->month)->where('establishment_shop_id',$shop->id)->where('year',$request->year)->count() == 0)
                 {
+                    $total_amount = $shop->shop_rent;
+                    $tax_amount = 0;
+                    if($shopTax)
+                    {
+                        if($shopTax->type == "Percentage")
+                        {
+                            $tax_amount = $total_amount/100 * $shopTax->amount;
+                        }else{
+                            $tax_amount = $shopTax->amount;
+                        }
+                    }
+                    $total_amount = $total_amount + $tax_amount;
+                    $shop->tax_amount = $tax_amount;
+                    $shop->total_amount = $total_amount;
                     $establishment_shops[] = $shop; 
                 }
             }

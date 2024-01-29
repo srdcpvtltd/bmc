@@ -90,7 +90,7 @@ class PaymentController extends Controller
                         if($phone && strlen($phone) == 10)
                         {
                             (new SmsService())->sendSMS($phone);
-                            (new SmsService())->sendWhatsappSMS($phone);
+                            (new SmsService())->sendWhatsappSMS($phone,$payment);
                         }
                     }
                     return response([
@@ -111,7 +111,7 @@ class PaymentController extends Controller
                     if($phone && strlen($phone) == 10)
                     {
                         (new SmsService())->sendSMS($phone);
-                        (new SmsService())->sendWhatsappSMS($phone);
+                        (new SmsService())->sendWhatsappSMS($phone,$payment);
                     }
                 }
                 return response([
@@ -171,7 +171,7 @@ class PaymentController extends Controller
                 if($phone && strlen($phone) == 10)
                 {
                     (new SmsService())->sendSMS($phone);
-                    (new SmsService())->sendWhatsappSMS($phone);
+                    (new SmsService())->sendWhatsappSMS($phone,$payment);
                 }
             }
             return response([
@@ -262,7 +262,7 @@ class PaymentController extends Controller
                         if($phone && strlen($phone) == 10)
                         {
                             (new SmsService())->sendSMS($phone);
-                            (new SmsService())->sendWhatsappSMS($phone);
+                            (new SmsService())->sendWhatsappSMS($phone,$payment);
                         }
                     }
                     // $user = User::find($payment->user_id);

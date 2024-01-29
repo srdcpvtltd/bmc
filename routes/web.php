@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CronjobController;
+use App\Models\Payment;
 use App\Services\SmsService;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -61,7 +62,8 @@ include __DIR__ . '/zdc.php';
 
 /******************FUNCTIONALITY ROUTES****************/
 Route::get('test_sms', function() {
-   $response = (new SmsService())->sendWhatsappSMS('7008124707');
+  $payment = Payment::where('type','monthly')->first();
+   $response = (new SmsService())->sendWhatsappSMS('7008124707',$payment);
    dd($response);
     return 'DONE';
   });Route::get('cd', function() {

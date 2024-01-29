@@ -67,7 +67,7 @@ class PaymentController extends Controller
                 if($phone && strlen($phone) == 10)
                 {
                     (new SmsService())->sendSMS($phone);
-                    (new SmsService())->sendWhatsappSMS($phone);
+                    (new SmsService())->sendWhatsappSMS($phone,$payment);
                 }else{
                     Log::info("Sms Service phone number have issue : ".$phone);
                 }
@@ -147,7 +147,7 @@ class PaymentController extends Controller
             if($phone && strlen($phone) == 10)
             {
                 (new SmsService())->sendSMS($phone);
-                (new SmsService())->sendWhatsappSMS($phone);
+                (new SmsService())->sendWhatsappSMS($phone,$payment);
             }else{
                 Log::info("Sms Service phone number have issue : ".$phone);
             }
