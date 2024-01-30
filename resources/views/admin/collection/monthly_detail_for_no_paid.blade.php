@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 
 @section('title')
-Total Monthly Collection of Establishment {{$establishment->name}}
+Total Monthly Collection of Non Paid Shop
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Total Monthly Collection of Establishment {{$establishment->name}}
 
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Total Monthly Collection of Establishment {{$establishment->name}}</h5>
+        <h5 class="card-title">Total Monthly Collection of Non Paid Shop</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -59,7 +59,7 @@ Total Monthly Collection of Establishment {{$establishment->name}}
                         <th>Shop Name</th>
                         <th>Rent</th>
                         <th>Payment Status</th>
-                        <th>Payment Date</th>
+                        <th>Create Date</th>
                         <th>Mode of Payment</th>
                     </tr>
                 </thead>
@@ -70,8 +70,8 @@ Total Monthly Collection of Establishment {{$establishment->name}}
                         <td>{{@$payment->name}}</td>
                         <td>{{@$payment->shop_name ? $payment->shop_name  : $payment->shop->shop_name }}</td>
                         <td>{{@$payment->shop_rent}}</td>
-                        <td>Received</td>
-                        <td>{{@$payment->updated_at->format('d M,Y')}}</td>
+                        <td>Pending</td>
+                        <td>{{@$payment->created_at->format('d M,Y')}}</td>
                         <td>{{@$payment->payment_mode}}</td>
                     </tr>
                     @endforeach

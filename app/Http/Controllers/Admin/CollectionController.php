@@ -110,4 +110,48 @@ class CollectionController extends Controller
         $payments = $query->get();
         return view('admin.collection.monthly_detail',compact('payments','establishment','month','year'));
     }
+    public function getMonthlyCollectionDateWise(Request $request)
+    {
+        if($request->start_date)
+            $start_date = Carbon::parse($request->start_date);
+        else
+            $start_date = Carbon::now()->startOfMonth();
+        if($request->end_date)
+        {
+            $originalDate = Carbon::parse($request->end_date);
+            $newDate = $originalDate->setTime(11, 59, 59);
+            $end_date = Carbon::parse($newDate->format('Y-m-d H:i:s'));
+        }
+        else
+        {
+            $newDate = Carbon::today()->setTime(11, 59, 59);
+            $end_date = Carbon::parse($newDate->format('Y-m-d H:i:s'));
+        }
+        $payments = Payment::query()->select('payments.*','users.name as user_name')
+                        ->join('users','users.id','payments.user_id')
+                        ->where('payments.type','monthly')
+                        ->where('payments.is_paid',1)
+                        ->whereBetween('payments.updated_at',[$start_date,$end_date])
+                        ->get();
+        return view('admin.collection.monthly-date-wise-report',compact('payments','start_date','end_date'));
+    }
+    public function getMonthlyCollectionDetailForNonPaid(Request $request)
+    {
+        $query = Payment::query()->select('payments.*','users.name as user_name')
+                        ->join('users','users.id','payments.user_id')
+                        ->where('payments.type','monthly')
+                        ->where('payments.is_paid',0);
+        if($request->month)
+            $month = $request->month;
+        else
+            $month = Carbon::now()->format('F');
+        $query->where('month',$month);
+        if($request->year)
+            $year = $request->year;
+        else
+            $year = Carbon::now()->format('Y');
+        $query->where('year',$year);
+        $payments = $query->get();
+        return view('admin.collection.monthly_detail_for_no_paid',compact('payments','month','year'));
+    }
 }

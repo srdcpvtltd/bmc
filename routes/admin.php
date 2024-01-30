@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','middleware' => 'auth:user','a
     Route::get('collection/monthly_by_zones',[CollectionController::class,'getMonthlyByZones'])->name('collection.monthly_by_zones');
     Route::get('collection/show_daily/{id}',[CollectionController::class,'showDailyCollection'])->name('collection.show_daily');
     Route::get('collection/monthly_detail/{id}',[CollectionController::class,'getMonthlyCollectionDetail'])->name('collection.monthly_detail');
+    Route::get('collection/monthly-collection-date-wise',[CollectionController::class,'getMonthlyCollectionDateWise'])->name('collection.monthly_report');
+    Route::get('collection/monthly_detail_for_no_paid',[CollectionController::class,'getMonthlyCollectionDetailForNonPaid'])->name('collection.monthly_detail_for_no_paid');
     /*******************REPORT ROUTE START*************/
     Route::get('report/zone',[ReportController::class,'zoneReports'])->name('report.shops');
 
