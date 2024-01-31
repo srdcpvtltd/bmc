@@ -19,7 +19,7 @@ Total Monthly Collection of Non Paid Shop
     </div>
     <div class="card-body">
         <form class="form-inline" method="GET">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label>Month</label>
                 <select name="month" id="month" class="form-control select-search" data-fouc required>
                     <option value="">Select Month</option>
@@ -37,7 +37,7 @@ Total Monthly Collection of Non Paid Shop
                     <option {{$month == 'December' ? 'selected' : ''}} value='December'>December</option>
                 </select> 
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="">Year</label>
                 <select id="year" name="year" class="form-control select-search" data-fouc>
                     <option value="">Select Year</option>
@@ -48,6 +48,26 @@ Total Monthly Collection of Non Paid Shop
                     @endfor
                 </select>
             </div>
+            <div class="form-group col-md-3">
+                <label for="">Zone</label>
+                <select id="zone_id" name="zone_id" class="form-control select-search" data-fouc>
+                    <option value="">Select Zone</option>
+                    @foreach(App\Models\Zone::all() as $zone)
+                    <option @if($zone->id == $zone_id) selected @endif
+                         value="{{$zone->id}}">{{$zone->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Establishment</label>
+                <select id="establishment_id" name="establishment_id" class="form-control select-search" data-fouc>
+                    <option value="">Select Establishment</option>
+                    @foreach(App\Models\Establishment::all() as $establishment)
+                    <option @if($establishment->id == $establishment_id) selected @endif
+                         value="{{$establishment->id}}">{{$establishment->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary ml-2">Search</button>
         </form>
         <div class="table-responsive mt-3">
@@ -56,11 +76,13 @@ Total Monthly Collection of Non Paid Shop
                     <tr>
                         <th>#</th>
                         <th>Owner Name</th>
+                        <th>Establishment Name</th>
                         <th>Shop Name</th>
+                        <th>Shop Number</th>
+                        <th>Phone</th>
                         <th>Rent</th>
                         <th>Payment Status</th>
                         <th>Create Date</th>
-                        <th>Mode of Payment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,11 +90,13 @@ Total Monthly Collection of Non Paid Shop
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{@$payment->name}}</td>
+                        <td>{{@$payment->establishment->name}}</td>
                         <td>{{@$payment->shop_name ? $payment->shop_name  : $payment->shop->shop_name }}</td>
+                        <td>{{@$payment->shop_number}}</td>
+                        <td>{{@$payment->phone}}</td>
                         <td>{{@$payment->shop_rent}}</td>
                         <td>Pending</td>
                         <td>{{@$payment->created_at->format('d M,Y')}}</td>
-                        <td>{{@$payment->payment_mode}}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -137,6 +137,8 @@ class CollectionController extends Controller
     }
     public function getMonthlyCollectionDetailForNonPaid(Request $request)
     {
+        $establishment_id = null;
+        $zone_id = null;
         $query = Payment::query()->select('payments.*','users.name as user_name')
                         ->join('users','users.id','payments.user_id')
                         ->where('payments.type','monthly')
@@ -150,8 +152,18 @@ class CollectionController extends Controller
             $year = $request->year;
         else
             $year = Carbon::now()->format('Y');
+        if($request->zone_id)
+        {
+            $zone_id = $request->zone_id;
+            $query->where('users.zone_id', $zone_id);
+        }
+        if($request->establishment_id)
+        {
+            $establishment_id = $request->establishment_id;
+            $query->where('establishment_id',$establishment_id);
+        }
         $query->where('year',$year);
         $payments = $query->get();
-        return view('admin.collection.monthly_detail_for_no_paid',compact('payments','month','year'));
+        return view('admin.collection.monthly_detail_for_no_paid',compact('payments','month','year','zone_id','establishment_id'));
     }
 }
